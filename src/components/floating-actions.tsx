@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Calculator, TestTube2, Bot } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -10,11 +9,11 @@ import ChatAssistant from './chat-assistant';
 
 export default function FloatingActions() {
   return (
-    <div className="fixed bottom-4 right-4 flex flex-col gap-2">
+    <div className="fixed bottom-4 left-4 flex flex-col gap-2">
        <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline" size="icon" className="rounded-full h-12 w-12 bg-accent text-accent-foreground hover:bg-accent/90">
-            <Bot className="h-6 w-6" />
+          <Button variant="outline" size="icon" className="rounded-full h-14 w-14 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg">
+            <Bot className="h-7 w-7" />
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-2xl p-0">
@@ -23,26 +22,26 @@ export default function FloatingActions() {
       </Dialog>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline" size="icon" className="rounded-full h-12 w-12 bg-accent text-accent-foreground hover:bg-accent/90">
-            <TestTube2 className="h-6 w-6" />
+          <Button variant="outline" size="icon" className="rounded-full h-14 w-14 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg">
+            <TestTube2 className="h-7 w-7" />
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-4xl">
            <DialogHeader>
-            <DialogTitle>Periodic Table</DialogTitle>
+            <DialogTitle>الجدول الدوري</DialogTitle>
           </DialogHeader>
           <PeriodicTable />
         </DialogContent>
       </Dialog>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline" size="icon" className="rounded-full h-12 w-12 bg-accent text-accent-foreground hover:bg-accent/90">
-            <Calculator className="h-6 w-6" />
+          <Button variant="outline" size="icon" className="rounded-full h-14 w-14 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg">
+            <Calculator className="h-7 w-7" />
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-sm">
           <DialogHeader>
-            <DialogTitle>Scientific Calculator</DialogTitle>
+            <DialogTitle>آلة حاسبة علمية</DialogTitle>
           </DialogHeader>
           <CalculatorComponent />
         </DialogContent>

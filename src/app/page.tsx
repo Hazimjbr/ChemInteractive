@@ -1,18 +1,62 @@
-import Header from '@/components/header';
-import MainNav from '@/components/main-nav';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { BookOpen, CheckSquare, Clock } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-1 container mx-auto p-8">
-        <h1 className="text-4xl font-bold mb-4">
-          Welcome to ChemInteractive
+    <div className="container mx-auto p-8">
+      <section className="text-center py-16">
+        <h1 className="text-5xl font-bold mb-4">
+          أهلاً بك في ChemInteractive
         </h1>
-        <p className="text-lg text-muted-foreground">
-          Your modern platform for learning chemistry. Explore lessons, experiments, and quizzes to master the Tawjihi curriculum.
+        <p className="text-xl text-muted-foreground mb-8">
+          منصتك التفاعلية لإتقان كيمياء التوجيهي الأردني بأحدث الطرق التعليمية.
         </p>
-      </main>
+        <div className="flex justify-center gap-4">
+          <Button size="lg" variant="default">
+            <BookOpen className="ml-2" />
+            ابدأ التعلم
+          </Button>
+          <Button size="lg" variant="outline">
+             <CheckSquare className="ml-2" />
+            اختبر نفسك
+          </Button>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <h2 className="text-3xl font-bold text-center mb-8">لوحة تحكم سريعة</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Clock />
+                أكمل من حيث توقفت
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground mb-4">
+                الحالة الغازية: نظرية الحركة الجزيئية
+              </p>
+              <Button>متابعة الدرس</Button>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                 <CheckSquare />
+                امتحان مقترح
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+               <p className="text-muted-foreground mb-4">
+                اختبر فهمك في وحدة "حالات المادة".
+              </p>
+              <Button variant="outline">بدء الامتحان</Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
     </div>
   );
 }

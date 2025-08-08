@@ -1,37 +1,37 @@
 import Link from 'next/link';
-import { BeakerIcon } from 'lucide-react';
+import { Beaker } from 'lucide-react';
 
 export default function MainNav() {
   return (
-    <div className="flex gap-6 md:gap-10">
-      <Link href="/" className="flex items-center space-x-2">
-        <BeakerIcon className="h-6 w-6 text-primary" />
+    <div className="flex w-full items-center justify-between">
+       <Link href="/" className="flex items-center space-x-2">
+        <Beaker className="h-6 w-6 text-primary" />
         <span className="inline-block font-bold">ChemInteractive</span>
       </Link>
-      <nav className="flex gap-6">
+      <nav className="flex items-center gap-6 text-sm">
         <Link
           href="/materials"
-          className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          className="font-medium text-muted-foreground transition-colors hover:text-primary"
         >
-          Learning Material
+          المواد التعليمية
         </Link>
         <Link
           href="/experiments"
-          className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          className="font-medium text-muted-foreground transition-colors hover:text-primary"
         >
-          Experiments
+          التجارب
         </Link>
         <Link
           href="/quizzes"
-          className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          className="font-medium text-muted-foreground transition-colors hover:text-primary"
         >
-          Quizzes
+          الاختبارات
         </Link>
-        <Link
+         <Link
           href="/performance-analysis"
-          className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          className="font-medium text-muted-foreground transition-colors hover:text-primary"
         >
-          Performance
+          تحليل الأداء
         </Link>
       </nav>
     </div>

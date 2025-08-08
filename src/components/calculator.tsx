@@ -33,7 +33,6 @@ const CalculatorComponent = () => {
         });
         setDisplay((prev) => {
             if (prev === '0' || prev === 'Error') return value;
-            // A bit of logic to keep the display clean
             const lastChar = expression.slice(-1);
             if (['+','-','*','/','%'].includes(lastChar) && ['+','-','*','/','%'].includes(value)) {
                  return prev;
@@ -61,6 +60,7 @@ const CalculatorComponent = () => {
         value={display}
         readOnly
         className="mb-4 text-right text-3xl font-mono bg-muted"
+        dir="ltr"
       />
       <div className="grid grid-cols-4 gap-2">
         {buttons.map((btn) => (

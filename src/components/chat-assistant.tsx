@@ -5,10 +5,20 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Bot, User, Send } from 'lucide-react';
 import { chat } from '@/ai/flows/chat-flow';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import type { ChatInput } from '@/ai/flows/chat-flow';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { z } from 'zod';
 
+const ChatInputSchema = z.object({
+  history: z.array(z.object({
+    role: z.enum(['user', 'model']),
+    content: z.array(z.object({
+        text: z.string()
+    }))
+  })).describe("The chat history."),
+  message: z.string().describe("The user's message."),
+});
+type ChatInput = z.infer<typeof ChatInputSchema>;
 
 type Message = {
   role: 'user' | 'model';
@@ -45,7 +55,7 @@ export default function ChatAssistant() {
       console.error('Error getting response from AI:', error);
       const errorMessage: Message = {
         role: 'model',
-        content: [{ text: 'Sorry, I encountered an error. Please try again.' }],
+        content: [{ text: 'عذراً، حدث خطأ. الرجاء المحاولة مرة أخرى.' }],
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -54,11 +64,14 @@ export default function ChatAssistant() {
   };
 
   return (
-    <Card className="flex flex-col h-[600px] w-full">
+    <Card className="flex flex-col h-[600px] w-full border-0 shadow-none">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-            <Bot /> AI Chemistry Assistant
+            <Bot /> المساعد الكيميائي الذكي
         </CardTitle>
+        <CardDescription>
+            اسأل أي سؤال يتعلق بكيمياء التوجيهي الأردني.
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex-1 overflow-hidden">
         <ScrollArea className="h-full">
@@ -82,7 +95,9 @@ export default function ChatAssistant() {
                       : 'bg-muted'
                   }`}
                 >
-                  {message.content[0].text}
+                  {message.content[0].text.split('\n').map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
                 </div>
                  {message.role === 'user' && (
                   <Avatar className="h-8 w-8">
@@ -97,7 +112,7 @@ export default function ChatAssistant() {
                     <AvatarFallback><Bot size={20}/></AvatarFallback>
                   </Avatar>
                 <div className="rounded-lg px-4 py-2 text-sm bg-muted">
-                    Thinking...
+                     أفكر...
                 </div>
               </div>
             )}
@@ -108,7 +123,7 @@ export default function ChatAssistant() {
         <form onSubmit={handleSendMessage} className="flex w-full items-center space-x-2">
           <Input
             id="message"
-            placeholder="Ask about anything in chemistry..."
+            placeholder="اسأل عن أي شيء في الكيمياء..."
             className="flex-1"
             autoComplete="off"
             value={input}
@@ -117,7 +132,7 @@ export default function ChatAssistant() {
           />
           <Button type="submit" size="icon" disabled={isLoading}>
             <Send className="h-4 w-4" />
-            <span className="sr-only">Send</span>
+            <span className="sr-only">إرسال</span>
           </Button>
         </form>
       </CardFooter>
