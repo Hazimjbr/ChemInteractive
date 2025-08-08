@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Eraser } from "lucide-react";
 
 const scientificButtons = [
   // Scientific functions
@@ -12,7 +13,7 @@ const scientificButtons = [
   '7', '8', '9', ')', 'C',
   '4', '5', '6', '*', '/',
   '1', '2', '3', '+', '-',
-  '0', '.', '=',
+  '0', '.', 'DEL', '=',
 ];
 
 export default function Calculator() {
@@ -20,7 +21,7 @@ export default function Calculator() {
   const [expression, setExpression] = useState('');
 
   const handleButtonClick = (btn: string) => {
-    if (display.length > 20 && !['C', '='].includes(btn)) return;
+    if (display.length > 20 && !['C', '=', 'DEL'].includes(btn)) return;
 
     switch (btn) {
       case 'C':
@@ -28,6 +29,19 @@ export default function Calculator() {
         setExpression('');
         break;
       
+      case 'DEL':
+        if (display === 'Error' || display === '0') return;
+        if (display.length === 1) {
+            setDisplay('0');
+            setExpression('');
+        } else {
+            const newDisplay = display.slice(0, -1);
+            const newExpression = expression.slice(0, -1);
+            setDisplay(newDisplay);
+            setExpression(newExpression);
+        }
+        break;
+
       case '=':
         if (expression === '') return;
         try {
@@ -118,11 +132,13 @@ export default function Calculator() {
           const isOperator = ['/', '*', '-', '+', '^'].includes(btn);
           const isEqual = btn === '=';
           const isClear = btn === 'C';
+          const isDelete = btn === 'DEL';
           const isFunction = ['sin', 'cos', 'tan', 'log', 'ln', '√', 'π', 'e', '(', ')'].includes(btn);
           
           let variant: 'default' | 'secondary' | 'destructive' | 'outline' = 'secondary';
           if (isOperator) variant = 'default';
           if (isClear) variant = 'destructive';
+          if (isDelete) variant = 'outline';
           if (isFunction) variant = 'outline';
 
           return (
@@ -133,7 +149,7 @@ export default function Calculator() {
               size="lg"
               onClick={() => handleButtonClick(btn)}
             >
-              {btn}
+              {btn === 'DEL' ? <Eraser /> : btn}
             </Button>
           );
         })}
