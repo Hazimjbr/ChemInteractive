@@ -144,7 +144,7 @@ export default function Calculator() {
               size="lg"
               onClick={() => handleButtonClick(btn)}
             >
-              {btn === 'DEL' ? <Delete /> : btn}
+              {isDelete ? <Delete /> : btn}
             </Button>
           );
         })}
