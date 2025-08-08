@@ -2,18 +2,16 @@
 
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Eraser } from "lucide-react";
+import { Delete } from "lucide-react";
 
 const scientificButtons = [
   // Scientific functions
   'sin', 'cos', 'tan', 'log', 'ln',
-  '^', '√', 'π', 'e', '(',
-  
-  // Standard buttons
-  '7', '8', '9', ')', 'C',
-  '4', '5', '6', '*', '/',
-  '1', '2', '3', '+', '-',
-  '0', '.', 'DEL', '=',
+  '^', '√', 'π', 'e', 'C',
+  '(', ')',  '7', '8', '9',
+  '*', '/', '4', '5', '6',
+  '+', '-', '1', '2', '3',
+  '.', '0', 'DEL', '=',
 ];
 
 export default function Calculator() {
@@ -30,15 +28,12 @@ export default function Calculator() {
         break;
       
       case 'DEL':
-        if (display === 'Error' || display === '0') return;
-        if (display.length === 1) {
+        if (display.length > 1) {
+            setDisplay(display.slice(0, -1));
+            setExpression(expression.slice(0, -1));
+        } else {
             setDisplay('0');
             setExpression('');
-        } else {
-            const newDisplay = display.slice(0, -1);
-            const newExpression = expression.slice(0, -1);
-            setDisplay(newDisplay);
-            setExpression(newExpression);
         }
         break;
 
@@ -138,7 +133,7 @@ export default function Calculator() {
           let variant: 'default' | 'secondary' | 'destructive' | 'outline' = 'secondary';
           if (isOperator) variant = 'default';
           if (isClear) variant = 'destructive';
-          if (isDelete) variant = 'outline';
+          if (btn === 'DEL') variant = 'destructive';
           if (isFunction) variant = 'outline';
 
           return (
@@ -149,7 +144,7 @@ export default function Calculator() {
               size="lg"
               onClick={() => handleButtonClick(btn)}
             >
-              {btn === 'DEL' ? <Eraser /> : btn}
+              {btn === 'DEL' ? <Delete /> : btn}
             </Button>
           );
         })}
