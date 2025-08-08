@@ -1,1 +1,10 @@
-// This file is intentionally left blank.
+import PeriodicTable from '@/components/periodic-table';
+
+export default function PeriodicTablePage() {
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4 text-center">Interactive Periodic Table</h1>
+      <PeriodicTable />
+    </div>
+  );
+}
