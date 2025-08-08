@@ -132,8 +132,7 @@ export default function Calculator() {
           
           let variant: 'default' | 'secondary' | 'destructive' | 'outline' = 'secondary';
           if (isOperator) variant = 'default';
-          if (isClear) variant = 'destructive';
-          if (btn === 'DEL') variant = 'destructive';
+          if (isClear || isDelete) variant = 'destructive';
           if (isFunction) variant = 'outline';
 
           return (
