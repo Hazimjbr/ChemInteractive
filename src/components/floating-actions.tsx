@@ -9,7 +9,7 @@ import ChatAssistant from './chat-assistant';
 
 export default function FloatingActions() {
   return (
-    <div className="fixed bottom-4 left-4 flex flex-col gap-2">
+    <div className="fixed bottom-4 right-4 flex flex-col gap-2">
        <Dialog>
         <DialogTrigger asChild>
           <Button variant="outline" size="icon" className="rounded-full h-14 w-14 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg">
