@@ -127,13 +127,12 @@ export default function Calculator() {
           const isOperator = ['/', '*', '-', '+', '^'].includes(btn);
           const isEqual = btn === '=';
           const isClear = btn === 'C';
-          const isDelete = btn === 'DEL';
           const isFunction = ['sin', 'cos', 'tan', 'log', 'ln', '√', 'π', 'e', '(', ')'].includes(btn);
           
           let variant: 'default' | 'secondary' | 'destructive' | 'outline' = 'secondary';
           if (isOperator) variant = 'default';
           if (isClear) variant = 'destructive';
-          if (isDelete) variant = 'destructive';
+          if (btn === 'DEL') variant = 'destructive';
           if (isFunction) variant = 'outline';
 
           return (
@@ -144,7 +143,7 @@ export default function Calculator() {
               size="lg"
               onClick={() => handleButtonClick(btn)}
             >
-              {isDelete ? <Delete /> : btn}
+              {btn === 'DEL' ? <Delete /> : btn}
             </Button>
           );
         })}
