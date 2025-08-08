@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Calculator, TestTube2, Bot } from 'lucide-react';
+import { Calculator, Sheet, Bot } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import PeriodicTable from './periodic-table';
 import CalculatorComponent from './calculator';
@@ -12,7 +12,7 @@ export default function FloatingActions() {
     <div className="fixed bottom-4 right-4 flex flex-col gap-2">
        <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline" size="icon" className="rounded-full h-14 w-14 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg">
+          <Button variant="outline" size="icon" className="rounded-full h-14 w-14 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg backdrop-blur-sm border-none">
             <Bot className="h-7 w-7" />
           </Button>
         </DialogTrigger>
@@ -22,8 +22,8 @@ export default function FloatingActions() {
       </Dialog>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline" size="icon" className="rounded-full h-14 w-14 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg">
-            <TestTube2 className="h-7 w-7" />
+          <Button variant="outline" size="icon" className="rounded-full h-14 w-14 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg backdrop-blur-sm border-none">
+            <Sheet className="h-7 w-7" />
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-4xl">
@@ -35,7 +35,7 @@ export default function FloatingActions() {
       </Dialog>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline" size="icon" className="rounded-full h-14 w-14 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg">
+          <Button variant="outline" size="icon" className="rounded-full h-14 w-14 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg backdrop-blur-sm border-none">
             <Calculator className="h-7 w-7" />
           </Button>
         </DialogTrigger>
