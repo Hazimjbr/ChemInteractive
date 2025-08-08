@@ -41,11 +41,11 @@ const PeriodicTable = () => {
           >
             <div className="text-xs font-bold">{element.number}</div>
             <div className="text-lg font-bold">{element.symbol}</div>
-            <div className="text-xs truncate">{element.name.split("").reverse().join("")}</div>
+            <div className="text-xs truncate">{element.name}</div>
           </div>
         </TooltipTrigger>
         <TooltipContent>
-          <p>الاسم: {element.name.split("").reverse().join("")}</p>
+          <p>الاسم: {element.name}</p>
           <p>الكتلة الذرية: {element.atomic_mass.toFixed(3)}</p>
         </TooltipContent>
       </Tooltip>
