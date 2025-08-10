@@ -1,3 +1,4 @@
+
 'use client';
 import { useState, Fragment } from 'react';
 import { Input } from '@/components/ui/input';
@@ -44,7 +45,8 @@ const renderMessageContent = (text: string) => {
         }
         if (part.startsWith('$') && part.endsWith('$')) {
             // Inline Math
-            return <InlineMath key={index} math={part.slice(1, -1)} />;
+            // Wrap in a span with dir="ltr" to ensure correct rendering direction
+            return <span dir="ltr" key={index} style={{ display: 'inline-block' }}><InlineMath math={part.slice(1, -1)} /></span>;
         }
 
         // For regular text parts, we wrap them to ensure correct rendering direction
@@ -124,10 +126,10 @@ export default function ChatAssistant() {
                   }`}
                 >
                   {(message.content[0].text || '').split('\n').map((line, i) => {
-                     // Heuristic to detect if the line is primarily an equation
-                    const isEquation = line.includes('$$');
+                     // Heuristic to detect if the line is primarily a block equation
+                    const isBlockEquation = line.includes('$$');
                     return (
-                        <p key={i} dir={isEquation ? 'ltr' : 'rtl'} className={cn("text-right", isEquation && 'text-left')}>
+                        <p key={i} dir={isBlockEquation ? 'ltr' : 'rtl'} className={cn(isBlockEquation && 'text-left')}>
                             {renderMessageContent(line)}
                         </p>
                     )
