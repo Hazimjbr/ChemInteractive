@@ -15,23 +15,29 @@ const ChatInputSchema = z.object({
     content: z.array(z.object({
         text: z.string()
     }))
-  })).describe("The chat history."),
+  })).describe("The chat history, including the latest user message."),
 });
 type ChatInput = z.infer<typeof ChatInputSchema>;
+
+// A simplified system prompt to diagnose the model's non-responsiveness.
+const systemPrompt = `You are a helpful and friendly chemistry tutor. Your name is "المساعد الذكي".
+You must always answer in Arabic. Your tone should be encouraging and professional.
+Your main goal is to help students with their chemistry questions.
+Use markdown for formatting when necessary.`;
 
 
 const chemistryTutorPrompt = ai.definePrompt({
     name: 'chemistryTutorPrompt',
-    model: 'googleai/gemini-2.0-flash',
+    model: 'googleai/gemini-1.5-flash',
     input: { schema: ChatInputSchema },
-    prompt: `You are an expert chemistry tutor specializing in the Jordanian Tawjihi curriculum. Your name is "المساعد الذكي". Your tone should be friendly, encouraging, professional, and clear. You must always answer in Arabic.
 
-    Your role is to help students understand chemistry concepts, solve problems, and prepare for their exams. When a student asks a question, provide a step-by-step explanation. If they ask for a definition, make it simple and provide an example from the Jordanian curriculum context.
-
-    Always maintain a positive and supportive tone. Encourage students to ask more questions. Use markdown for formatting, like lists, bold text, and code blocks for chemical equations.`,
-
-    // Pass the history directly to the model.
-    history: (input) => input.history,
+    // The 'messages' property is the correct way to pass a full chat history.
+    messages: (input) => {
+        return [
+          { role: 'system', content: [{ text: systemPrompt }] },
+          ...input.history
+        ];
+    },
 });
 
 
