@@ -1,8 +1,23 @@
 'use client';
 
-import Diagram from './diagram';
+import dynamic from 'next/dynamic';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check, Dot } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
+
+const Diagram = dynamic(() => import('./diagram'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex flex-col items-center gap-4">
+      <Skeleton className="h-[250px] w-[350px] rounded-lg" />
+      <div className="w-full flex items-center gap-2">
+         <span className="text-sm text-muted-foreground">حجم الوعاء</span>
+         <Skeleton className="h-4 w-full" />
+      </div>
+    </div>
+  ),
+});
+
 
 export default function LessonPartPage() {
   return (
