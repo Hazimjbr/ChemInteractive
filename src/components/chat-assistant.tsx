@@ -118,7 +118,7 @@ export default function ChatAssistant() {
                   }`}
                 >
                   {(message.content[0].text || '').split('\n').map((line, i) => (
-                    <p key={i} dir="rtl">{renderMessageContent(line)}</p>
+                    <p key={i}>{renderMessageContent(line)}</p>
                   ))}
                 </div>
                  {message.role === 'user' && (
