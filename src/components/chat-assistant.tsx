@@ -27,29 +27,31 @@ type Message = {
 
 const renderMessageContent = (text: string) => {
     if (!text) return null;
-  
-    // Regex to split by block/inline math AND sequences of Latin characters/numbers/symbols
-    const parts = text.split(/(\$\$[\s\S]*?\$\$|\$[\s\S]*?\$|[a-zA-Z0-9-+.()\[\]_/\s]+)/g);
-  
-    return parts.map((part, index) => {
-      if (!part) return null;
 
-      if (part.startsWith('$$') && part.endsWith('$$')) {
-        // Block Math
-        return <BlockMath key={index} math={part.slice(2, -2)} />;
-      }
-      if (part.startsWith('$') && part.endsWith('$')) {
-        // Inline Math
-        return <InlineMath key={index} math={part.slice(1, -1)} />;
-      }
-      if (/^[a-zA-Z0-9-+.()\[\]_/\s]+$/.test(part)) {
-         // Standalone LTR text (not part of a formula)
-         return <span key={index} dir="ltr">{part}</span>;
-      }
-      // Regular Arabic text
-      return <Fragment key={index}>{part}</Fragment>;
+    // This regex finds:
+    // 1. Block math ($$...$$)
+    // 2. Inline math ($...$)
+    // It captures them, and the text outside them is also part of the result array.
+    const parts = text.split(/(\$\$[\s\S]*?\$\$|\$[\s\S]*?\$)/g);
+
+    return parts.map((part, index) => {
+        if (!part) return null;
+
+        if (part.startsWith('$$') && part.endsWith('$$')) {
+            // Block Math
+            return <BlockMath key={index} math={part.slice(2, -2)} />;
+        }
+        if (part.startsWith('$') && part.endsWith('$')) {
+            // Inline Math
+            return <InlineMath key={index} math={part.slice(1, -1)} />;
+        }
+
+        // For regular text parts, we wrap them to ensure correct rendering direction
+        // The parent <p> handles the overall RTL direction.
+        return <span key={index}>{part}</span>;
     });
 };
+
 
 export default function ChatAssistant() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -122,7 +124,7 @@ export default function ChatAssistant() {
                   }`}
                 >
                   {(message.content[0].text || '').split('\n').map((line, i) => (
-                    <p key={i}>{renderMessageContent(line)}</p>
+                    <p key={i} dir="rtl" className="text-right">{renderMessageContent(line)}</p>
                   ))}
                 </div>
                  {message.role === 'user' && (
