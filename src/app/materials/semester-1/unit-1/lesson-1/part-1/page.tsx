@@ -1,15 +1,17 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Check, Dot } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Check, Dot, ArrowLeft } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const Diagram = dynamic(() => import('./diagram'), {
   ssr: false,
   loading: () => (
     <div className="flex flex-col items-center gap-4">
-      <Skeleton className="h-[250px] w-[350px] rounded-lg" />
+      <Skeleton className="h-[250px] w-full rounded-lg" />
       <div className="w-full flex items-center gap-2">
          <span className="text-sm text-muted-foreground">حجم الوعاء</span>
          <Skeleton className="h-4 w-full" />
@@ -106,6 +108,17 @@ export default function LessonPartPage() {
           </Card>
         </aside>
       </main>
+
+      <footer className="mt-12 border-t pt-6">
+        <div className="flex justify-end">
+          <Link href="/materials/semester-1/unit-1/lesson-1/part-2" passHref>
+            <Button size="lg">
+              الدرس التالي: مقدمة قوانين الغازات
+              <ArrowLeft className="mr-2 h-5 w-5" />
+            </Button>
+          </Link>
+        </div>
+      </footer>
     </div>
   );
 }
