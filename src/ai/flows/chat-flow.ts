@@ -30,18 +30,16 @@ const chemistryTutorPrompt = ai.definePrompt({
     name: 'chemistryTutorPrompt',
     model: 'googleai/gemini-1.5-flash',
     input: { schema: ChatInputSchema },
-
-    // The 'messages' property is the correct way to pass a full chat history.
-    messages: (input) => {
-        return [
-          { role: 'system', content: [{ text: systemPrompt }] },
-          ...input.history
-        ];
-    },
+    output: { format: 'text' }, // Ensure the output is treated as simple text.
+    messages: (input) => [
+        { role: 'system', content: [{ text: systemPrompt }] },
+        ...input.history.filter(m => m.content[0]?.text), // Filter out empty messages
+    ],
 });
 
 
 export async function chat(input: ChatInput): Promise<string> {
     const {output} = await chemistryTutorPrompt(input);
-    return (output as string) || 'عذراً، لم أتمكن من فهم الطلب. الرجاء المحاولة مرة أخرى.';
+    // The output is now a direct string, no need for casting or complex checks.
+    return output || 'عذراً، لم أتمكن من فهم الطلب. الرجاء المحاولة مرة أخرى.';
 }
