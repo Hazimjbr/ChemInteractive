@@ -7,6 +7,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { units } from '@/data/materials';
 
 
 const ChatInputSchema = z.object({
@@ -19,18 +20,35 @@ const ChatInputSchema = z.object({
 });
 type ChatInput = z.infer<typeof ChatInputSchema>;
 
-// A simplified system prompt to diagnose the model's non-responsiveness.
-const systemPrompt = `You are a helpful and friendly chemistry tutor. Your name is "المساعد الذكي".
+const curriculumFennel = JSON.stringify(
+    units.map((unit) => ({
+      title: unit.title,
+      lessons: unit.lessons.map((lesson) => ({
+        title: lesson.title,
+        parts: lesson.parts.map((part) => part.title),
+      })),
+    })),
+    null,
+    2
+  );
+  
+const systemPrompt = `You are a helpful and friendly chemistry tutor for Jordanian Tawjihi students. Your name is "المساعد الذكي".
 You must always answer in Arabic. Your tone should be encouraging and professional.
-Your main goal is to help students with their chemistry questions.
-Use markdown for formatting when necessary.`;
+Your main goal is to help students with their chemistry questions based on the provided curriculum.
+You are an expert in the Jordanian Tawjihi chemistry curriculum provided below. You must answer questions based *only* on this curriculum. Do not provide information outside of this context. If a question is outside the scope of the curriculum, politely state that the question is outside your knowledge base.
+
+Here is the curriculum index:
+\`\`\`json
+${curriculumFennel}
+\`\`\`
+`;
 
 
 const chemistryTutorPrompt = ai.definePrompt({
     name: 'chemistryTutorPrompt',
     model: 'googleai/gemini-1.5-flash',
     input: { schema: ChatInputSchema },
-    output: { format: 'text' }, // Ensure the output is treated as simple text.
+    output: { format: 'text' },
     messages: (input) => [
         { role: 'system', content: [{ text: systemPrompt }] },
         ...input.history.filter(m => m.content[0]?.text), // Filter out empty messages
@@ -40,6 +58,5 @@ const chemistryTutorPrompt = ai.definePrompt({
 
 export async function chat(input: ChatInput): Promise<string> {
     const {output} = await chemistryTutorPrompt(input);
-    // The output is now a direct string, no need for casting or complex checks.
     return output || 'عذراً، لم أتمكن من فهم الطلب. الرجاء المحاولة مرة أخرى.';
 }
