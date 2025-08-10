@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { generateQuiz } from '@/ai/flows/generate-quiz-flow';
-import { Loader2, CheckCircle, XCircle } from 'lucide-react';
+import { Loader2, CheckCircle, XCircle, Star, Sparkles } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
@@ -31,16 +31,20 @@ export default function Quiz({ lessonContent }: QuizProps) {
   const [answerStatus, setAnswerStatus] = useState<AnswerStatus>('unanswered');
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const [difficultyLevel, setDifficultyLevel] = useState(1);
   const { toast } = useToast();
 
-  const handleGenerateQuiz = async () => {
+  const handleGenerateQuiz = async (level: number) => {
     setIsLoading(true);
     setQuiz(null);
     setIsFinished(false);
     setCurrentQuestionIndex(0);
     setScore(0);
+    setAnswerStatus('unanswered');
+    setSelectedAnswer(null);
+
     try {
-      const result = await generateQuiz(lessonContent);
+      const result = await generateQuiz(lessonContent, level);
       setQuiz(result.quiz);
     } catch (error) {
       console.error('Failed to generate quiz:', error);
@@ -69,17 +73,27 @@ export default function Quiz({ lessonContent }: QuizProps) {
   };
 
   const handleNextQuestion = () => {
-    setAnswerStatus('unanswered');
-    setSelectedAnswer(null);
     if (currentQuestionIndex < quiz!.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
+       setAnswerStatus('unanswered');
+       setSelectedAnswer(null);
+       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
-      setIsFinished(true);
+        // Quiz is finished
+        const finalScore = score / quiz!.length;
+        if(finalScore >= 0.8) {
+            setDifficultyLevel(prev => prev + 1);
+             toast({
+                title: 'مستوى الصعوبة ارتفع!',
+                description: `رائع! لقد أتقنت هذا المستوى. الاختبار القادم سيكون أكثر تحديًا. المستوى الجديد: ${difficultyLevel + 1}`,
+                className: 'bg-green-100 border-green-400 text-green-800'
+            });
+        }
+       setIsFinished(true);
     }
   };
   
   const handleRestartQuiz = () => {
-    handleGenerateQuiz();
+    handleGenerateQuiz(difficultyLevel);
   }
 
 
@@ -95,7 +109,8 @@ export default function Quiz({ lessonContent }: QuizProps) {
                 <span>{Math.round((score / (quiz?.length || 1)) * 100)}%</span>
             </div>
             <Button onClick={handleRestartQuiz}>
-                إعادة إنشاء الاختبار
+                 <Sparkles className="ml-2 h-4 w-4" />
+                {score / (quiz?.length || 1) >= 0.8 ? `تحدّ جديد (المستوى ${difficultyLevel})` : `إعادة الاختبار (المستوى ${difficultyLevel})`}
             </Button>
         </div>
     )
@@ -106,14 +121,19 @@ export default function Quiz({ lessonContent }: QuizProps) {
       <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground p-8">
         <Loader2 className="h-8 w-8 animate-spin" />
         <p>جاري إنشاء اختبار مخصص لك...</p>
+        <p className="text-sm font-semibold">مستوى الصعوبة: {difficultyLevel}</p>
       </div>
     );
   }
 
   if (!quiz) {
     return (
-      <div className="text-center">
-        <Button onClick={handleGenerateQuiz}>
+      <div className="text-center space-y-3">
+         <div className='flex justify-center items-center gap-1 font-bold text-accent'>
+            <Star className='h-5 w-5' />
+            <span>مستوى الصعوبة: {difficultyLevel}</span>
+        </div>
+        <Button onClick={() => handleGenerateQuiz(difficultyLevel)}>
           أنشئ اختباري
         </Button>
         <p className="text-sm text-muted-foreground mt-2">
@@ -131,8 +151,13 @@ export default function Quiz({ lessonContent }: QuizProps) {
          <h4 className="font-bold">
             السؤال {currentQuestionIndex + 1} من {quiz.length}
          </h4>
-         <Progress value={((currentQuestionIndex + 1) / quiz.length) * 100} className="w-1/2" />
+        <div className='flex items-center gap-1 text-sm font-semibold text-accent'>
+            <Star className='h-4 w-4' />
+            <span>مستوى الصعوبة: {difficultyLevel}</span>
+        </div>
        </div>
+        <Progress value={((currentQuestionIndex + 1) / quiz.length) * 100} className="w-full" />
+
 
       <p className="text-lg font-semibold">{currentQuestion.question}</p>
 

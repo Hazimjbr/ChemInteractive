@@ -31,12 +31,25 @@ const GenerateQuizOutputSchema = z.object({
 
 type GenerateQuizOutput = z.infer<typeof GenerateQuizOutputSchema>;
 
+const GenerateQuizInputSchema = z.object({
+    lessonContent: z.string(),
+    difficultyLevel: z.number().min(1).describe("The difficulty level of the quiz. Higher numbers mean more difficult questions."),
+});
+
+
 const quizGenerationPrompt = ai.definePrompt({
   name: 'quizGenerationPrompt',
   model: 'googleai/gemini-1.5-flash',
-  input: { schema: z.object({ lessonContent: z.string() }) },
+  input: { schema: GenerateQuizInputSchema },
   output: { schema: GenerateQuizOutputSchema },
-  prompt: `أنت مساعد تعليمي خبير في الكيمياء. مهمتك هي إنشاء اختبار قصير (كويز) من 5 أسئلة اختيار من متعدد بناءً على محتوى الدرس التالي.
+  prompt: `أنت مساعد تعليمي خبير في الكيمياء. مهمتك هي إنشاء اختبار قصير (كويز) من 5 أسئلة اختيار من متعدد بناءً على محتوى الدرس التالي ومستوى الصعوبة المحدد.
+
+**مستوى الصعوبة الحالي: {{difficultyLevel}}**
+*   **المستوى 1:** أسئلة مباشرة تختبر حفظ وفهم المفاهيم الأساسية.
+*   **المستوى 2:** أسئلة تتطلب ربط مفهومين أو تطبيق مباشر لمعادلة.
+*   **المستوى 3:** أسئلة تحليلية تتطلب فهمًا أعمق للعلاقات بين المفاهيم.
+*   **المستوى 4 فما فوق:** أسئلة مركبة تتطلب استنتاجًا أو حل مسائل متعددة الخطوات أو تحليل سيناريوهات معقدة.
+يجب أن تعكس الأسئلة التي تنشئها مستوى الصعوبة المطلوب بدقة.
 
 **معايير الجودة (مهم جداً):**
 1.  **الدقة العلمية:** يجب أن تكون الأسئلة والإجابات والشروحات دقيقة 100% بناءً على محتوى الدرس المقدم حصراً.
@@ -58,9 +71,10 @@ const quizGenerationPrompt = ai.definePrompt({
 });
 
 export async function generateQuiz(
-  lessonContent: string
+  lessonContent: string,
+  difficultyLevel: number
 ): Promise<GenerateQuizOutput> {
-  const { output } = await quizGenerationPrompt({ lessonContent });
+  const { output } = await quizGenerationPrompt({ lessonContent, difficultyLevel });
   if (!output) {
     throw new Error('Failed to generate quiz. The AI model returned no output.');
   }
