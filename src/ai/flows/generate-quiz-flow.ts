@@ -4,7 +4,7 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { z } from 'zod';
 
 const QuizQuestionSchema = z.object({
   question: z.string().describe('The question text.'),
@@ -40,6 +40,7 @@ const quizGenerationPrompt = ai.definePrompt({
 
 يجب أن تكون الأسئلة ذات جودة عالية وتغطي المفاهيم الأساسية في النص.
 لكل سؤال، قدم 4 خيارات، وحدد الإجابة الصحيحة، وقدم شرحًا واضحًا ومفصلاً لسبب صحة هذه الإجابة.
+يجب أن يكون كامل المحتوى الذي تنشئه باللغة العربية.
 
 محتوى الدرس:
 ---
