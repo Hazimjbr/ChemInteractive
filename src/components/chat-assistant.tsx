@@ -13,16 +13,15 @@ const ChatInputSchema = z.object({
   history: z.array(z.object({
     role: z.enum(['user', 'model']),
     content: z.array(z.object({
-        text: z.string().nullable()
+        text: z.string()
     }))
   })).describe("The chat history."),
-  message: z.string().describe("The user's message."),
 });
 type ChatInput = z.infer<typeof ChatInputSchema>;
 
 type Message = {
   role: 'user' | 'model';
-  content: { text: string | null }[];
+  content: { text: string }[];
 };
 
 
@@ -36,14 +35,15 @@ export default function ChatAssistant() {
     if (!input.trim()) return;
 
     const userMessage: Message = { role: 'user', content: [{ text: input }] };
-    setMessages((prev) => [...prev, userMessage]);
+    const newMessages = [...messages, userMessage];
+    
+    setMessages(newMessages);
     setInput('');
     setIsLoading(true);
 
     try {
         const chatInput: ChatInput = {
-            history: messages,
-            message: input
+            history: newMessages,
         };
       const response = await chat(chatInput);
       const modelMessage: Message = {

@@ -13,10 +13,9 @@ const ChatInputSchema = z.object({
   history: z.array(z.object({
     role: z.enum(['user', 'model']),
     content: z.array(z.object({
-        text: z.string().nullable()
+        text: z.string()
     }))
   })).describe("The chat history."),
-  message: z.string().describe('The user\'s message.'),
 });
 type ChatInput = z.infer<typeof ChatInputSchema>;
 
@@ -28,17 +27,10 @@ const chemistryTutorPrompt = ai.definePrompt({
 
     Your role is to help students understand chemistry concepts, solve problems, and prepare for their exams. When a student asks a question, provide a step-by-step explanation. If they ask for a definition, make it simple and provide an example from the Jordanian curriculum context.
 
-    Always maintain a positive and supportive tone. Encourage students to ask more questions. Use markdown for formatting, like lists, bold text, and code blocks for chemical equations.
-
-    Here is the chat history, use it for context:
-    {{#each history}}
-      {{#if content.[0].text}}
-        {{role}}: {{content.[0].text}}
-      {{/if}}
-    {{/each}}
-
-    New message from the student:
-    {{{message}}}`,
+    Always maintain a positive and supportive tone. Encourage students to ask more questions. Use markdown for formatting, like lists, bold text, and code blocks for chemical equations.`,
+    
+    // Pass the history directly to the model.
+    history: (input) => input.history,
 });
 
 
