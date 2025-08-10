@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Dot, ArrowLeft } from 'lucide-react';
+import { Check, Dot, ArrowLeft, X } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const Diagram = dynamic(() => import('./diagram'), {
@@ -23,7 +23,13 @@ const Diagram = dynamic(() => import('./diagram'), {
 
 export default function LessonPartPage() {
   return (
-    <div className="container mx-auto p-8">
+    <div className="container mx-auto p-8 relative">
+       <Link href="/materials/semester-1" passHref>
+          <Button variant="ghost" size="icon" className="absolute top-4 left-4">
+            <X className="h-6 w-6" />
+            <span className="sr-only">إغلاق</span>
+          </Button>
+        </Link>
       <header className="mb-10 text-center">
         <h1 className="text-4xl font-bold text-primary mb-2">الدرس الأول: الحالة الغازية</h1>
         <p className="text-lg text-muted-foreground">نظرية الحركة الجزيئية</p>
