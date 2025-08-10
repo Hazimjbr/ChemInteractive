@@ -2,7 +2,7 @@
 
 import Diagram from './diagram';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Check } from 'lucide-react';
+import { Check, Dot } from 'lucide-react';
 
 export default function LessonPartPage() {
   return (
@@ -49,18 +49,43 @@ export default function LessonPartPage() {
             <p>
               لتفسير هذه الخصائص وغيرها، وضع العلماء نموذجًا يسمى **نظرية الحركة الجزيئية للغازات (Kinetic Molecular Theory of Gases)**، والذي يرتكز على الفرضيات الآتية:
             </p>
+            <ul className="space-y-3 mt-4">
+               <li className="flex items-start">
+                 <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
+                 <span>تتكون الغازات من جسيمات (جزيئات أو ذرات) متناهية في الصغر وذات كتل، وحجم هذه الجسيمات صغير جدًا يمكن إهماله مقارنة بالمسافات التي تفصل بينها.</span>
+               </li>
+                <li className="flex items-start">
+                  <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
+                  <span>تتحرك جسيمات الغاز حركة مستمرة وعشوائية في خطوط مستقيمة وفي الاتجاهات جميعها، مما يؤدي إلى تصادمها مع بعضها البعض ومع جدار الوعاء الذي يحتويها.</span>
+                </li>
+                 <li className="flex items-start">
+                  <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
+                  <span>التصادمات بين جسيمات الغاز تصادمات مرنة (Elastic Collisions)؛ أي أن الطاقة الحركية الكلية للجسيمات المتصادمة تبقى ثابتة.</span>
+                </li>
+                 <li className="flex items-start">
+                  <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
+                  <span>لا توجد قوى تجاذب أو تنافر بين جسيمات الغاز، باستثناء ما يحدث في أثناء لحظة التصادم.</span>
+                </li>
+                 <li className="flex items-start">
+                  <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
+                  <span>متوسط الطاقة الحركية لجسيمات الغاز يتناسب طرديًا مع درجة الحرارة المطلقة (بالكلفن).</span>
+                </li>
+            </ul>
+            <p className="mt-4">
+              ويُطلق على الغاز الذي تنطبق عليه جميع هذه الفرضيات اسم **الغاز المثالي (Ideal Gas)**.
+            </p>
           </article>
         </div>
 
         <aside className="space-y-6">
           <Card className="sticky top-24">
             <CardHeader>
-              <CardTitle>شكل توضيحي</CardTitle>
+              <CardTitle>محاكاة حركة الجزيئات</CardTitle>
             </CardHeader>
             <CardContent>
               <Diagram />
-              <p className="text-sm text-muted-foreground mt-2 text-center">
-                حركة الجزيئات في الحالة الغازية.
+              <p className="text-sm text-muted-foreground mt-4 text-center">
+                محاكاة تفاعلية تظهر حركة الجسيمات العشوائية في الحالة الغازية وفقًا لفرضيات نظرية الحركة الجزيئية.
               </p>
             </CardContent>
           </Card>
