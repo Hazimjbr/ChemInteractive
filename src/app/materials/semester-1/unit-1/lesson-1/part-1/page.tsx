@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Check, Dot, ArrowLeft, X } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
+import Quiz from './quiz';
 
 const Diagram = dynamic(() => import('./diagram'), {
   ssr: false,
@@ -19,6 +20,41 @@ const Diagram = dynamic(() => import('./diagram'), {
     </div>
   ),
 });
+
+const lessonContent = `
+<h2 className="text-2xl font-bold mb-4">خصائص الغازات ونظرية الحركة الجزيئية</h2>
+<p>
+  تتميز المواد في الحالة الغازية بخصائص فيزيائية فريدة. فجسيماتها (ذرات أو جزيئات) متباعدة جدًا مقارنة بحجمها، وقوى التجاذب بينها شبه معدومة، مما يسمح لها بالتحرك بحرية وبسرعة عالية في جميع الاتجاهات. هذا ما يفسر لماذا تأخذ الغازات شكل وحجم الوعاء الذي توضع فيه، ولماذا تكون كثافتها منخفضة جدًا مقارنة بالمواد السائلة والصلبة.
+</p>
+<p>
+  لتفسير هذه الخصائص وغيرها، وضع العلماء نموذجًا يسمى **نظرية الحركة الجزيئية للغازات (Kinetic Molecular Theory of Gases)**، والذي يرتكز على الفرضيات الآتية:
+</p>
+<ul className="space-y-3 mt-4">
+   <li className="flex items-start">
+     <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
+     <span>تتكون الغازات من جسيمات (جزيئات أو ذرات) متناهية في الصغر وذات كتل، وحجم هذه الجسيمات صغير جدًا يمكن إهماله مقارنة بالمسافات التي تفصل بينها.</span>
+   </li>
+    <li className="flex items-start">
+      <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
+      <span>تتحرك جسيمات الغاز حركة مستمرة وعشوائية في خطوط مستقيمة وفي الاتجاهات جميعها، مما يؤدي إلى تصادمها مع بعضها البعض ومع جدار الوعاء الذي يحتويها.</span>
+    </li>
+     <li className="flex items-start">
+      <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
+      <span>التصادمات بين جسيمات الغاز تصادمات مرنة (Elastic Collisions)؛ أي أن الطاقة الحركية الكلية للجسيمات المتصادمة تبقى ثابتة.</span>
+    </li>
+     <li className="flex items-start">
+      <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
+      <span>لا توجد قوى تجاذب أو تنافر بين جسيمات الغاز، باستثناء ما يحدث في أثناء لحظة التصادم.</span>
+    </li>
+     <li className="flex items-start">
+      <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
+      <span>متوسط الطاقة الحركية لجسيمات الغاز يتناسب طرديًا مع درجة الحرارة المطلقة (بالكلفن).</span>
+    </li>
+</ul>
+<p className="mt-4">
+  ويُطلق على الغاز الذي تنطبق عليه جميع هذه الفرضيات اسم **الغاز المثالي (Ideal Gas)**.
+</p>
+`;
 
 
 export default function LessonPartPage() {
@@ -64,40 +100,19 @@ export default function LessonPartPage() {
             </CardContent>
           </Card>
 
-          <article className="prose prose-lg max-w-none text-foreground">
-            <h2 className="text-2xl font-bold mb-4">خصائص الغازات ونظرية الحركة الجزيئية</h2>
-            <p>
-              تتميز المواد في الحالة الغازية بخصائص فيزيائية فريدة. فجسيماتها (ذرات أو جزيئات) متباعدة جدًا مقارنة بحجمها، وقوى التجاذب بينها شبه معدومة، مما يسمح لها بالتحرك بحرية وبسرعة عالية في جميع الاتجاهات. هذا ما يفسر لماذا تأخذ الغازات شكل وحجم الوعاء الذي توضع فيه، ولماذا تكون كثافتها منخفضة جدًا مقارنة بالمواد السائلة والصلبة.
-            </p>
-            <p>
-              لتفسير هذه الخصائص وغيرها، وضع العلماء نموذجًا يسمى **نظرية الحركة الجزيئية للغازات (Kinetic Molecular Theory of Gases)**، والذي يرتكز على الفرضيات الآتية:
-            </p>
-            <ul className="space-y-3 mt-4">
-               <li className="flex items-start">
-                 <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
-                 <span>تتكون الغازات من جسيمات (جزيئات أو ذرات) متناهية في الصغر وذات كتل، وحجم هذه الجسيمات صغير جدًا يمكن إهماله مقارنة بالمسافات التي تفصل بينها.</span>
-               </li>
-                <li className="flex items-start">
-                  <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
-                  <span>تتحرك جسيمات الغاز حركة مستمرة وعشوائية في خطوط مستقيمة وفي الاتجاهات جميعها، مما يؤدي إلى تصادمها مع بعضها البعض ومع جدار الوعاء الذي يحتويها.</span>
-                </li>
-                 <li className="flex items-start">
-                  <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
-                  <span>التصادمات بين جسيمات الغاز تصادمات مرنة (Elastic Collisions)؛ أي أن الطاقة الحركية الكلية للجسيمات المتصادمة تبقى ثابتة.</span>
-                </li>
-                 <li className="flex items-start">
-                  <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
-                  <span>لا توجد قوى تجاذب أو تنافر بين جسيمات الغاز، باستثناء ما يحدث في أثناء لحظة التصادم.</span>
-                </li>
-                 <li className="flex items-start">
-                  <Dot className="h-6 w-6 text-primary ml-2 flex-shrink-0" />
-                  <span>متوسط الطاقة الحركية لجسيمات الغاز يتناسب طرديًا مع درجة الحرارة المطلقة (بالكلفن).</span>
-                </li>
-            </ul>
-            <p className="mt-4">
-              ويُطلق على الغاز الذي تنطبق عليه جميع هذه الفرضيات اسم **الغاز المثالي (Ideal Gas)**.
-            </p>
-          </article>
+          <article 
+            className="prose prose-lg max-w-none text-foreground"
+            dangerouslySetInnerHTML={{ __html: lessonContent }}
+          />
+
+          <Card>
+            <CardHeader>
+                <CardTitle>اختبر فهمك</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <Quiz lessonContent={lessonContent} />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-6">
