@@ -2,12 +2,20 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { generateQuiz, type QuizQuestion } from '@/ai/flows/generate-quiz-flow';
+import { generateQuiz } from '@/ai/flows/generate-quiz-flow';
 import { Loader2, CheckCircle, XCircle } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
+
+// Define the type here as it's no longer exported from the server action
+export interface QuizQuestion {
+    question: string;
+    options: string[];
+    correctAnswerIndex: number;
+    explanation: string;
+}
 
 interface QuizProps {
   lessonContent: string;

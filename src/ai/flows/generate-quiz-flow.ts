@@ -6,7 +6,7 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-export const QuizQuestionSchema = z.object({
+const QuizQuestionSchema = z.object({
   question: z.string().describe('The question text.'),
   options: z
     .array(z.string())
@@ -22,15 +22,14 @@ export const QuizQuestionSchema = z.object({
     .describe('A step-by-step explanation for why the correct answer is right.'),
 });
 
-export const GenerateQuizOutputSchema = z.object({
+const GenerateQuizOutputSchema = z.object({
   quiz: z
     .array(QuizQuestionSchema)
     .length(5)
     .describe('An array of 5 quiz questions.'),
 });
 
-export type QuizQuestion = z.infer<typeof QuizQuestionSchema>;
-export type GenerateQuizOutput = z.infer<typeof GenerateQuizOutputSchema>;
+type GenerateQuizOutput = z.infer<typeof GenerateQuizOutputSchema>;
 
 const quizGenerationPrompt = ai.definePrompt({
   name: 'quizGenerationPrompt',
