@@ -129,7 +129,7 @@ export default function ChatAssistant() {
                      // Heuristic to detect if the line is primarily a block equation
                     const isBlockEquation = line.includes('$$');
                     return (
-                        <p key={i} dir={isBlockEquation ? 'ltr' : 'rtl'} className={cn(isBlockEquation && 'text-left')}>
+                        <p key={i} dir="ltr" className={cn(isBlockEquation && 'text-left')}>
                             {renderMessageContent(line)}
                         </p>
                     )
