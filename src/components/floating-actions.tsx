@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Calculator, Bot, ChevronUp, X } from 'lucide-react';
+import { Calculator, Bot, ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -46,14 +46,14 @@ export default function FloatingActions() {
   ];
 
   return (
-    <div className="fixed bottom-4 right-4 flex flex-col items-center gap-3">
+    <div className="fixed top-1/2 -translate-y-1/2 right-0 flex flex-row-reverse items-center gap-3 z-50">
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="flex flex-col items-center gap-3"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            className="flex flex-row-reverse items-center gap-3 p-2 bg-background/80 backdrop-blur-sm rounded-l-full"
           >
             {actions.map((action) => (
               <Dialog key={action.id}>
@@ -61,7 +61,7 @@ export default function FloatingActions() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full h-14 w-14 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg backdrop-blur-sm border-none"
+                    className="rounded-full h-12 w-12 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg border-none"
                     aria-label={action.label}
                   >
                     {action.icon}
@@ -81,24 +81,29 @@ export default function FloatingActions() {
         )}
       </AnimatePresence>
 
-      <Button
-        size="icon"
-        className="rounded-full h-16 w-16 bg-primary text-primary-foreground hover:bg-primary/90 shadow-2xl transition-transform duration-300 ease-in-out hover:scale-110"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-expanded={isOpen}
+      <motion.div
+        animate={{ x: isOpen ? 0 : '65%' }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
       >
-        <AnimatePresence initial={false}>
-          <motion.div
-            key={isOpen ? 'close' : 'open'}
-            initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
-            animate={{ rotate: 0, opacity: 1, scale: 1 }}
-            exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
-            transition={{ duration: 0.2 }}
-          >
-            {isOpen ? <X className="h-8 w-8" /> : <ChevronUp className="h-8 w-8" />}
-          </motion.div>
-        </AnimatePresence>
-      </Button>
+        <Button
+          size="icon"
+          className="rounded-l-full rounded-r-none h-14 w-8 bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+        >
+          <AnimatePresence initial={false} mode="wait">
+            <motion.div
+              key={isOpen ? 'close' : 'open'}
+              initial={{ rotate: -180, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 180, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {isOpen ? <ChevronRight className="h-6 w-6" /> : <ChevronLeft className="h-6 w-6" />}
+            </motion.div>
+          </AnimatePresence>
+        </Button>
+      </motion.div>
     </div>
   );
 }
