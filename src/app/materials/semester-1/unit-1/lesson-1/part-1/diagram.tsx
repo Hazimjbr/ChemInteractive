@@ -113,23 +113,24 @@ export default function Diagram() {
   useEffect(() => {
     if (!engineRef.current || !renderRef.current || !topWallRef.current || !groundRef.current || !leftWallRef.current || !rightWallRef.current) return;
     
-    const { Body } = Matter;
+    const { Body, Composite } = Matter;
 
     // Adjust canvas size
     renderRef.current.bounds.max.y = containerHeight;
     if(renderRef.current.canvas) {
       renderRef.current.canvas.height = containerHeight;
     }
-
-    // Move and scale walls
-    Body.setPosition(topWallRef.current, { x: width / 2, y: 0 });
-    Body.setPosition(groundRef.current, { x: width / 2, y: containerHeight });
-    Body.setPosition(leftWallRef.current, { x: 0, y: containerHeight / 2 });
-    Body.setPosition(rightWallRef.current, { x: width, y: containerHeight / 2 });
     
-    // Scale vertical walls
+    // Move walls
+    Body.setPosition(groundRef.current, { x: width / 2, y: containerHeight + 5});
+    Body.setPosition(topWallRef.current, { x: width / 2, y: -5 });
+    
+    Body.setPosition(leftWallRef.current, { x: -5, y: containerHeight / 2 });
     Body.scale(leftWallRef.current, 1, containerHeight / leftWallRef.current.bounds.max.y);
+    
+    Body.setPosition(rightWallRef.current, { x: width + 5, y: containerHeight / 2 });
     Body.scale(rightWallRef.current, 1, containerHeight / rightWallRef.current.bounds.max.y);
+
 
     // Update particle velocities and positions
     const speedMultiplier = calculateSpeedMultiplier(containerHeight);
@@ -146,11 +147,17 @@ export default function Diagram() {
         }
 
         // Ensure particles are within the new bounds to prevent them from getting stuck
-        if (particle.position.y > containerHeight - particleRadius) {
-            Body.setPosition(particle, { x: particle.position.x, y: containerHeight - particleRadius });
+        if (particle.position.y >= containerHeight - particleRadius) {
+            Body.setPosition(particle, { x: particle.position.x, y: containerHeight - particleRadius -1 });
         }
         if (particle.position.y < particleRadius) {
-            Body.setPosition(particle, { x: particle.position.x, y: particleRadius });
+            Body.setPosition(particle, { x: particle.position.x, y: particleRadius + 1 });
+        }
+        if (particle.position.x > width - particleRadius) {
+            Body.setPosition(particle, {x: width-particleRadius -1, y: particle.position.y});
+        }
+        if (particle.position.x < particleRadius) {
+            Body.setPosition(particle, {x: particleRadius +1, y: particle.position.y});
         }
     });
 
