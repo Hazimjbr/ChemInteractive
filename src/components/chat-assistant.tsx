@@ -8,7 +8,6 @@ import { chat } from '@/ai/flows/chat-flow';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { z } from 'zod';
-import { formatMixedText } from '@/lib/utils.tsx';
 import { InlineMath, BlockMath } from 'react-katex';
 
 const ChatInputSchema = z.object({
@@ -29,10 +28,12 @@ type Message = {
 const renderMessageContent = (text: string) => {
     if (!text) return null;
   
-    // Regex to split by block and inline math
-    const parts = text.split(/(\$\$[\s\S]*?\$\$|\$[\s\S]*?\$)/g);
+    // Regex to split by block/inline math AND sequences of Latin characters/numbers/symbols
+    const parts = text.split(/(\$\$[\s\S]*?\$\$|\$[\s\S]*?\$|[a-zA-Z0-9-+.()\[\]_/\s]+)/g);
   
     return parts.map((part, index) => {
+      if (!part) return null;
+
       if (part.startsWith('$$') && part.endsWith('$$')) {
         // Block Math
         return <BlockMath key={index} math={part.slice(2, -2)} />;
@@ -41,9 +42,12 @@ const renderMessageContent = (text: string) => {
         // Inline Math
         return <InlineMath key={index} math={part.slice(1, -1)} />;
       }
-       // Regular text, which might need LTR/RTL formatting
-       // Add a key to the fragment to resolve the warning
-      return <Fragment key={index}>{formatMixedText(part)}</Fragment>;
+      if (/^[a-zA-Z0-9-+.()\[\]_/\s]+$/.test(part)) {
+         // Standalone LTR text (not part of a formula)
+         return <span key={index} dir="ltr">{part}</span>;
+      }
+      // Regular Arabic text
+      return <Fragment key={index}>{part}</Fragment>;
     });
 };
 
