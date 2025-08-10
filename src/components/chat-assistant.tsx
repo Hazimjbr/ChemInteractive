@@ -9,6 +9,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription }
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { z } from 'zod';
 import { InlineMath, BlockMath } from 'react-katex';
+import { cn } from '@/lib/utils.tsx';
 
 const ChatInputSchema = z.object({
   history: z.array(z.object({
@@ -47,7 +48,6 @@ const renderMessageContent = (text: string) => {
         }
 
         // For regular text parts, we wrap them to ensure correct rendering direction
-        // The parent <p> handles the overall RTL direction.
         return <span key={index}>{part}</span>;
     });
 };
@@ -123,9 +123,15 @@ export default function ChatAssistant() {
                       : 'bg-muted'
                   }`}
                 >
-                  {(message.content[0].text || '').split('\n').map((line, i) => (
-                    <p key={i} dir="rtl" className="text-right">{renderMessageContent(line)}</p>
-                  ))}
+                  {(message.content[0].text || '').split('\n').map((line, i) => {
+                     // Heuristic to detect if the line is primarily an equation
+                    const isEquation = line.includes('$$');
+                    return (
+                        <p key={i} dir={isEquation ? 'ltr' : 'rtl'} className={cn("text-right", isEquation && 'text-left')}>
+                            {renderMessageContent(line)}
+                        </p>
+                    )
+                  })}
                 </div>
                  {message.role === 'user' && (
                   <Avatar className="h-8 w-8">
