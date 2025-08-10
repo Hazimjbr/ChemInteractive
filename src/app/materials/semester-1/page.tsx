@@ -17,29 +17,55 @@ const units = [
     id: 'unit-1',
     title: 'الوحدة 1: حالات المادة',
     icon: Atom,
-    progress: 30,
+    progress: 0,
     lessons: [
       {
         title: 'الدرس 1: الحالة الغازية',
+        lessonNum: 1,
         parts: [
-          { title: 'نظرية الحركة الجزيئية', path: '/part-1' },
-          { title: 'مقدمة قوانين الغازات', path: '/part-2' },
-          { title: 'قانون بويل', path: '/part-3' },
+          { title: 'نظرية الحركة الجزيئية', partNum: 1 },
+          { title: 'مقدمة قوانين الغازات', partNum: 2 },
+          { title: 'قانون بويل', partNum: 3 },
+          { title: 'قانون شارل', partNum: 4 },
+          { title: 'قانون جاي لوساك', partNum: 5 },
+          { title: 'القانون الجامع', partNum: 6 },
+          { title: 'قانون أفوجادرو', partNum: 7 },
+          { title: 'قانون الغاز المثالي', partNum: 8 },
+          { title: 'قانون دالتون', partNum: 9 },
+          { title: 'قانون جراهام', partNum: 10 },
         ],
       },
       {
         title: 'الدرس 2: الحالة السائلة',
-        parts: [{ title: 'مقدمة عن المواد السائلة', path: '/lesson-2/part-1' }],
+        lessonNum: 2,
+        parts: [
+          { title: 'مقدمة عن المواد السائلة', partNum: 1 },
+          { title: 'التبخر', partNum: 2 },
+          { title: 'التكاثف', partNum: 3 },
+          { title: 'الضغط البخاري', partNum: 4 },
+          { title: 'درجة الغليان', partNum: 5 },
+        ],
       },
       {
         title: 'الدرس 3: الحالة الصلبة',
-        parts: [{ title: 'مقدمة عن المواد الصلبة', path: '/lesson-3/part-1' }],
+        lessonNum: 3,
+        parts: [
+          { title: 'مقدمة عن المواد الصلبة', partNum: 1 },
+          { title: 'المواد الصلبة البلورية الجزيئية', partNum: 2 },
+          { title: 'المواد الصلبة البلورية الشبكية التساهمية', partNum: 3 },
+          { title: 'المواد الصلبة البلورية الفلزية', partNum: 4 },
+          { title: 'المواد الصلبة البلورية الأيونية', partNum: 5 },
+        ],
       },
       {
         title: 'الإثراء والتوسع',
-        parts: [{ title: 'الربط', path: '/section-4/part-1' }],
+        sectionNum: 4,
+        parts: [
+            { title: 'الربط', partNum: 1 },
+            { title: 'الإثراء', partNum: 2 }
+        ],
       },
-      { title: 'مراجعة الوحدة', parts: [{ title: 'ابدأ المراجعة', path: '/section-5' }] },
+      { title: 'مراجعة الوحدة', sectionNum: 5, parts: [{ title: 'ابدأ المراجعة' }] },
     ],
   },
   {
@@ -50,12 +76,33 @@ const units = [
     lessons: [
        {
         title: 'الدرس 1: تصنيف المحاليل',
-        parts: [{ title: 'تصنيف المواد', path: '/unit-2/lesson-1/part-1' }],
+        lessonNum: 1,
+        parts: [
+            { title: 'تصنيف المواد', partNum: 1 },
+            { title: 'تكون المحاليل', partNum: 2 },
+            { title: 'المحاليل السائلة', partNum: 3 },
+        ],
       },
        {
         title: 'الدرس 2: خصائص المحاليل',
-        parts: [{ title: 'الخصائص الجامعة للمحاليل', path: '/unit-2/lesson-2/part-1' }],
+        lessonNum: 2,
+        parts: [
+            { title: 'الخصائص الجامعة للمحاليل', partNum: 1 },
+            { title: 'الانخفاض في الضغط البخاري', partNum: 2 },
+            { title: 'الارتفاع في درجة الغليان', partNum: 3 },
+            { title: 'الانخفاض في درجة التجمد', partNum: 4 },
+            { title: 'الضغط الأسموزي', partNum: 5 },
+        ],
       },
+      {
+        title: 'الإثراء والتوسع',
+        sectionNum: 3,
+        parts: [
+            { title: 'الربط', partNum: 1 },
+            { title: 'الإثراء', partNum: 2 }
+        ],
+      },
+      { title: 'مراجعة الوحدة', sectionNum: 4, parts: [{ title: 'ابدأ المراجعة' }] },
     ],
   },
   {
@@ -66,39 +113,105 @@ const units = [
     lessons: [
        {
         title: 'الدرس 1: الاتزان الكيميائي والعوامل المؤثرة فيه',
-        parts: [{ title: 'أنواع التفاعلات الكيميائية', path: '/unit-3/lesson-1/part-1' }],
+        lessonNum: 1,
+        parts: [
+            { title: 'أنواع التفاعلات الكيميائية', partNum: 1 },
+            { title: 'العوامل المؤثرة في الاتزان الكيميائي/ التركيز', partNum: 2 },
+            { title: 'العوامل المؤثرة في الاتزان الكيميائي/ الضغط', partNum: 3 },
+            { title: 'العوامل المؤثرة في الاتزان الكيميائي/ درجة الحرارة', partNum: 4 },
+            { title: 'العامل المساعد', partNum: 5 },
+        ],
       },
        {
-        title: 'الدرس 2: تعبيرات ثابت الاتزان',
-        parts: [{ title: 'تعبيرات ثابت الاتزان', path: '/unit-3/lesson-2/part-1' }],
+        title: 'الدرس 2: تعبيرات ثابت الاتزان والحسابات المتعلقة به',
+        lessonNum: 2,
+        parts: [
+            { title: 'تعبيرات ثابت الاتزان', partNum: 1 },
+            { title: 'الحسابات المتعلقة بثابت الاتزان', partNum: 2 },
+            { title: 'حساب تراكيز المواد عند الاتزان', partNum: 3 },
+        ],
       },
+      {
+        title: 'الإثراء والتوسع',
+        sectionNum: 3,
+        parts: [
+            { title: 'الربط', partNum: 1 },
+            { title: 'الإثراء', partNum: 2 }
+        ],
+      },
+      { title: 'مراجعة الوحدة', sectionNum: 4, parts: [{ title: 'ابدأ المراجعة' }] },
     ],
   },
     {
     id: 'unit-4',
-    title: 'الوحدة 4: الحموض والقواعد',
+    title: 'الوحدة 4: الحموض والقواعد وتطبيقاتها',
     icon: FileText,
     progress: 0,
     lessons: [
        {
         title: 'الدرس 1: الحموض والقواعد',
-        parts: [{ title: 'مفهوم أرهينيوس', path: '/unit-4/lesson-1/part-1' }],
+        lessonNum: 1,
+        parts: [
+            { title: 'مفهوم أرهينيوس', partNum: 1 },
+            { title: 'مفهوم برونستد – لوري', partNum: 2 },
+            { title: 'مفهوم لويس', partNum: 3 },
+        ],
       },
        {
-        title: 'الدرس 2: الرقم الهيدروجيني',
-        parts: [{ title: 'التأين الذاتي للماء', path: '/unit-4/lesson-2/part-1' }],
+        title: 'الدرس 2: الرقم الهيدروجيني ومحاليل الحموض والقواعد القوية',
+        lessonNum: 2,
+        parts: [
+            { title: 'التأين الذاتي للماء', partNum: 1 },
+            { title: 'محاليل الحموض والقواعد القوية', partNum: 2 },
+            { title: 'الرقم الهيدروجيني pH والرقم الهيدروكسيلي pOH', partNum: 3 },
+            { title: 'معايرة الحمض والقاعدة', partNum: 4 },
+            { title: 'الكواشف', partNum: 5 },
+        ],
       },
        {
         title: 'الدرس 3: الحموض والقواعد الضعيفة',
-        parts: [{ title: 'الاتزان في محاليل الحموض الضعيفة', path: '/unit-4/lesson-3/part-1' }],
+        lessonNum: 3,
+        parts: [
+            { title: 'الاتزان في محاليل الحموض الضعيفة', partNum: 1 },
+            { title: 'الاتزان في محاليل القواعد الضعيفة', partNum: 2 },
+        ],
       },
         {
         title: 'الدرس 4: الأملاح والمحاليل المنظمة',
-        parts: [{ title: 'الخصائص الحمضية والقاعدية للأملاح', path: '/unit-4/lesson-4/part-1' }],
+        lessonNum: 4,
+        parts: [
+            { title: 'الخصائص الحمضية والقاعدية للأملاح', partNum: 1 },
+            { title: 'تأثير الأيون المشترك', partNum: 2 },
+            { title: 'المحاليل المنظمة', partNum: 3 },
+        ],
       },
+      {
+        title: 'الإثراء والتوسع',
+        sectionNum: 5,
+        parts: [
+            { title: 'الربط', partNum: 1 },
+            { title: 'الإثراء', partNum: 2 }
+        ],
+      },
+      { title: 'مراجعة الوحدة', sectionNum: 6, parts: [{ title: 'ابدأ المراجعة' }] },
     ],
   },
 ];
+
+const constructPath = (unitId: string, lesson: any, part: any) => {
+    const unitNum = unitId.replace('unit-', '');
+    let path = `/materials/semester-1/unit-${unitNum}`;
+    if (lesson.lessonNum) {
+        path += `/lesson-${lesson.lessonNum}`;
+    } else if (lesson.sectionNum) {
+        path += `/section-${lesson.sectionNum}`;
+    }
+    if (part.partNum) {
+        path += `/part-${part.partNum}`;
+    }
+    return path;
+}
+
 
 export default function Semester1Page() {
   return (
@@ -139,7 +252,7 @@ export default function Semester1Page() {
                             {lesson.parts.map((part, pIndex) => (
                               <li key={pIndex}>
                                 <Link
-                                  href={`/materials/semester-1/${unit.id.replace('unit-','unit-')}${lesson.title.includes('الدرس') ? `/lesson-${lesson.title.match(/\d+/)[0]}`: ''}${part.path}`}
+                                  href={constructPath(unit.id, lesson, part)}
                                   passHref
                                 >
                                   <Button
@@ -166,3 +279,5 @@ export default function Semester1Page() {
     </div>
   );
 }
+
+    
