@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import { Slider } from '@/components/ui/slider';
 
 // Define a constant for the initial speed multiplier
-const INITIAL_SPEED_MULTIPLIER = 4;
+const INITIAL_SPEED_MULTIPLIER = 2;
 
 export default function Diagram() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -21,19 +21,23 @@ export default function Diagram() {
     vy: number;
     radius: number;
     color: string;
-    initialVx: number;
-    initialVy: number;
+    // Store the base velocity direction vectors
+    baseVx: number;
+    baseVy: number;
 
     constructor(x: number, y: number, radius: number, color: string) {
       this.x = x;
       this.y = y;
       this.radius = radius;
       this.color = color;
-      // Store initial velocity direction
-      this.initialVx = (Math.random() - 0.5);
-      this.initialVy = (Math.random() - 0.5);
-      this.vx = this.initialVx * INITIAL_SPEED_MULTIPLIER;
-      this.vy = this.initialVy * INITIAL_SPEED_MULTIPLIER;
+      
+      // Set a random base direction
+      this.baseVx = (Math.random() - 0.5); // -0.5 to 0.5
+      this.baseVy = (Math.random() - 0.5); // -0.5 to 0.5
+
+      // Initial velocity
+      this.vx = this.baseVx * INITIAL_SPEED_MULTIPLIER;
+      this.vy = this.baseVy * INITIAL_SPEED_MULTIPLIER;
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -45,21 +49,22 @@ export default function Diagram() {
     }
     
     update(currentHeight: number, speedMultiplier: number) {
-      // Update velocity based on current speed multiplier
-      this.vx = this.initialVx * speedMultiplier;
-      this.vy = this.initialVy * speedMultiplier;
-      
       // Bounce off walls
       if (this.x + this.radius > width || this.x - this.radius < 0) {
-        this.initialVx = -this.initialVx;
+        this.baseVx = -this.baseVx;
       }
       if (this.y + this.radius > currentHeight || this.y - this.radius < 0) {
-        this.initialVy = -this.initialVy;
+        this.baseVy = -this.baseVy;
       }
+
+      // Update velocity based on current speed multiplier
+      this.vx = this.baseVx * speedMultiplier;
+      this.vy = this.baseVy * speedMultiplier;
+
       this.x += this.vx;
       this.y += this.vy;
 
-       // Ensure particles stay within bounds after resize
+       // Ensure particles stay within bounds after resize to prevent them from getting stuck
       if (this.x + this.radius > width) this.x = width - this.radius;
       if (this.x - this.radius < 0) this.x = this.radius;
       if (this.y + this.radius > currentHeight) this.y = currentHeight - this.radius;
@@ -100,10 +105,11 @@ export default function Diagram() {
     canvas.height = containerHeight * dpr;
     ctx.scale(dpr, dpr);
     
-    // As volume decreases, speed increases (P1V1=P2V2 -> v ~ 1/V)
+    // As volume decreases, speed increases to simulate increased pressure.
+    // The relationship is inverse: P ∝ 1/V. We'll simulate this by making speed ∝ 1/V.
     const speedMultiplier = INITIAL_SPEED_MULTIPLIER * (initialHeight / containerHeight);
 
-    function animate() {
+    const animate = () => {
       if(!ctx) return;
       // Clear only the visible area
       ctx.clearRect(0, 0, width, containerHeight);
@@ -121,12 +127,12 @@ export default function Diagram() {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [containerHeight, width]);
+  }, [containerHeight]);
 
   return (
     <div className="flex flex-col items-center gap-4">
-        <div className="w-full rounded-lg overflow-hidden border bg-card" style={{ height: `${containerHeight}px`}}>
-          <canvas ref={canvasRef} data-ai-hint="gas particles animation"></canvas>
+        <div className="w-full rounded-lg overflow-hidden border bg-card">
+          <canvas ref={canvasRef} style={{ height: `${containerHeight}px`, width: '100%' }} data-ai-hint="gas particles animation"></canvas>
         </div>
         <div className="w-full flex items-center gap-2">
             <span className="text-sm text-muted-foreground">حجم الوعاء</span>
