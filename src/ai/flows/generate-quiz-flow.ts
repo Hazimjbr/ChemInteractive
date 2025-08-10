@@ -33,6 +33,7 @@ type GenerateQuizOutput = z.infer<typeof GenerateQuizOutputSchema>;
 
 const quizGenerationPrompt = ai.definePrompt({
   name: 'quizGenerationPrompt',
+  model: 'googleai/gemini-1.5-flash',
   input: { schema: z.object({ lessonContent: z.string() }) },
   output: { schema: GenerateQuizOutputSchema },
   prompt: `أنت مساعد تعليمي خبير في الكيمياء. مهمتك هي إنشاء اختبار قصير (كويز) من 5 أسئلة اختيار من متعدد بناءً على محتوى الدرس التالي.
