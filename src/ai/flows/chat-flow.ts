@@ -32,8 +32,7 @@ const chemistryTutorPrompt = ai.definePrompt({
 
     Here is the chat history, use it for context:
     {{#each history}}
-      {{#if (eq role 'user')}}From User: {{content.[0].text}}{{/if}}
-      {{#if (eq role 'model')}}From You: {{content.[0].text}}{{/if}}
+      {{role}}: {{content.[0].text}}
     {{/each}}
 
     New message from the student:
