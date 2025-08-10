@@ -98,7 +98,7 @@ export default function ChatAssistant() {
                   }`}
                 >
                   {(message.content[0].text || '').split('\n').map((line, i) => (
-                    <p key={i}>{formatMixedText(line)}</p>
+                    <p key={i} dir="rtl">{formatMixedText(line)}</p>
                   ))}
                 </div>
                  {message.role === 'user' && (
