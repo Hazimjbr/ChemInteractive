@@ -131,8 +131,8 @@ export default function Diagram() {
 
   return (
     <div className="flex flex-col items-center gap-4">
-        <div className="w-full rounded-lg overflow-hidden border bg-card">
-          <canvas ref={canvasRef} style={{ height: `${containerHeight}px`, width: '100%' }} data-ai-hint="gas particles animation"></canvas>
+        <div className="w-full rounded-lg overflow-hidden border bg-card flex justify-center items-end" style={{ height: `${initialHeight}px` }}>
+          <canvas ref={canvasRef} style={{ width: `${width}px`, height: `${containerHeight}px` }} data-ai-hint="gas particles animation"></canvas>
         </div>
         <div className="w-full flex items-center gap-2">
             <span className="text-sm text-muted-foreground">حجم الوعاء</span>
