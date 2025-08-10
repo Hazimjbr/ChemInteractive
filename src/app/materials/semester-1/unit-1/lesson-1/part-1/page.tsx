@@ -101,7 +101,7 @@ export default function LessonPartPage() {
         </div>
 
         <aside className="space-y-6">
-          <Card className="sticky top-24">
+          <Card>
             <CardHeader>
               <CardTitle>محاكاة حركة الجزيئات</CardTitle>
             </CardHeader>
