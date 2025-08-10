@@ -1,5 +1,5 @@
 'use client';
-import { useState, Fragment } from 'react';
+import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -9,7 +9,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription }
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { z } from 'zod';
 import { formatMixedText } from '@/lib/utils.tsx';
-
+import { InlineMath, BlockMath } from 'react-katex';
 
 const ChatInputSchema = z.object({
   history: z.array(z.object({
@@ -26,6 +26,25 @@ type Message = {
   content: { text: string }[];
 };
 
+const renderMessageContent = (text: string) => {
+    if (!text) return null;
+  
+    // Regex to split by block and inline math
+    const parts = text.split(/(\$\$[\s\S]*?\$\$|\$[\s\S]*?\$)/g);
+  
+    return parts.map((part, index) => {
+      if (part.startsWith('$$') && part.endsWith('$$')) {
+        // Block Math
+        return <BlockMath key={index} math={part.slice(2, -2)} />;
+      }
+      if (part.startsWith('$') && part.endsWith('$')) {
+        // Inline Math
+        return <InlineMath key={index} math={part.slice(1, -1)} />;
+      }
+      // Regular text, which might need LTR/RTL formatting
+      return formatMixedText(part);
+    });
+};
 
 export default function ChatAssistant() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -98,7 +117,7 @@ export default function ChatAssistant() {
                   }`}
                 >
                   {(message.content[0].text || '').split('\n').map((line, i) => (
-                    <p key={i} dir="rtl">{formatMixedText(line)}</p>
+                    <p key={i} dir="rtl">{renderMessageContent(line)}</p>
                   ))}
                 </div>
                  {message.role === 'user' && (

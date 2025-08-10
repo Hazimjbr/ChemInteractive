@@ -4,6 +4,7 @@ import './globals.css';
 import Header from '@/components/header';
 import FloatingActions from '@/components/floating-actions';
 import { Toaster } from '@/components/ui/toaster';
+import 'katex/dist/katex.min.css';
 
 
 const inter = Inter({ subsets: ['latin'] });
