@@ -84,6 +84,7 @@ function sketch(p5: P5CanvasInstance) {
             p5.resizeCanvas(boxWidth, currentBoxHeight);
 
             // Calculate speed multiplier based on the ratio of initial to current height (volume)
+            // Inverse relationship: smaller height -> larger multiplier -> higher speed
             speedMultiplier = initialBoxHeight / currentBoxHeight;
 
             particles.forEach(p => {
@@ -101,7 +102,7 @@ function sketch(p5: P5CanvasInstance) {
     // Optional: draw the container border
     p5.stroke('hsl(var(--primary))');
     p5.noFill();
-    p5.rect(0, 0, boxWidth, currentBoxHeight);
+    p5.rect(0, 0, boxWidth, currentBoxHeight -1); // -1 to avoid border being cut off
 
     for (const particle of particles) {
       particle.update();
