@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Delete } from "lucide-react";
 
 const scientificButtons = [
   // Scientific functions
@@ -11,7 +10,7 @@ const scientificButtons = [
   '(', ')',  '7', '8', '9',
   '*', '/', '4', '5', '6',
   '+', '-', '1', '2', '3',
-  '.', '0', 'DEL', '=',
+  '.', '0', '⌫', '=',
 ];
 
 export default function Calculator() {
@@ -19,7 +18,7 @@ export default function Calculator() {
   const [expression, setExpression] = useState('');
 
   const handleButtonClick = (btn: string) => {
-    if (display.length > 20 && !['C', '=', 'DEL'].includes(btn)) return;
+    if (display.length > 20 && !['C', '=', '⌫'].includes(btn)) return;
 
     switch (btn) {
       case 'C':
@@ -27,7 +26,7 @@ export default function Calculator() {
         setExpression('');
         break;
       
-      case 'DEL':
+      case '⌫':
         if (display.length > 1) {
             setDisplay(display.slice(0, -1));
             setExpression(expression.slice(0, -1));
@@ -127,24 +126,29 @@ export default function Calculator() {
           const isOperator = ['/', '*', '-', '+', '^'].includes(btn);
           const isEqual = btn === '=';
           const isClear = btn === 'C';
-          const isDelete = btn === 'DEL';
+          const isDelete = btn === '⌫';
           const isFunction = ['sin', 'cos', 'tan', 'log', 'ln', '√', 'π', 'e', '(', ')'].includes(btn);
           
           let variant: 'default' | 'secondary' | 'destructive' | 'outline' = 'secondary';
+          let className = `text-lg h-14 ${isEqual ? 'col-span-2' : ''}`;
+
           if (isOperator) variant = 'default';
           if (isClear) variant = 'destructive';
-          if (isDelete) variant = 'destructive';
+          if (isDelete) {
+            variant = 'destructive';
+            className += ' text-white'; // Ensure text is visible on red background
+          }
           if (isFunction) variant = 'outline';
 
           return (
             <Button
               key={btn}
               variant={variant}
-              className={`text-lg h-14 ${isEqual ? 'col-span-2' : ''}`}
+              className={className}
               size="lg"
               onClick={() => handleButtonClick(btn)}
             >
-              {isDelete ? <Delete /> : btn}
+              {btn}
             </Button>
           );
         })}
