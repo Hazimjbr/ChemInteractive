@@ -13,7 +13,7 @@ const ChatInputSchema = z.object({
   history: z.array(z.object({
     role: z.enum(['user', 'model']),
     content: z.array(z.object({
-        text: z.string()
+        text: z.string().nullable()
     }))
   })).describe("The chat history."),
   message: z.string().describe('The user\'s message.'),
@@ -32,7 +32,9 @@ const chemistryTutorPrompt = ai.definePrompt({
 
     Here is the chat history, use it for context:
     {{#each history}}
-      {{role}}: {{content.[0].text}}
+      {{#if content.[0].text}}
+        {{role}}: {{content.[0].text}}
+      {{/if}}
     {{/each}}
 
     New message from the student:
@@ -42,5 +44,5 @@ const chemistryTutorPrompt = ai.definePrompt({
 
 export async function chat(input: ChatInput): Promise<string> {
     const {output} = await chemistryTutorPrompt(input);
-    return output as string;
+    return (output as string) || 'عذراً، لم أتمكن من فهم الطلب. الرجاء المحاولة مرة أخرى.';
 }

@@ -13,7 +13,7 @@ const ChatInputSchema = z.object({
   history: z.array(z.object({
     role: z.enum(['user', 'model']),
     content: z.array(z.object({
-        text: z.string()
+        text: z.string().nullable()
     }))
   })).describe("The chat history."),
   message: z.string().describe("The user's message."),
@@ -22,7 +22,7 @@ type ChatInput = z.infer<typeof ChatInputSchema>;
 
 type Message = {
   role: 'user' | 'model';
-  content: { text: string }[];
+  content: { text: string | null }[];
 };
 
 
@@ -95,7 +95,7 @@ export default function ChatAssistant() {
                       : 'bg-muted'
                   }`}
                 >
-                  {message.content[0].text.split('\n').map((line, i) => (
+                  {(message.content[0].text || '').split('\n').map((line, i) => (
                     <p key={i}>{line}</p>
                   ))}
                 </div>
