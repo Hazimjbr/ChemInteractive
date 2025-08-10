@@ -6,7 +6,7 @@ import { generateQuiz } from '@/ai/flows/generate-quiz-flow';
 import { Loader2, CheckCircle, XCircle, Star, Sparkles } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Progress } from '@/components/ui/progress';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils.tsx';
 import { useToast } from '@/hooks/use-toast';
 
 // Define the type here as it's no longer exported from the server action

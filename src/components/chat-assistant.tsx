@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -8,6 +8,8 @@ import { chat } from '@/ai/flows/chat-flow';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { z } from 'zod';
+import { formatMixedText } from '@/lib/utils.tsx';
+
 
 const ChatInputSchema = z.object({
   history: z.array(z.object({
@@ -96,7 +98,7 @@ export default function ChatAssistant() {
                   }`}
                 >
                   {(message.content[0].text || '').split('\n').map((line, i) => (
-                    <p key={i}>{line}</p>
+                    <p key={i}>{formatMixedText(line)}</p>
                   ))}
                 </div>
                  {message.role === 'user' && (
