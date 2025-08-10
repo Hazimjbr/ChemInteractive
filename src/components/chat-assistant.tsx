@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -41,8 +41,9 @@ const renderMessageContent = (text: string) => {
         // Inline Math
         return <InlineMath key={index} math={part.slice(1, -1)} />;
       }
-      // Regular text, which might need LTR/RTL formatting
-      return formatMixedText(part);
+       // Regular text, which might need LTR/RTL formatting
+       // Add a key to the fragment to resolve the warning
+      return <Fragment key={index}>{formatMixedText(part)}</Fragment>;
     });
 };
 
