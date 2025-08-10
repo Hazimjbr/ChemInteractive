@@ -15,6 +15,7 @@ import ChatAssistant from './chat-assistant';
 import { TableCellsIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 export default function FloatingActions() {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,9 +69,13 @@ export default function FloatingActions() {
                   </Button>
                 </DialogTrigger>
                 <DialogContent className={action.dialogClassName}>
-                  {action.dialogTitle && (
+                  {action.dialogTitle ? (
                     <DialogHeader>
                       <DialogTitle>{action.dialogTitle}</DialogTitle>
+                    </DialogHeader>
+                  ) : (
+                    <DialogHeader className="sr-only">
+                      <DialogTitle>{action.label}</DialogTitle>
                     </DialogHeader>
                   )}
                   {action.component}
