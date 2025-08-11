@@ -4,9 +4,11 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, ArrowLeft, X, BookOpen, Thermometer, Box, Beaker, GitCompare, Pipette, Scale } from 'lucide-react';
+import { Check, ArrowLeft, X, BookOpen, Thermometer, Box, Beaker, GitCompare, Pipette, Scale, Lightbulb, HelpCircle } from 'lucide-react';
 import Quiz from './quiz';
 import FlippableCard from '@/app/materials/semester-1/unit-1/lesson-1/part-1/flippable-card'; // Re-using the same component
+import InteractiveQuestionCard from '@/app/materials/semester-1/unit-1/lesson-1/part-1/interactive-question-card';
+
 
 const lessonContent = `<p>لفهم سلوك الغازات بشكل دقيق، نحتاج إلى دراسة العوامل التي تؤثر فيها. هذه العوامل هي متغيرات يمكن قياسها وتغييرها، وهي تحدد حالة الغاز. في هذا الجزء، سنتعرف على هذه المتغيرات الأربعة الأساسية التي ستكون حجر الزاوية في جميع قوانين الغازات التي سندرسها لاحقًا.</p>`;
 
@@ -24,8 +26,7 @@ export default function LessonPartPage() {
         <p className="text-lg text-muted-foreground">مقدمة قوانين الغازات</p>
       </header>
 
-      <main className="grid md:grid-cols-3 gap-8">
-        <div className="md:col-span-3 space-y-6">
+      <main className="space-y-6">
           <Card>
             <CardHeader>
               <CardTitle>الفكرة الرئيسة</CardTitle>
@@ -104,7 +105,7 @@ export default function LessonPartPage() {
                         </ul>
                     </div>
                      <p className='text-xs mt-2 text-muted-foreground italic border-t pt-2' dir="ltr">
-                        1 m³ = 1000 L = 1,000,000 mL
+                        1 L = 1000 mL
                     </p>
                  </div>
               </FlippableCard>
@@ -173,6 +174,40 @@ export default function LessonPartPage() {
               </ul>
           </FlippableCard>
 
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <Lightbulb className="h-7 w-7 text-yellow-400" />
+              <div>
+                <h3 className="text-xl font-bold">تحقق من فهمك</h3>
+                <p className="text-muted-foreground">أجب عن الأسئلة السريعة التالية لترسيخ المفاهيم.</p>
+              </div>
+            </div>
+            <div className="space-y-4">
+                <InteractiveQuestionCard 
+                    question="بالون يحتوي على غاز الهيليوم ضغطه 900 mmHg فإن قيمة ضغطه بوحدة atm تساوي:"
+                    options={[
+                        "1.18",
+                        "0.84",
+                        "1660",
+                        "140"
+                    ]}
+                    correctAnswerIndex={0}
+                    explanation="للتحويل من mmHg إلى atm، نقوم بالقسمة على 760. المعادلة هي: 900 mmHg / 760 ≈ 1.18 atm."
+                />
+                 <InteractiveQuestionCard 
+                    question="بالون درجة حرارته 20 °C فإن حرارته المطلقة تساوي:"
+                    options={[
+                        "13.75",
+                        "253",
+                        "293",
+                        "0.073"
+                    ]}
+                    correctAnswerIndex={2}
+                    explanation="للتحويل من درجة سيليزية (°C) إلى كلفن (K)، نستخدم المعادلة: T(K) = T(°C) + 273. إذن، 20 + 273 = 293 K."
+                />
+            </div>
+          </div>
+
           <Card>
             <CardHeader>
                 <CardTitle>اختبر فهمك</CardTitle>
@@ -184,7 +219,6 @@ export default function LessonPartPage() {
                 <Quiz lessonContent={lessonContent} />
             </CardContent>
           </Card>
-        </div>
 
       </main>
 
@@ -207,3 +241,5 @@ export default function LessonPartPage() {
     </div>
   );
 }
+
+    
