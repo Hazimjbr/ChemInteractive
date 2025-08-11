@@ -225,12 +225,15 @@ export default function LessonPartPage() {
               </p>
           </FlippableCard>
           
-          <Card>
-             <CardHeader>
-                <CardTitle className="flex items-center gap-2"><Lightbulb className="h-6 w-6 text-yellow-400" /> تحقق من فهمك</CardTitle>
-                 <CardDescription>أجب عن الأسئلة السريعة التالية لترسيخ المفاهيم.</CardDescription>
-            </CardHeader>
-            <CardContent className="grid md:grid-cols-2 gap-4">
+           <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <Lightbulb className="h-7 w-7 text-yellow-400" />
+              <div>
+                <h3 className="text-xl font-bold">تحقق من فهمك</h3>
+                <p className="text-muted-foreground">أجب عن الأسئلة السريعة التالية لترسيخ المفاهيم.</p>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
                 <InteractiveQuestionCard 
                     question="الغاز A محصور في وعاء عند درجة حرارة ثابتة فإن العبارة الخاطئة:"
                     options={[
@@ -253,8 +256,8 @@ export default function LessonPartPage() {
                     correctAnswerIndex={0}
                     explanation="الغاز المثالي هو غاز افتراضي تُهمل فيه قوى التجاذب بين جسيماته تمامًا، ولذلك لا يمكن تحويله إلى سائل مهما زاد الضغط أو انخفضت درجة الحرارة."
                 />
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
 
           <Card>
@@ -295,5 +298,3 @@ export default function LessonPartPage() {
     </div>
   );
 }
-
-    
