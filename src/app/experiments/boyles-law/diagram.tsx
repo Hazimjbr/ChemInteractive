@@ -9,8 +9,8 @@ import { Card, CardContent } from '@/components/ui/card';
 
 // --- Constants ---
 const CANVAS_HEIGHT = 350;
-const TUBE_WIDTH = 30; // Increased width for better visibility
-const TUBE_WALL_THICKNESS = 4; // Define wall thickness
+const TUBE_WIDTH = 30;
+const TUBE_WALL_THICKNESS = 4;
 const TUBE_BEND_RADIUS = 40;
 const INITIAL_GAS_HEIGHT = 150;
 const INITIAL_PRESSURE = 1; // in atm
@@ -78,7 +78,7 @@ export default function Diagram() {
 
         // --- Draw J-Tube Glass ---
         p.noFill();
-        p.stroke('hsl(var(--border))');
+        p.stroke(0); // Set stroke to black
         p.strokeWeight(TUBE_WALL_THICKNESS);
         
         // Left arm (closed)
@@ -99,7 +99,7 @@ export default function Diagram() {
 
         // --- Draw Labels ---
         p.noStroke();
-        p.fill('hsl(var(--foreground))');
+        p.fill(0); // Set fill to black for text
         p.textAlign(p.CENTER, p.CENTER);
         p.textSize(14);
         
@@ -110,7 +110,7 @@ export default function Diagram() {
         p.textSize(12);
         p.text(`${pressure.toFixed(1)} atm`, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY - 20);
         // Line pointing to pressure
-        p.stroke('hsl(var(--foreground))');
+        p.stroke(0); // Set stroke to black
         p.strokeWeight(1);
         p.line(centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY - 10, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY);
 
