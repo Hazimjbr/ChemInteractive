@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Check, Dot, ArrowLeft, X, Info, Beaker, GitCommitHorizontal } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import Quiz from './quiz';
+import FlippableCard from './flippable-card';
 
 const Diagram = dynamic(() => import('./diagram'), {
   ssr: false,
@@ -105,109 +106,94 @@ export default function LessonPartPage() {
             dangerouslySetInnerHTML={{ __html: lessonContent }}
           />
 
-         <Card className="bg-gradient-to-br from-card to-secondary/30 border-primary/20 shadow-lg">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-accent">
-                    <Info className="h-6 w-6" />
-                    بنود نظرية الحركة الجزيئية
-                </CardTitle>
-            </CardHeader>
-            <CardContent>
-               <ul className="space-y-4 text-sm">
-                  <li className="flex items-start gap-3">
-                    <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
-                    <p><strong className="font-semibold">تكوين الغاز:</strong> جسيمات صغيرة جدا (مهملة الحجم) متباعدة جدا وقوى التجاذب بينها شبه معدومة لذلك معظم حجم الغاز فراغ (تفسير كثافة الغاز القليلة وقابلية الانضغاط وتشابه جميع الغازات في خصائصها).</p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
-                    <p><strong className="font-semibold">حركة الجسيمات:</strong> حركة مستمرة، عشوائية، وسريعة في خطوط مستقيمة، مما يكسبها طاقة حركية تمكنها من التغلب على قوى التجاذب بينها (تفسير انتشار وتدفق الغازات – الحركة البراونية).</p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
-                    <div>
-                        <p><strong className="font-semibold">التصادمات المرنة:</strong></p>
-                        <ul className="mt-2 space-y-1 mr-4">
-                            <li><span className="font-semibold text-accent/80">أ) مع جدار الوعاء:</span> لا تلتصق وتسبب ضغط الغاز.</li>
-                            <li><span className="font-semibold text-accent/80">ب) مع بعضها البعض:</span> لا تتفاعل، ويبقى مجموع الطاقة الحركية ثابت.</li>
-                        </ul>
-                    </div>
-                  </li>
-                   <li className="flex items-start gap-3">
-                    <span className="font-bold text-primary text-lg mt-[-2px]">4.</span>
-                    <p><strong className="font-semibold">الطاقة الحركية والحرارة:</strong> يتناسب متوسط الطاقة الحركية (KE) للجسيمات تناسبا طرديا مع سرعتها التي تزداد بازدياد درجة الحرارة.</p>
-                  </li>
-                   <li className="flex items-start gap-3">
-                    <span className="font-bold text-primary text-lg mt-[-2px]">5.</span>
-                    <p><strong className="font-semibold">قوى التجاذب في الغاز المثالي:</strong> معدومة فلا يمكن إسالته مهما زاد الضغط أو انخفضت حرارته.</p>
-                  </li>
-               </ul>
-            </CardContent>
-          </Card>
+          <FlippableCard
+            cardTitle="بنود نظرية الحركة الجزيئية"
+            cardIcon={<Info className="h-6 w-6" />}
+          >
+             <ul className="space-y-4 text-sm">
+                <li className="flex items-start gap-3">
+                  <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
+                  <p><strong className="font-semibold">تكوين الغاز:</strong> جسيمات صغيرة جدا (مهملة الحجم) متباعدة جدا وقوى التجاذب بينها شبه معدومة لذلك معظم حجم الغاز فراغ (تفسير كثافة الغاز القليلة وقابلية الانضغاط وتشابه جميع الغازات في خصائصها).</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
+                  <p><strong className="font-semibold">حركة الجسيمات:</strong> حركة مستمرة، عشوائية، وسريعة في خطوط مستقيمة، مما يكسبها طاقة حركية تمكنها من التغلب على قوى التجاذب بينها (تفسير انتشار وتدفق الغازات – الحركة البراونية).</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
+                  <div>
+                      <p><strong className="font-semibold">التصادمات المرنة:</strong></p>
+                      <ul className="mt-2 space-y-1 mr-4">
+                          <li><span className="font-semibold text-accent/80">أ) مع جدار الوعاء:</span> لا تلتصق وتسبب ضغط الغاز.</li>
+                          <li><span className="font-semibold text-accent/80">ب) مع بعضها البعض:</span> لا تتفاعل، ويبقى مجموع الطاقة الحركية ثابت.</li>
+                      </ul>
+                  </div>
+                </li>
+                 <li className="flex items-start gap-3">
+                  <span className="font-bold text-primary text-lg mt-[-2px]">4.</span>
+                  <p><strong className="font-semibold">الطاقة الحركية والحرارة:</strong> يتناسب متوسط الطاقة الحركية (KE) للجسيمات تناسبا طرديا مع سرعتها التي تزداد بازدياد درجة الحرارة.</p>
+                </li>
+                 <li className="flex items-start gap-3">
+                  <span className="font-bold text-primary text-lg mt-[-2px]">5.</span>
+                  <p><strong className="font-semibold">قوى التجاذب في الغاز المثالي:</strong> معدومة فلا يمكن إسالته مهما زاد الضغط أو انخفضت حرارته.</p>
+                </li>
+             </ul>
+          </FlippableCard>
           
-          <Card className="bg-gradient-to-br from-card to-secondary/30 border-primary/20 shadow-lg">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-accent">
-                    <Beaker className="h-6 w-6" />
-                    الغاز المثالي (Ideal Gas)
-                </CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="mb-4 font-semibold">هو غاز افتراضي يتميز بالخصائص التالية:</p>
-                <ul className="space-y-3 text-sm">
-                    <li className="flex items-start gap-3">
-                        <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
-                        <p>حجم جسيماته يساوي صفر (مهمل).</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                        <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
-                        <p>قوى التجاذب بين جسيماته تساوي صفر (معدومة).</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                        <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
-                        <p>تنطبق عليه فرضيات نظرية الحركة الجزيئية وقوانين الغازات عند كل الظروف.</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                        <span className="font-bold text-primary text-lg mt-[-2px]">4.</span>
-                        <p>لا يمكن إسالته مهما انخفضت درجة حرارته أو زاد الضغط عليه.</p>
-                    </li>
-                </ul>
-            </CardContent>
-          </Card>
+          <FlippableCard
+            cardTitle="الغاز المثالي (Ideal Gas)"
+            cardIcon={<Beaker className="h-6 w-6" />}
+          >
+              <p className="mb-4 font-semibold">هو غاز افتراضي يتميز بالخصائص التالية:</p>
+              <ul className="space-y-3 text-sm">
+                  <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
+                      <p>حجم جسيماته يساوي صفر (مهمل).</p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
+                      <p>قوى التجاذب بين جسيماته تساوي صفر (معدومة).</p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
+                      <p>تنطبق عليه فرضيات نظرية الحركة الجزيئية وقوانين الغازات عند كل الظروف.</p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">4.</span>
+                      <p>لا يمكن إسالته مهما انخفضت درجة حرارته أو زاد الضغط عليه.</p>
+                  </li>
+              </ul>
+          </FlippableCard>
 
-           <Card className="bg-gradient-to-br from-card to-secondary/30 border-primary/20 shadow-lg">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-accent">
-                    <GitCommitHorizontal className="h-6 w-6" />
-                    انحراف الغازات الحقيقية
-                </CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="mb-4 font-semibold">يزداد انحراف الغازات الحقيقية عن سلوك الغاز المثالي كلما:</p>
-                <ul className="space-y-4 text-sm">
-                    <li className="flex items-start gap-3">
-                        <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
-                        <div>
-                            <p className='font-semibold'>ازدادت قوى التجاذب بين جسيمات الغاز:</p>
-                            <ul className="mt-2 space-y-2 mr-4 text-xs">
-                                <li><span className="font-semibold text-accent/80">أ) اختلاف نوع الترابط بين الجسيمات:</span> (هيدروجيني مثل HF > ثنائي قطب مثل NH3 > قوى لندن مثل Ne)</li>
-                                <li><span className="font-semibold text-accent/80">ب) ازدياد الكتلة المولية:</span> (مثلًا Cl2 > F2) لأن زيادة الكتلة المولية تزيد من قوى لندن.</li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                        <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
-                        <p className='font-semibold'>ازداد الضغط على الغاز أو قل حجمه.</p>
-                    </li>
-                     <li className="flex items-start gap-3">
-                        <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
-                        <p className='font-semibold'>انخفضت درجة الحرارة.</p>
-                    </li>
-                </ul>
-                <p className='text-xs mt-3 text-muted-foreground'>
-                    (ملاحظة: زيادة الحرارة تقلل من قوة الترابط بين الجسيمات وتزيد من طاقتها الحركية، مما يجعلها تسلك سلوكًا أقرب للمثالي).
-                </p>
-            </CardContent>
-          </Card>
+           <FlippableCard
+            cardTitle="انحراف الغازات الحقيقية"
+            cardIcon={<GitCommitHorizontal className="h-6 w-6" />}
+          >
+              <p className="mb-4 font-semibold">يزداد انحراف الغازات الحقيقية عن سلوك الغاز المثالي كلما:</p>
+              <ul className="space-y-4 text-sm">
+                  <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
+                      <div>
+                          <p className='font-semibold'>ازدادت قوى التجاذب بين جسيمات الغاز:</p>
+                          <ul className="mt-2 space-y-2 mr-4 text-xs">
+                              <li><span className="font-semibold text-accent/80">أ) اختلاف نوع الترابط بين الجسيمات:</span> (هيدروجيني مثل HF > ثنائي قطب مثل NH3 > قوى لندن مثل Ne)</li>
+                              <li><span className="font-semibold text-accent/80">ب) ازدياد الكتلة المولية:</span> (مثلًا Cl2 > F2) لأن زيادة الكتلة المولية تزيد من قوى لندن.</li>
+                          </ul>
+                      </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
+                      <p className='font-semibold'>ازداد الضغط على الغاز أو قل حجمه.</p>
+                  </li>
+                   <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
+                      <p className='font-semibold'>انخفضت درجة الحرارة.</p>
+                  </li>
+              </ul>
+              <p className='text-xs mt-3 text-muted-foreground'>
+                  (ملاحظة: زيادة الحرارة تقلل من قوة الترابط بين الجسيمات وتزيد من طاقتها الحركية، مما يجعلها تسلك سلوكًا أقرب للمثالي).
+              </p>
+          </FlippableCard>
 
 
           <Card>

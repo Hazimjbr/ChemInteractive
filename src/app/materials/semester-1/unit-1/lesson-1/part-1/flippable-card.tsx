@@ -1,0 +1,72 @@
+'use client';
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/utils.tsx';
+
+interface FlippableCardProps {
+  cardTitle: string;
+  cardIcon: React.ReactNode;
+  children: React.ReactNode;
+}
+
+export default function FlippableCard({ cardTitle, cardIcon, children }: FlippableCardProps) {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  // Set a fixed height for the container to prevent layout shifts during flipping
+  const cardHeight = 'h-[280px]'; // Adjust this height as needed
+
+  return (
+    <div className={cn("perspective-1000", cardHeight)} onMouseEnter={() => setIsFlipped(true)} onMouseLeave={() => setIsFlipped(false)}>
+      <motion.div
+        className="relative w-full h-full"
+        style={{ transformStyle: 'preserve-3d' }}
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        {/* Front of the Card */}
+        <div
+          className="absolute w-full h-full backface-hidden"
+        >
+          <Card className="flex items-center justify-center w-full h-full bg-gradient-to-br from-card to-secondary/30 border-primary/20 shadow-lg">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-accent text-2xl">
+                {cardIcon}
+                {cardTitle}
+              </CardTitle>
+            </CardHeader>
+          </Card>
+        </div>
+
+        {/* Back of the Card */}
+        <div
+          className="absolute w-full h-full backface-hidden"
+          style={{ transform: 'rotateY(180deg)' }}
+        >
+          <Card className="w-full h-full bg-gradient-to-br from-card to-secondary/30 border-primary/20 shadow-lg overflow-y-auto">
+             <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-accent text-lg">
+                {cardIcon}
+                {cardTitle}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+                {children}
+            </CardContent>
+          </Card>
+        </div>
+      </motion.div>
+       {/* Simple CSS to handle backface visibility, as it's not directly in Tailwind */}
+      <style jsx global>{`
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        .backface-hidden {
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+      `}</style>
+    </div>
+  );
+}
