@@ -142,9 +142,10 @@ export default function LessonPartPage() {
                             <li>مول (mol) ويرمز له بالرمز n.</li>
                         </ul>
                     </div>
-                     <p className='text-xs mt-2 text-muted-foreground italic border-t pt-2'>
-                        المول الواحد يحتوي على عدد أفوجادرو من الجسيمات (6.022 × 10²³).
-                    </p>
+                     <div className='text-xs mt-2 text-muted-foreground italic border-t pt-2'>
+                        <p>المول الواحد يحتوي على عدد أفوجادرو من الجسيمات:</p>
+                        <p dir="ltr" className="text-center font-mono mt-1">6.022 × 10²³</p>
+                    </div>
                  </div>
               </FlippableCard>
           </div>
@@ -206,5 +207,3 @@ export default function LessonPartPage() {
     </div>
   );
 }
-
-    
