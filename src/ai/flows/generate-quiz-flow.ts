@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview A flow for generating a quiz based on lesson content.
@@ -37,7 +38,7 @@ const GenerateQuizInputSchema = z.object({
 
 const quizGenerationPrompt = ai.definePrompt({
   name: 'quizGenerationPrompt',
-  model: 'googleai/gemini-1.5-flash',
+  model: 'googleai/gemini-1.5-pro',
   input: { schema: GenerateQuizInputSchema },
   output: { schema: GenerateQuizOutputSchema },
   prompt: `أنت مساعد تعليمي خبير في الكيمياء. مهمتك هي إنشاء اختبار قصير (كويز) من 5 أسئلة اختيار من متعدد بناءً على محتوى الدرس التالي ومستوى الصعوبة المحدد.
