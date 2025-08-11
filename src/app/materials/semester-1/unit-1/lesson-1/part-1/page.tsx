@@ -240,7 +240,7 @@ export default function LessonPartPage() {
                 </p>
             </FlippableCard>
 
-            <Card className="md:col-span-2">
+            <Card>
                 <CardHeader>
                     <CardTitle>محاكاة سلوك الغاز</CardTitle>
                 </CardHeader>
