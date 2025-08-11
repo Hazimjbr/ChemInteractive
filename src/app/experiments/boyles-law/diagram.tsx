@@ -112,6 +112,23 @@ export default function Diagram() {
         p.textSize(10);
         p.textAlign(p.LEFT, p.CENTER);
         p.text(`${pressure.toFixed(1)} atm`, centerX + TUBE_BEND_RADIUS + TUBE_WIDTH + 5, rightMercuryTopY);
+        
+        // Mercury Height (h) Label
+        if (pressure > 1.0) {
+            const hLineX = centerX + TUBE_BEND_RADIUS + TUBE_WIDTH + 20;
+            const h_in_mmHg = ((pressure - 1) * 760).toFixed(0);
+
+            p.stroke(0);
+            p.strokeWeight(1);
+            p.line(hLineX, leftMercuryTopY, hLineX, rightMercuryTopY); // Vertical line for h
+            p.line(hLineX - 3, leftMercuryTopY, hLineX + 3, leftMercuryTopY); // Top tick
+            p.line(hLineX - 3, rightMercuryTopY, hLineX + 3, rightMercuryTopY); // Bottom tick
+
+            p.noStroke();
+            p.fill(0);
+            p.textAlign(p.LEFT, p.CENTER);
+            p.text(`h = ${h_in_mmHg} mmHg`, hLineX + 8, (leftMercuryTopY + rightMercuryTopY) / 2);
+        }
 
       };
     };
@@ -136,7 +153,7 @@ export default function Diagram() {
        <Card className="p-4 w-full">
           <Label htmlFor="pressure-slider" className="mb-2 block text-center">الضغط (atm)</Label>
           <div className="flex items-center gap-4">
-            <span className="text-sm font-mono">4.0</span>
+            <span className="text-sm font-mono">1.0</span>
             <Slider
               id="pressure-slider"
               min={1}
@@ -146,7 +163,7 @@ export default function Diagram() {
               onValueChange={(value) => setPressure(value[0])}
               dir="ltr"
             />
-            <span className="text-sm font-mono">1.0</span>
+            <span className="text-sm font-mono">4.0</span>
           </div>
         </Card>
     </div>
