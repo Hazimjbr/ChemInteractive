@@ -49,7 +49,7 @@ export default function Diagram() {
         // Lerp for smooth animation
         currentGasHeight = p.lerp(currentGasHeight, targetGasHeight, 0.1);
         
-        const centerX = width / 2;
+        const centerX = width / 2 - 40; // Shift the drawing to the left
         // Position the drawing at the bottom
         const tubeBottomY = CANVAS_HEIGHT - 50;
         const tubeTopY = tubeBottomY - 200; 
