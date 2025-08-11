@@ -30,7 +30,7 @@ export default function FlippableCard({ cardTitle, cardIcon, children }: Flippab
         <div
           className="absolute w-full h-full backface-hidden"
         >
-          <Card className="flex items-center justify-center w-full h-full bg-gradient-to-br from-card to-secondary/30 border-primary/20 shadow-lg">
+          <Card className="flex items-center justify-center w-full h-full border-primary/20 shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-accent text-2xl">
                 {cardIcon}
@@ -45,7 +45,7 @@ export default function FlippableCard({ cardTitle, cardIcon, children }: Flippab
           className="absolute w-full h-full backface-hidden"
           style={{ transform: 'rotateY(180deg)' }}
         >
-          <Card className="w-full h-full bg-gradient-to-br from-card to-secondary/30 border-primary/20 shadow-lg overflow-y-auto">
+          <Card className="w-full h-full border-primary/20 shadow-lg overflow-y-auto">
              <CardHeader>
               <CardTitle className="flex items-center gap-3 text-accent text-lg">
                 {cardIcon}

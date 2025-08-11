@@ -55,7 +55,7 @@ export default function InteractiveQuestionCard({ question, options, correctAnsw
       >
         {/* Front of the Card (Question) */}
         <div className="absolute w-full h-full backface-hidden">
-          <Card className="flex flex-col w-full h-full bg-gradient-to-br from-card to-secondary/30 border-primary/20 shadow-lg">
+          <Card className="flex flex-col w-full h-full border-primary/20 shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-accent text-xl">
                  <HelpCircle className="h-6 w-6"/>
