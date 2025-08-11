@@ -277,6 +277,9 @@ export default function LessonPartPage() {
           <Card>
             <CardHeader>
                 <CardTitle>اختبر فهمك</CardTitle>
+                <CardDescription>
+                    بعد أن تعرفت على نظرية الحركة الجزيئية، اختبر فهمك لها من خلال هذا الاختبار القصير.
+                </CardDescription>
             </CardHeader>
             <CardContent>
                 <Quiz lessonContent={lessonContent} />
@@ -312,5 +315,3 @@ export default function LessonPartPage() {
     </div>
   );
 }
-
-    
