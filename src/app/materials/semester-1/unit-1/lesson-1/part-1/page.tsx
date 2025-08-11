@@ -5,10 +5,11 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Dot, ArrowLeft, X, Info, Beaker, GitCommitHorizontal, HelpCircle, Cloud } from 'lucide-react';
+import { Check, Dot, ArrowLeft, X, Info, Beaker, GitCommitHorizontal, HelpCircle, Cloud, Lightbulb } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import Quiz from './quiz';
 import FlippableCard from './flippable-card';
+import InteractiveQuestionCard from './interactive-question-card';
 
 const Diagram = dynamic(() => import('./diagram'), {
   ssr: false,
@@ -113,7 +114,7 @@ export default function LessonPartPage() {
              <ul className="space-y-4 text-sm">
                 <li className="flex items-start gap-3">
                   <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
-                  <p><strong className="font-semibold">تكوين الغاز:</strong> يتكون الغاز من جسيمات صغيرة جدا (مهملة الحجم) متباعدة جدا وقوى التجاذب بينها شبه معدومة (باستثناء ما يحدث في أثناء لحظة التصادم) لذلك معظم حجم الغاز فراغ (تفسير كثافة الغاز القليلة وقابلية الانضغاط وتشابه جميع الغازات في خصائصها)</p>
+                  <p>تكوين الغاز: يتكون الغاز من جسيمات صغيرة جدا (مهملة الحجم) متباعدة جدا وقوى التجاذب بينها شبه معدومة (باستثناء ما يحدث في أثناء لحظة التصادم) لذلك معظم حجم الغاز فراغ (تفسير كثافة الغاز القليلة وقابلية الانضغاط وتشابه جميع الغازات في خصائصها)</p>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
@@ -223,6 +224,37 @@ export default function LessonPartPage() {
                   (ملاحظة: زيادة الحرارة تقلل من قوة الترابط بين الجسيمات وتزيد من طاقتها الحركية، مما يجعلها تسلك سلوكًا أقرب للمثالي).
               </p>
           </FlippableCard>
+          
+          <Card>
+             <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Lightbulb className="h-6 w-6 text-yellow-400" /> تحقق من فهمك</CardTitle>
+                 <CardDescription>أجب عن الأسئلة السريعة التالية لترسيخ المفاهيم.</CardDescription>
+            </CardHeader>
+            <CardContent className="grid md:grid-cols-2 gap-4">
+                <InteractiveQuestionCard 
+                    question="الغاز A محصور في وعاء عند درجة حرارة ثابتة فإن العبارة الخاطئة:"
+                    options={[
+                        "حركة جسيمات الغاز مستمرة وعشوائية وفي خط مستقيم",
+                        "تتحرك جسيمات الغاز جميعها بنفس السرعة عند نفس درجة الحرارة",
+                        "متوسط الطاقة الحركية لجسيمات الغاز ثابت عند نفس درجة الحرارة",
+                        "تتصادم جسيمات الغاز تصادمات مرنة مع بعضها ومع جدار الوعاء"
+                    ]}
+                    correctAnswerIndex={1}
+                    explanation="عند درجة حرارة ثابتة، يكون لجسيمات الغاز *متوسط* طاقة حركية ثابت، ولكن لا تتحرك جميع الجسيمات بنفس السرعة؛ بل تمتلك توزيعًا من السرعات المختلفة."
+                />
+                 <InteractiveQuestionCard 
+                    question="أحد الغازات الآتية لا يمكن إسالته على جميع قيم الضغط ودرجات الحرارة:"
+                    options={[
+                        "الغاز المثالي",
+                        "غاز النيتروجين",
+                        "غاز الأكسجين",
+                        "غاز الهيدروجين"
+                    ]}
+                    correctAnswerIndex={0}
+                    explanation="الغاز المثالي هو غاز افتراضي تُهمل فيه قوى التجاذب بين جسيماته تمامًا، ولذلك لا يمكن تحويله إلى سائل مهما زاد الضغط أو انخفضت درجة الحرارة."
+                />
+            </CardContent>
+          </Card>
 
 
           <Card>
