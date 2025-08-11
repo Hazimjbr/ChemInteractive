@@ -75,7 +75,7 @@ export default function Diagram() {
       // Calculate piston position based on pressure
       // High pressure -> piston moves down -> smaller volume
       // Low pressure -> piston at the top -> larger volume
-      const pistonY = pressure === 'low' ? 0 : (boxHeight * 0.75) - PISTON_THICKNESS;
+      const pistonY = pressure === 'low' ? 0 : (boxHeight * 0.5) - PISTON_THICKNESS;
       const topBoundary = pistonY + PISTON_THICKNESS;
       const bottomBoundary = boxHeight;
 
@@ -104,6 +104,7 @@ export default function Diagram() {
           }
           if (this.pos.y <= topBoundary + this.radius || this.pos.y >= bottomBoundary - this.radius) {
             this.vel.y *= -1;
+            // Prevent particles from getting stuck in the piston
             this.pos.y = p.constrain(this.pos.y, topBoundary + this.radius, bottomBoundary - this.radius);
           }
         }
@@ -117,6 +118,7 @@ export default function Diagram() {
 
       p.setup = () => {
         p.createCanvas(width, CANVAS_HEIGHT);
+        particles = []; // Clear particles on setup
         for (let i = 0; i < NUM_PARTICLES; i++) {
           particles.push(new Particle());
         }
@@ -147,9 +149,25 @@ export default function Diagram() {
         p.fill(150);
         p.rect(width/2 - 20, pistonY - 5, 40, 5);
       };
+      
+      // A custom function to be called when props change
+      (p as any).customPropsChange = (props: { temp: Temperature, press: Pressure }) => {
+          // Re-initialize particles when conditions change to avoid them getting stuck
+          particles = [];
+          for (let i = 0; i < NUM_PARTICLES; i++) {
+            particles.push(new Particle());
+          }
+          p.loop();
+      };
     };
 
     p5InstanceRef.current = new p5(sketch, sketchRef.current!);
+
+    // This part is a bit of a hack to force re-creation of particles
+    // when the state changes, addressing the "stuck particles" issue.
+    if (p5InstanceRef.current && (p5InstanceRef.current as any).customPropsChange) {
+        (p5InstanceRef.current as any).customPropsChange({ temp: temperature, press: pressure });
+    }
 
     return () => {
       p5InstanceRef.current?.remove();
