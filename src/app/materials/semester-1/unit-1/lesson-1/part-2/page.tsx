@@ -232,7 +232,7 @@ export default function LessonPartPage() {
             </Link>
             <Link href="/materials/semester-1/unit-1/lesson-1/part-3" passHref>
                 <Button size="lg">
-                الدرس التالي: قانون بويل
+                الجزء التالي: قانون بويل
                 <ArrowLeft className="mr-2 h-5 w-5" />
                 </Button>
             </Link>
@@ -241,5 +241,3 @@ export default function LessonPartPage() {
     </div>
   );
 }
-
-    
