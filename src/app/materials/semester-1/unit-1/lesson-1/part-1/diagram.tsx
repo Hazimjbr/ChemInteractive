@@ -14,7 +14,7 @@ type Pressure = 'low' | 'high';
 
 // --- Constants ---
 const CANVAS_HEIGHT = 250;
-const NUM_PARTICLES = 30;
+const NUM_PARTICLES = 15;
 const PARTICLE_RADIUS = 4;
 const BASE_SPEED = 1.0;
 const PISTON_THICKNESS = 20;
@@ -75,7 +75,7 @@ export default function Diagram() {
       // Calculate piston position based on pressure
       // High pressure -> piston moves down -> smaller volume
       // Low pressure -> piston at the top -> larger volume
-      const pistonY = pressure === 'low' ? 0 : (boxHeight / 2) - PISTON_THICKNESS / 2;
+      const pistonY = pressure === 'low' ? 0 : (boxHeight * 0.75) - PISTON_THICKNESS;
       const topBoundary = pistonY + PISTON_THICKNESS;
       const bottomBoundary = boxHeight;
 
