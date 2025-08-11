@@ -3,7 +3,7 @@
 
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Check, Dot, ArrowLeft, X, Info, Beaker, GitCommitHorizontal, HelpCircle, Cloud, Lightbulb } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -295,3 +295,5 @@ export default function LessonPartPage() {
     </div>
   );
 }
+
+    
