@@ -102,19 +102,16 @@ export default function Diagram() {
         // --- Draw Labels ---
         p.noStroke();
         p.fill(0); // Set fill to black for text
-        p.textAlign(p.CENTER, p.CENTER);
         p.textSize(12);
         
         // Volume Label
+        p.textAlign(p.CENTER, p.CENTER);
         p.text('V', centerX - TUBE_BEND_RADIUS - (TUBE_WIDTH/2), tubeCapY + (currentGasHeight / 2));
         
         // Pressure Label
         p.textSize(10);
-        p.text(`${pressure.toFixed(1)} atm`, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY - 10);
-        // Line pointing to pressure
-        p.stroke(0); // Set stroke to black
-        p.strokeWeight(1);
-        p.line(centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY - 5, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY);
+        p.textAlign(p.LEFT, p.CENTER);
+        p.text(`${pressure.toFixed(1)} atm`, centerX + TUBE_BEND_RADIUS + TUBE_WIDTH + 5, rightMercuryTopY);
 
       };
     };
