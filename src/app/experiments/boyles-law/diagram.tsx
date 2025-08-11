@@ -9,7 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 // --- Constants ---
 const CANVAS_HEIGHT = 350; 
-const TUBE_WIDTH = 15; 
+const TUBE_WIDTH = 30; 
 const TUBE_WALL_THICKNESS = 2;
 const TUBE_BEND_RADIUS = 20; 
 const INITIAL_GAS_HEIGHT = 75; 
