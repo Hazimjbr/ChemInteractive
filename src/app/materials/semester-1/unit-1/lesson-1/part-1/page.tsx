@@ -1,3 +1,4 @@
+
 'use client';
 
 import dynamic from 'next/dynamic';
@@ -107,7 +108,7 @@ export default function LessonPartPage() {
           />
 
           <FlippableCard
-            cardTitle="ما هي نظرية الحركة الجزيئية؟"
+            cardTitle="نظرية الحركة الجزيئية"
             cardIcon={<HelpCircle className="h-6 w-6" />}
           >
              <ul className="space-y-4 text-sm">
