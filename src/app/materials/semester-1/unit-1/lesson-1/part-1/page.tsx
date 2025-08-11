@@ -239,20 +239,20 @@ export default function LessonPartPage() {
                     (ملاحظة: زيادة الحرارة تقلل من قوة الترابط بين الجسيمات وتزيد من طاقتها الحركية، مما يجعلها تسلك سلوكًا أقرب للمثالي).
                 </p>
             </FlippableCard>
+
+            <Card className="md:col-span-2">
+                <CardHeader>
+                    <CardTitle>محاكاة سلوك الغاز</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <Diagram />
+                    <p className="text-sm text-muted-foreground mt-4 text-center">
+                    تحكم في درجة الحرارة والضغط ولاحظ كيف يتغير سلوك الغاز بين المثالي والحقيقي.
+                    </p>
+                </CardContent>
+            </Card>
         </div>
         
-        <Card>
-            <CardHeader>
-                <CardTitle>محاكاة سلوك الغاز</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <Diagram />
-                <p className="text-sm text-muted-foreground mt-4 text-center">
-                تحكم في درجة الحرارة والضغط ولاحظ كيف يتغير سلوك الغاز بين المثالي والحقيقي.
-                </p>
-            </CardContent>
-        </Card>
-
          <div className="space-y-4">
           <div className="flex items-center gap-3">
             <Lightbulb className="h-7 w-7 text-yellow-400" />
