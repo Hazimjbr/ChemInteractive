@@ -109,7 +109,7 @@ export default function LessonPartPage() {
             <CardHeader>
                 <CardTitle className="flex items-center gap-3 text-accent">
                     <Info className="h-6 w-6" />
-                    ملخص سريع للنقاط الأساسية
+                    بنود نظرية الحركة الجزيئية
                 </CardTitle>
             </CardHeader>
             <CardContent>
