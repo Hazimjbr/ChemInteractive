@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Dot, ArrowLeft, X, Info, Beaker, GitCommitHorizontal, HelpCircle } from 'lucide-react';
+import { Check, Dot, ArrowLeft, X, Info, Beaker, GitCommitHorizontal, HelpCircle, Cloud } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import Quiz from './quiz';
 import FlippableCard from './flippable-card';
@@ -168,6 +168,31 @@ export default function LessonPartPage() {
               </p>
           </FlippableCard>
 
+          <FlippableCard
+            cardTitle="الغاز الحقيقي (Real Gas)"
+            cardIcon={<Cloud className="h-6 w-6" />}
+          >
+              <p className="mb-4 font-semibold">هو الغاز الموجود فعليًا في الطبيعة، وتتشابه معظم الغازات في سلوكها الفيزيائي.</p>
+              <ul className="space-y-3 text-sm">
+                  <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
+                      <p>حجم جسيماته صغير جدًا **ولكنه ليس صفرًا** (لا يمكن إهماله في الحسابات الدقيقة).</p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
+                      <p>توجد قوى تجاذب بين جسيماته، وإن كانت ضعيفة جدًا.</p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
+                      <p>يسلك سلوكًا قريبًا جدًا من الغاز المثالي في **الظروف العادية** (الضغط الجوي ودرجة حرارة الغرفة).</p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">4.</span>
+                      <p>يمكن تحويله إلى سائل (إسالته) عن طريق **زيادة الضغط وخفض درجة الحرارة**.</p>
+                  </li>
+              </ul>
+          </FlippableCard>
+
            <FlippableCard
             cardTitle="انحراف الغازات الحقيقية"
             cardIcon={<GitCommitHorizontal className="h-6 w-6" />}
@@ -238,6 +263,8 @@ export default function LessonPartPage() {
     </div>
   );
 }
+
+    
 
     
 
