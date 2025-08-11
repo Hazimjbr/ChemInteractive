@@ -4,7 +4,7 @@
 import dynamic from 'next/dynamic';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import { TestTubeDiagonal, Target, FlaskConical, AlertTriangle, ListOrdered, Beaker, CheckSquare } from 'lucide-react';
+import { TestTubeDiagonal, Target, FlaskConical, AlertTriangle, ListOrdered, Beaker, CheckSquare, Droplets, Wind } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
@@ -87,6 +87,51 @@ export default function ExperimentPage() {
             </Card>
         </div>
         
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Wind className="h-6 w-6 text-primary" /> مثال من عالمنا: فقاعة الغواص</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <div className="flex flex-col md:flex-row items-center gap-6">
+                    <div className="w-full md:w-1/2" data-ai-hint="diver bubble pressure">
+                         <svg viewBox="0 0 150 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+                            <defs>
+                                <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style={{stopColor: 'hsl(var(--primary))', stopOpacity: 0.8}} />
+                                <stop offset="100%" style={{stopColor: 'hsl(var(--accent))', stopOpacity: 0.9}} />
+                                </linearGradient>
+                            </defs>
+                            <rect width="150" height="200" fill="url(#waterGradient)"/>
+
+                            <circle cx="85" cy="180" r="15" fill="white" fillOpacity="0.5" stroke="white" strokeWidth="1"/>
+                            <text x="85" y="183" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold">P ضغط عالٍ</text>
+
+                            <circle cx="105" cy="100" r="25" fill="white" fillOpacity="0.5" stroke="white" strokeWidth="1"/>
+
+                            <circle cx="115" cy="30" r="35" fill="white" fillOpacity="0.5" stroke="white" strokeWidth="1"/>
+                             <text x="115" y="33" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold">P ضغط منخفض</text>
+                            
+                            <path d="M 80 160 C 90 140, 100 120, 105 100" stroke="white" strokeWidth="1" strokeDasharray="2" fill="none"/>
+                            <path d="M 105 100 C 110 80, 115 50, 115 30" stroke="white" strokeWidth="1" strokeDasharray="2" fill="none"/>
+
+                            <text x="35" y="185" fontSize="24">🤿</text>
+                        </svg>
+                    </div>
+                    <div className="w-full md:w-1/2 space-y-3">
+                        <p>
+                            تخيل غواصًا يطلق فقاعة هواء في أعماق البحر.
+                        </p>
+                        <ul className="list-disc list-inside space-y-2 text-sm">
+                            <li><strong className="text-accent">في الأعماق:</strong> يكون ضغط الماء هائلاً، مما يجبر فقاعة الهواء على أن تكون صغيرة الحجم.</li>
+                            <li><strong className="text-primary">أثناء الصعود:</strong> كلما ارتفعت الفقاعة نحو السطح، يقل ضغط الماء عليها.</li>
+                            <li><strong className="text-foreground">النتيجة:</strong> يتمدد الغاز داخل الفقاعة ويزداد حجمها بشكل كبير، تمامًا كما ينص قانون بويل.</li>
+                        </ul>
+                         <p className="text-xs text-muted-foreground pt-2 border-t">هذا المثال يوضح أن العلاقة بين الضغط والحجم عكسية: عندما يقل أحدهما، يزداد الآخر.</p>
+                    </div>
+                </div>
+            </CardContent>
+        </Card>
+
         <Card>
           <CardHeader>
               <CardTitle className="flex items-center gap-2"><CheckSquare className="h-6 w-6 text-primary" /> اختبر استنتاجك</CardTitle>
