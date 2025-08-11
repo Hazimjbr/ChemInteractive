@@ -4,10 +4,11 @@
 import dynamic from 'next/dynamic';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import { TestTubeDiagonal, Target, FlaskConical, AlertTriangle, ListOrdered, Beaker } from 'lucide-react';
+import { TestTubeDiagonal, Target, FlaskConical, AlertTriangle, ListOrdered, Beaker, CheckSquare } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
+import Quiz from './quiz';
 
 
 const Diagram = dynamic(() => import('./diagram'), {
@@ -105,6 +106,18 @@ export default function ExperimentPage() {
                     <li>**أقيس:** أُخرِجُ البالونين، وأقيس محيط كُلِّ منهما مباشرةً، ثمّ أُسَجِّل ملاحظاتي.</li>
                 </ol>
             </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+              <CardTitle className="flex items-center gap-2"><CheckSquare className="h-6 w-6 text-primary" /> اختبر استنتاجك</CardTitle>
+               <CardDescription>
+                  أجب عن الأسئلة التالية للتأكد من فهمك لنتائج التجربة.
+                </CardDescription>
+          </CardHeader>
+          <CardContent>
+              <Quiz />
+          </CardContent>
         </Card>
       </main>
     </div>
