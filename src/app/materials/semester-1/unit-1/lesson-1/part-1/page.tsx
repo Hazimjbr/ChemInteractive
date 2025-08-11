@@ -23,7 +23,7 @@ const Diagram = dynamic(() => import('./diagram'), {
   ),
 });
 
-const lessonContent = ``;
+const lessonContent = `<p>استكشف المفاهيم الأساسية للحالة الغازية من خلال البطاقات التفاعلية التالية:</p>`;
 
 
 export default function LessonPartPage() {
@@ -163,6 +163,9 @@ export default function LessonPartPage() {
                       <p>لا يمكن إسالته مهما انخفضت درجة حرارته أو زاد الضغط عليه.</p>
                   </li>
               </ul>
+              <p className='text-xs mt-4 text-muted-foreground italic border-t pt-3'>
+                يستخدم العلماء نموذج الغاز المثالي لتبسيط الحسابات وفهم سلوك الغازات الحقيقية في ظروف معينة (مثل الضغط المنخفض والحرارة المرتفعة).
+              </p>
           </FlippableCard>
 
            <FlippableCard
