@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, ArrowLeft, X, BookOpen, Thermometer, Box, Beaker, GitCompare, Pipette } from 'lucide-react';
+import { Check, ArrowLeft, X, BookOpen, Thermometer, Box, Beaker, GitCompare, Pipette, Scale } from 'lucide-react';
 import Quiz from './quiz';
 import FlippableCard from '@/app/materials/semester-1/unit-1/lesson-1/part-1/flippable-card'; // Re-using the same component
 
@@ -63,10 +63,11 @@ export default function LessonPartPage() {
             className="prose prose-lg max-w-none text-foreground"
             dangerouslySetInnerHTML={{ __html: lessonContent }}
           />
-
+        
+          <h3 className="text-2xl font-bold text-center">المتغيرات الأربعة لوصف الغاز المحصور</h3>
           <div className="grid md:grid-cols-2 gap-6">
               <FlippableCard
-                cardTitle="الضغط (Pressure)"
+                cardTitle="1. الضغط (P)"
                 cardIcon={<GitCompare className="h-6 w-6" />}
               >
                  <div className="space-y-3">
@@ -79,63 +80,62 @@ export default function LessonPartPage() {
                             <li>كيلوباسكال (kPa).</li>
                             <li>ضغظ جوي (atm).</li>
                             <li>مليمتر زئبق (mmHg).</li>
-                            <li>تور (Torr).</li>
                         </ul>
                     </div>
-                     <p className='text-xs mt-2 text-muted-foreground italic border-t pt-2'>
-                        1 atm = 760 mmHg = 760 Torr = 101.325 kPa
+                     <p className='text-xs mt-2 text-muted-foreground italic border-t pt-2' dir="ltr">
+                        1 atm = 760 mmHg = 101.3 kPa
                     </p>
                  </div>
               </FlippableCard>
 
               <FlippableCard
-                cardTitle="الحجم (Volume)"
+                cardTitle="2. الحجم (V)"
                 cardIcon={<Box className="h-6 w-6" />}
               >
                  <div className="space-y-3">
                     <p className="font-semibold text-sm">هو مقدار الحيز الذي تشغله جسيمات الغاز.</p>
-                    <p className="text-xs text-muted-foreground">بما أن جسيمات الغاز تتحرك بحرية تامة، فإن حجم الغاز يساوي حجم الوعاء الذي يوجد فيه.</p>
+                    <p className="text-xs text-muted-foreground">حجم الغاز يساوي حجم الوعاء الذي يوجد فيه.</p>
                     <div>
                         <h4 className="font-semibold text-accent text-xs mb-1">وحدات القياس:</h4>
                         <ul className="list-disc mr-4 text-xs space-y-1">
-                            <li>متر مكعب (m³) وهي الوحدة الدولية (SI).</li>
+                            <li>متر مكعب (m³).</li>
                             <li>لتر (L).</li>
-                            <li>مليلتر (mL) أو سنتيمتر مكعب (cm³).</li>
+                            <li>مليلتر (mL).</li>
                         </ul>
                     </div>
-                     <p className='text-xs mt-2 text-muted-foreground italic border-t pt-2'>
-                        1 L = 1000 mL = 1000 cm³
+                     <p className='text-xs mt-2 text-muted-foreground italic border-t pt-2' dir="ltr">
+                        1 m³ = 1000 L = 1,000,000 mL
                     </p>
                  </div>
               </FlippableCard>
 
                <FlippableCard
-                cardTitle="درجة الحرارة (Temperature)"
+                cardTitle="3. درجة الحرارة (T)"
                 cardIcon={<Thermometer className="h-6 w-6" />}
               >
                  <div className="space-y-3">
                     <p className="font-semibold text-sm">هي مقياس لمتوسط الطاقة الحركية لجسيمات الغاز.</p>
-                    <p className="text-xs text-muted-foreground">عندما تزداد درجة الحرارة، تزداد سرعة حركة الجسيمات وطاقتها الحركية.</p>
+                    <p className="text-xs text-muted-foreground">يجب استخدام درجة الحرارة المطلقة (بالكلفن) في جميع قوانين الغازات.</p>
                     <div>
                         <h4 className="font-semibold text-accent text-xs mb-1">وحدات القياس:</h4>
                         <ul className="list-disc mr-4 text-xs space-y-1">
-                            <li>كلفن (K) وهي الوحدة المعتمدة في قوانين الغازات.</li>
+                            <li>كلفن (K) وهي الوحدة المعتمدة.</li>
                             <li>درجة مئوية (سيليزية) (°C).</li>
                         </ul>
                     </div>
-                     <p className='text-xs mt-2 text-muted-foreground italic border-t pt-2'>
-                        K = °C + 273.15
+                     <p className='text-xs mt-2 text-muted-foreground italic border-t pt-2' dir="ltr">
+                        T(K) = T(°C) + 273
                     </p>
                  </div>
               </FlippableCard>
 
                <FlippableCard
-                cardTitle="كمية الغاز (Amount)"
+                cardTitle="4. كمية الغاز (n)"
                 cardIcon={<Pipette className="h-6 w-6" />}
               >
                  <div className="space-y-3">
                     <p className="font-semibold text-sm">هي عدد جسيمات الغاز الموجودة في حجم معين.</p>
-                     <p className="text-xs text-muted-foreground">غالبًا ما يتم التعبير عن كمية الغاز بعدد المولات لأنه من غير العملي عد الجسيمات مباشرة.</p>
+                     <p className="text-xs text-muted-foreground">غالبًا ما يتم التعبير عن كمية الغاز بعدد المولات.</p>
                     <div>
                         <h4 className="font-semibold text-accent text-xs mb-1">وحدات القياس:</h4>
                         <ul className="list-disc mr-4 text-xs space-y-1">
@@ -149,6 +149,28 @@ export default function LessonPartPage() {
               </FlippableCard>
           </div>
           
+           <FlippableCard
+            cardTitle="الظروف المعيارية (STP)"
+            cardIcon={<Scale className="h-6 w-6" />}
+          >
+             <p className="mb-4 font-semibold text-sm">هي ظروف مرجعية متفق عليها عالميًا لتسهيل مقارنة البيانات التجريبية للغازات.</p>
+              <ul className="space-y-4 text-sm">
+                  <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
+                      <div>
+                          <p className='font-semibold'>الضغط المعياري (Standard Pressure):</p>
+                          <p className='text-muted-foreground mt-1' dir="ltr">P = 1 atm = 760 mmHg = 101.3 kPa</p>
+                      </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                      <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
+                       <div>
+                          <p className='font-semibold'>درجة الحرارة المعيارية (Standard Temperature):</p>
+                          <p className='text-muted-foreground mt-1' dir="ltr">T = 0 °C = 273 K</p>
+                      </div>
+                  </li>
+              </ul>
+          </FlippableCard>
 
           <Card>
             <CardHeader>
@@ -184,3 +206,5 @@ export default function LessonPartPage() {
     </div>
   );
 }
+
+    
