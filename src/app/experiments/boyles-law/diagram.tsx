@@ -108,10 +108,14 @@ export default function Diagram() {
         p.textAlign(p.CENTER, p.CENTER);
         p.text('V', centerX - TUBE_BEND_RADIUS - (TUBE_WIDTH/2), tubeCapY + (currentGasHeight / 2));
         
-        // Pressure Label
+        // Pressure Label (Replicated from image)
+        const pressureTextX = centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH / 2);
+        const pressureTextY = rightMercuryTopY - 5;
         p.textSize(12);
         p.textAlign(p.CENTER, p.BOTTOM);
-        p.text(`${pressure.toFixed(1)} atm`, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH / 2), rightMercuryTopY - 5);
+        p.text(pressure.toFixed(1), pressureTextX, pressureTextY);
+        p.textAlign(p.LEFT, p.BOTTOM);
+        p.text('atm', pressureTextX + (innerTubeWidth/2) + 5, pressureTextY);
 
         
         // Mercury Height (h) Label
