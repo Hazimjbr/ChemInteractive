@@ -24,6 +24,64 @@ interface QuizProps {
 
 type AnswerStatus = 'unanswered' | 'correct' | 'incorrect';
 
+const staticQuiz: QuizQuestion[] = [
+    {
+        "question": "أي من التالي ليست من المتغيرات الأربعة الأساسية لوصف سلوك الغاز المحصور؟",
+        "options": [
+            "الضغط (P)",
+            "الحجم (V)",
+            "الكثافة (D)",
+            "درجة الحرارة (T)"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "المتغيرات الأربعة الأساسية هي الضغط (P)، الحجم (V)، درجة الحرارة (T)، وكمية الغاز (n). الكثافة هي خاصية مهمة ولكنها ليست من المتغيرات الأساسية الأربعة المستخدمة في قوانين الغازات الأولية."
+    },
+    {
+        "question": "ما هي وحدة قياس درجة الحرارة التي يجب استخدامها دائمًا في قوانين الغازات؟",
+        "options": [
+            "سيليزية (°C)",
+            "فهرنهايت (°F)",
+            "كلفن (K)",
+            "جميع ما سبق صحيح"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "يجب استخدام درجة الحرارة المطلقة (كلفن) في جميع حسابات قوانين الغازات لأنها تبدأ من الصفر المطلق، حيث تتوقف حركة الجسيمات نظريًا."
+    },
+    {
+        "question": "قيمة الضغط الجوي المعياري (1 atm) تعادل:",
+        "options": [
+            "101.3 mmHg",
+            "760 Pa",
+            "273 K",
+            "760 mmHg"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "الضغط الجوي المعياري (1 atm) يعادل 760 مليمتر زئبق (mmHg) أو 101.3 كيلوباسكال (kPa)."
+    },
+    {
+        "question": "ماذا تمثل الظروف المعيارية (STP)؟",
+        "options": [
+            "1 atm و 25 °C",
+            "760 mmHg و 273 K",
+            "101.3 kPa و 100 °C",
+            "1 atm و 0 K"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "الظروف المعيارية (STP) هي ظروف مرجعية محددة عند ضغط 1 atm (والذي يعادل 760 mmHg) ودرجة حرارة 0 °C (والتي تعادل 273 K)."
+    },
+    {
+        "question": "إذا كان حجم وعاء يحتوي على غاز هو 2 لتر، فما هو حجم الغاز؟",
+        "options": [
+            "1 لتر",
+            "2 لتر",
+            "لا يمكن تحديده",
+            "أقل من 2 لتر"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "من خصائص الغازات أنها تتمدد لتملأ الحيز الذي توضع فيه بالكامل، لذلك فإن حجم الغاز يساوي حجم الوعاء الذي يحتويه، وهو 2 لتر."
+    }
+];
+
 export default function Quiz({ lessonContent }: QuizProps) {
   const [quiz, setQuiz] = useState<QuizQuestion[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +93,7 @@ export default function Quiz({ lessonContent }: QuizProps) {
   const [difficultyLevel, setDifficultyLevel] = useState(1);
   const { toast } = useToast();
 
-  const handleGenerateQuiz = async (level: number) => {
+ const handleGenerateQuiz = async (level: number) => {
     setIsLoading(true);
     setQuiz(null);
     setIsFinished(false);
@@ -44,19 +102,11 @@ export default function Quiz({ lessonContent }: QuizProps) {
     setAnswerStatus('unanswered');
     setSelectedAnswer(null);
 
-    try {
-      const result = await generateQuiz(lessonContent, level);
-      setQuiz(result.quiz);
-    } catch (error) {
-      console.error('Failed to generate quiz:', error);
-      toast({
-        variant: 'destructive',
-        title: 'خطأ في إنشاء الاختبار',
-        description: 'حدث خطأ أثناء محاولة إنشاء الاختبار. الرجاء المحاولة مرة أخرى.',
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    // Simulate loading
+    setTimeout(() => {
+        setQuiz(staticQuiz);
+        setIsLoading(false);
+    }, 1000);
   };
 
   const handleAnswerSelect = (answerIndex: number) => {

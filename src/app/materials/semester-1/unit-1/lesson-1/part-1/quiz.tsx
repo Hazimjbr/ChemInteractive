@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -23,6 +24,65 @@ interface QuizProps {
 
 type AnswerStatus = 'unanswered' | 'correct' | 'incorrect';
 
+const staticQuiz: QuizQuestion[] = [
+    {
+        "question": "وفقًا لنظرية الحركة الجزيئية، أي من العبارات التالية تصف سلوك جسيمات الغاز بشكل صحيح؟",
+        "options": [
+            "تتحرك في مسارات دائرية منتظمة.",
+            "تهتز في مكانها فقط.",
+            "تتحرك بشكل مستمر وعشوائي في خطوط مستقيمة.",
+            "تفقد طاقتها عند كل تصادم."
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "نظرية الحركة الجزيئية تفترض أن جسيمات الغاز في حركة مستمرة، عشوائية، وسريعة في جميع الاتجاهات وفي خطوط مستقيمة حتى تصطدم بجسيم آخر أو بجدار الوعاء."
+    },
+    {
+        "question": "ماذا يحدث لمتوسط الطاقة الحركية لجسيمات الغاز عند زيادة درجة الحرارة المطلقة؟",
+        "options": [
+            "يقل",
+            "يبقى ثابتًا",
+            "يزداد",
+            "يصبح صفرًا"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "ينص أحد بنود نظرية الحركة الجزيئية على أن متوسط الطاقة الحركية لجسيمات الغاز يتناسب طرديًا مع درجة الحرارة المطلقة (بالكلفن)."
+    },
+    {
+        "question": "أي من الخصائص التالية لا تنطبق على الغاز المثالي؟",
+        "options": [
+            "قوى التجاذب بين جسيماته معدومة.",
+            "حجم جسيماته مهمل (يساوي صفر).",
+            "يمكن إسالته بزيادة الضغط وخفض الحرارة.",
+            "تصادماته مرنة تمامًا."
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "الغاز المثالي هو نموذج افتراضي لا يمكن إسالته، لأننا نفترض عدم وجود قوى تجاذب بين جسيماته. الغازات الحقيقية هي التي يمكن إسالتها."
+    },
+    {
+        "question": "ماذا يطلق على الحركة العشوائية للغبار في الهواء الناتجة عن تصادمه مع جسيمات الهواء غير المرئية؟",
+        "options": [
+            "الحركة الدورانية",
+            "الحركة الاهتزازية",
+            "الحركة الانتقالية",
+            "الحركة البراونية"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "الحركة البراونية هي الحركة العشوائية للجسيمات المرئية (مثل الغبار) بسبب تصادمها مع الجسيمات غير المرئية للمائع (مثل الهواء) التي تتحرك باستمرار."
+    },
+    {
+        "question": "عندما يصطدم جسيم غاز بجدار الوعاء، ماذا ينتج عن هذا التصادم؟",
+        "options": [
+            "انخفاض في درجة حرارة الغاز.",
+            "قوة تساهم في ضغط الغاز.",
+            "تكاثف الغاز إلى سائل.",
+            "انخفاض في حجم الوعاء."
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "ينشأ ضغط الغاز عن القوة الناتجة عن تصادمات جسيماته المستمرة مع جدران الوعاء الذي يحتويه."
+    }
+];
+
+
 export default function Quiz({ lessonContent }: QuizProps) {
   const [quiz, setQuiz] = useState<QuizQuestion[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,19 +103,11 @@ export default function Quiz({ lessonContent }: QuizProps) {
     setAnswerStatus('unanswered');
     setSelectedAnswer(null);
 
-    try {
-      const result = await generateQuiz(lessonContent, level);
-      setQuiz(result.quiz);
-    } catch (error) {
-      console.error('Failed to generate quiz:', error);
-      toast({
-        variant: 'destructive',
-        title: 'خطأ في إنشاء الاختبار',
-        description: 'حدث خطأ أثناء محاولة إنشاء الاختبار. الرجاء المحاولة مرة أخرى.',
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    // Simulate loading
+    setTimeout(() => {
+        setQuiz(staticQuiz);
+        setIsLoading(false);
+    }, 1000);
   };
 
   const handleAnswerSelect = (answerIndex: number) => {
