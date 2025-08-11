@@ -69,11 +69,11 @@ export default function InteractiveQuestionCard({ question, options, correctAnsw
                     <Button
                         key={index}
                         variant="outline"
-                        className="w-full justify-start text-right whitespace-normal h-auto py-2 text-sm"
+                        className="w-full justify-start text-right h-auto py-2 px-3 text-sm flex items-start"
                         onClick={() => handleAnswerSelect(index)}
                     >
-                         <span className="ml-4 font-bold">{["أ", "ب", "ج", "د"][index]}</span>
-                         <span>{option}</span>
+                         <span className="ml-3 font-bold">{["أ", "ب", "ج", "د"][index]}</span>
+                         <span className="flex-1 whitespace-normal">{option}</span>
                     </Button>
                 ))}
                </div>
