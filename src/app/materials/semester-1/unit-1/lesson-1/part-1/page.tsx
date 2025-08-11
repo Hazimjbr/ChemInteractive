@@ -261,7 +261,7 @@ export default function LessonPartPage() {
               <p className="text-muted-foreground">أجب عن الأسئلة السريعة التالية لترسيخ المفاهيم.</p>
             </div>
           </div>
-          <div className="space-y-4">
+          <div className="grid md:grid-cols-2 gap-6">
               <InteractiveQuestionCard 
                   question="الغاز A محصور في وعاء عند درجة حرارة ثابتة فإن العبارة الخاطئة:"
                   options={[
