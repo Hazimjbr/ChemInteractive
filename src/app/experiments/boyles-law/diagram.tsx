@@ -14,6 +14,7 @@ const TUBE_WALL_THICKNESS = 2;
 const TUBE_BEND_RADIUS = 20; 
 const INITIAL_GAS_HEIGHT = 75; 
 const PRESSURE_TO_HEIGHT_SCALE = 38;
+const INITIAL_PRESSURE = 1;
 
 // --- React Component ---
 export default function Diagram() {
