@@ -148,7 +148,7 @@ export default function LessonPartPage() {
               <ul className="space-y-3 text-sm">
                   <li className="flex items-start gap-3">
                       <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
-                      <p>حجم جسيماته يساوي صفر (مهمل).</p>
+                      <p>حجم جسيماته يساوي صفر.</p>
                   </li>
                   <li className="flex items-start gap-3">
                       <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
@@ -238,6 +238,8 @@ export default function LessonPartPage() {
     </div>
   );
 }
+
+    
 
     
 
