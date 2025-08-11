@@ -140,6 +140,65 @@ const staticQuizLvl2: QuizQuestion[] = [
     }
 ];
 
+const staticQuizLvl3: QuizQuestion[] = [
+    {
+        "question": "وعاء حجمه 500 مل. ما هو حجمه بوحدة المتر المكعب (m³)?",
+        "options": [
+            "0.5 m³",
+            "0.005 m³",
+            "0.0005 m³",
+            "500000 m³"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "العلاقة هي 1 m³ = 1000 L = 1,000,000 mL. للتحويل من mL إلى m³، نقسم على 1,000,000. إذن، 500 / 1,000,000 = 0.0005 m³."
+    },
+    {
+        "question": "الضغط داخل علبة مرطب جو هو 150 kPa. إذا كان الضغط الجوي الخارجي 750 mmHg، فهل الضغط داخل العلبة أعلى أم أقل من الخارج؟",
+        "options": [
+            "أعلى",
+            "أقل",
+            "متساويان",
+            "لا يمكن المقارنة"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "يجب توحيد الوحدات للمقارنة. لنحول 750 mmHg إلى kPa. نعلم أن 760 mmHg = 101.3 kPa. إذن، (750 / 760) * 101.3 ≈ 99.9 kPa. بما أن 150 kPa > 99.9 kPa، فإن الضغط داخل العلبة أعلى."
+    },
+    {
+        "question": "أي من المتغيرات التالية يتم التعبير عنه بوحدة \"مول\"؟",
+        "options": [
+            "الضغط (P)",
+            "كمية الغاز (n)",
+            "الحجم (V)",
+            "درجة الحرارة (T)"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "المول (mol) هو الوحدة الأساسية المستخدمة لقياس كمية المادة (عدد جسيماتها)، والتي يرمز لها بالرمز n في قوانين الغازات."
+    },
+    {
+        "question": "ماذا تعني درجة حرارة 0 كلفن (الصفر المطلق)؟",
+        "options": [
+            "درجة تجمد الماء.",
+            "نقطة لا يمكن الوصول إليها عمليًا.",
+            "النقطة التي تكون عندها الطاقة الحركية للجسيمات نظريًا تساوي صفرًا.",
+            "درجة حرارة الغرفة المعيارية."
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "الصفر المطلق (0 كلفن) هو أدنى درجة حرارة ممكنة نظريًا، وهي النقطة التي تتوقف عندها كل حركة للجسيمات (الطاقة الحركية = 0)."
+    },
+    {
+        "question": "عند الظروف المعيارية (STP)، أي من العبارات التالية صحيحة؟",
+        "options": [
+            "T = 25 °C و P = 1 atm",
+            "T = 0 K و P = 760 mmHg",
+            "T = 273 K و P = 101.3 kPa",
+            "T = 0 °C و P = 101.3 mmHg"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "الظروف المعيارية (STP) محددة عند درجة حرارة 0 °C (والتي تساوي 273 K) وضغط 1 atm (والذي يعادل 101.3 kPa أو 760 mmHg). الخيار الثالث هو الوحيد الذي يجمع قيمتين متكافئتين وصحيحتين للظروف المعيارية."
+    }
+];
+
+
 export default function Quiz({ lessonContent }: QuizProps) {
   const [quiz, setQuiz] = useState<QuizQuestion[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -164,9 +223,11 @@ export default function Quiz({ lessonContent }: QuizProps) {
     setTimeout(() => {
         if (level === 1) {
             setQuiz(staticQuizLvl1);
-        } else {
-            // For any level > 1, use the more difficult quiz
+        } else if (level === 2) {
             setQuiz(staticQuizLvl2);
+        } else {
+            // For any level > 2, use the most difficult quiz
+            setQuiz(staticQuizLvl3);
         }
         setIsLoading(false);
     }, 1000);
