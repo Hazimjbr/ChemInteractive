@@ -176,7 +176,7 @@ export default function LessonPartPage() {
               <ul className="space-y-3 text-sm">
                   <li className="flex items-start gap-3">
                       <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
-                      <p>حجم جسيماته صغير جدًا **ولكنه ليس صفرًا** (لا يمكن إهماله في الحسابات الدقيقة).</p>
+                      <p>حجم جسيماته صغير جدًا <strong className="font-semibold">ولكنه ليس صفرًا</strong> (لا يمكن إهماله في الحسابات الدقيقة).</p>
                   </li>
                   <li className="flex items-start gap-3">
                       <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
@@ -184,11 +184,11 @@ export default function LessonPartPage() {
                   </li>
                   <li className="flex items-start gap-3">
                       <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
-                      <p>يسلك سلوكًا قريبًا جدًا من الغاز المثالي في **الظروف العادية** (الضغط الجوي ودرجة حرارة الغرفة).</p>
+                      <p>يسلك سلوكًا قريبًا جدًا من الغاز المثالي في <strong className="font-semibold">الظروف العادية</strong> (الضغط الجوي ودرجة حرارة الغرفة).</p>
                   </li>
                   <li className="flex items-start gap-3">
                       <span className="font-bold text-primary text-lg mt-[-2px]">4.</span>
-                      <p>يمكن تحويله إلى سائل (إسالته) عن طريق **زيادة الضغط وخفض درجة الحرارة**.</p>
+                      <p>يمكن تحويله إلى سائل (إسالته) عن طريق <strong className="font-semibold">زيادة الضغط وخفض درجة الحرارة</strong>.</p>
                   </li>
               </ul>
           </FlippableCard>
@@ -263,13 +263,3 @@ export default function LessonPartPage() {
     </div>
   );
 }
-
-    
-
-    
-
-    
-
-    
-
-    
