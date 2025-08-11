@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Dot, ArrowLeft, X } from 'lucide-react';
+import { Check, Dot, ArrowLeft, X, Info } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import Quiz from './quiz';
 
@@ -104,6 +104,45 @@ export default function LessonPartPage() {
             className="prose prose-lg max-w-none text-foreground"
             dangerouslySetInnerHTML={{ __html: lessonContent }}
           />
+
+          <Card className="bg-gradient-to-br from-card to-secondary/30 border-primary/20 shadow-lg">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-3 text-accent">
+                    <Info className="h-6 w-6" />
+                    ملخص سريع للنقاط الأساسية
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+               <ul className="space-y-4 text-sm">
+                  <li className="flex items-start gap-3">
+                    <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
+                    <p><strong className="font-semibold">تكوين الغاز:</strong> جسيمات صغيرة ومتباعدة، حجمها مهمل وقوى التجاذب بينها شبه معدومة. هذا يفسر الكثافة المنخفضة وقابلية الانضغاط.</p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
+                    <p><strong className="font-semibold">حركة الجسيمات:</strong> حركة مستمرة، عشوائية، وسريعة في خطوط مستقيمة، مما يكسبها طاقة حركية عالية تفسر قدرتها على الانتشار والتدفق.</p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
+                    <div>
+                        <p><strong className="font-semibold">التصادمات المرنة:</strong></p>
+                        <ul className="mt-2 space-y-1 mr-4">
+                            <li><span className="font-semibold text-accent/80">أ) مع جدار الوعاء:</span> لا تلتصق وتسبب ضغط الغاز.</li>
+                            <li><span className="font-semibold text-accent/80">ب) مع بعضها البعض:</span> لا تتفاعل، ويبقى مجموع الطاقة الحركية ثابتًا.</li>
+                        </ul>
+                    </div>
+                  </li>
+                   <li className="flex items-start gap-3">
+                    <span className="font-bold text-primary text-lg mt-[-2px]">4.</span>
+                    <p><strong className="font-semibold">الطاقة الحركية والحرارة:</strong> متوسط الطاقة الحركية للجسيمات يتناسب طرديًا مع درجة الحرارة المطلقة.</p>
+                  </li>
+                   <li className="flex items-start gap-3">
+                    <span className="font-bold text-primary text-lg mt-[-2px]">5.</span>
+                    <p><strong className="font-semibold">الغاز المثالي:</strong> قوى التجاذب بين جسيماته معدومة، لذا لا يمكن إسالته بالضغط أو التبريد الشديد.</p>
+                  </li>
+               </ul>
+            </CardContent>
+          </Card>
 
           <Card>
             <CardHeader>
