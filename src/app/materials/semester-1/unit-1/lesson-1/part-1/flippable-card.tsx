@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState } from 'react';
@@ -48,7 +49,7 @@ export default function FlippableCard({ cardTitle, cardIcon, children }: Flippab
              <CardHeader>
               <CardTitle className="flex items-center gap-3 text-accent text-lg">
                 {cardIcon}
-                {cardTitle}
+                {cardTitle === "بنود نظرية الحركة الجزيئية" ? "بنود نظرية الحركة الجزيئية للغازات" : cardTitle}
               </CardTitle>
             </CardHeader>
             <CardContent>

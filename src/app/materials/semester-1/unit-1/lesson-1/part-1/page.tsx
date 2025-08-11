@@ -107,7 +107,7 @@ export default function LessonPartPage() {
           </FlippableCard>
 
           <FlippableCard
-            cardTitle="بنود نظرية الحركة الجزيئية"
+            cardTitle="بنود نظرية الحركة الجزيئية للغازات"
             cardIcon={<Info className="h-6 w-6" />}
           >
              <ul className="space-y-4 text-sm">
