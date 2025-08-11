@@ -104,14 +104,14 @@ export default function Diagram() {
         p.fill(0); // Set fill to black for text
         
         // Volume Label
-        p.textSize(12);
+        p.textSize(18);
         p.textAlign(p.CENTER, p.CENTER);
         p.text('V', centerX - TUBE_BEND_RADIUS - (TUBE_WIDTH/2), tubeCapY + (currentGasHeight / 2));
         
         // Pressure Label (Replicated from image)
         const pressureTextX = centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH / 2);
         const pressureTextY = rightMercuryTopY - 5;
-        p.textSize(12);
+        p.textSize(18);
         p.textAlign(p.CENTER, p.BOTTOM);
         p.text(pressure.toFixed(1), pressureTextX, pressureTextY);
         p.textAlign(p.LEFT, p.BOTTOM);
@@ -131,7 +131,7 @@ export default function Diagram() {
 
             p.noStroke();
             p.fill(0);
-            p.textSize(10);
+            p.textSize(15);
             p.textAlign(p.LEFT, p.CENTER);
             p.text(`h = ${h_in_mmHg} mmHg`, hLineX + 8, (leftMercuryTopY + rightMercuryTopY) / 2);
         }
