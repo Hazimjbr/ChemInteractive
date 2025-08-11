@@ -159,11 +159,11 @@ export default function Diagram() {
        <Card className="p-4 w-full">
           <Label htmlFor="pressure-slider" className="mb-2 block text-center">الضغط (atm)</Label>
           <div className="flex items-center gap-4">
-            <span className="text-sm font-mono">4.0</span>
+            <span className="text-sm font-mono">3.5</span>
             <Slider
               id="pressure-slider"
               min={1}
-              max={4}
+              max={3.5}
               step={0.1}
               value={[pressure]}
               onValueChange={(value) => setPressure(value[0])}
