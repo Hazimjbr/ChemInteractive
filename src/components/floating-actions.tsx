@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Calculator, Bot, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calculator, Bot, ChevronLeft, ChevronRight, Table2 } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -12,10 +12,8 @@ import {
 import PeriodicTable from './periodic-table';
 import CalculatorComponent from './calculator';
 import ChatAssistant from './chat-assistant';
-import { TableCellsIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 export default function FloatingActions() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +28,7 @@ export default function FloatingActions() {
     },
     {
       id: 'periodic-table',
-      icon: <TableCellsIcon className="h-7 w-7" />,
+      icon: <Table2 className="h-7 w-7" />,
       label: 'الجدول الدوري',
       component: <PeriodicTable />,
       dialogTitle: 'الجدول الدوري',
