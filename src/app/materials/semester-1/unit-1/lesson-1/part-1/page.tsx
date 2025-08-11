@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Dot, ArrowLeft, X, Info, Beaker } from 'lucide-react';
+import { Check, Dot, ArrowLeft, X, Info, Beaker, GitCommitHorizontal } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import Quiz from './quiz';
 
@@ -105,7 +105,7 @@ export default function LessonPartPage() {
             dangerouslySetInnerHTML={{ __html: lessonContent }}
           />
 
-          <Card className="bg-gradient-to-br from-card to-secondary/30 border-primary/20 shadow-lg">
+         <Card className="bg-gradient-to-br from-card to-secondary/30 border-primary/20 shadow-lg">
             <CardHeader>
                 <CardTitle className="flex items-center gap-3 text-accent">
                     <Info className="h-6 w-6" />
@@ -171,6 +171,41 @@ export default function LessonPartPage() {
                         <p>لا يمكن إسالته مهما انخفضت درجة حرارته أو زاد الضغط عليه.</p>
                     </li>
                 </ul>
+            </CardContent>
+          </Card>
+
+           <Card className="bg-gradient-to-br from-card to-secondary/30 border-primary/20 shadow-lg">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-3 text-accent">
+                    <GitCommitHorizontal className="h-6 w-6" />
+                    انحراف الغازات الحقيقية
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="mb-4 font-semibold">يزداد انحراف الغازات الحقيقية عن سلوك الغاز المثالي كلما:</p>
+                <ul className="space-y-4 text-sm">
+                    <li className="flex items-start gap-3">
+                        <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
+                        <div>
+                            <p className='font-semibold'>ازدادت قوى التجاذب بين جسيمات الغاز:</p>
+                            <ul className="mt-2 space-y-2 mr-4 text-xs">
+                                <li><span className="font-semibold text-accent/80">أ) اختلاف نوع الترابط بين الجسيمات:</span> (هيدروجيني مثل HF > ثنائي قطب مثل NH3 > قوى لندن مثل Ne)</li>
+                                <li><span className="font-semibold text-accent/80">ب) ازدياد الكتلة المولية:</span> (مثلًا Cl2 > F2) لأن زيادة الكتلة المولية تزيد من قوى لندن.</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                        <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
+                        <p className='font-semibold'>ازداد الضغط على الغاز أو قل حجمه.</p>
+                    </li>
+                     <li className="flex items-start gap-3">
+                        <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
+                        <p className='font-semibold'>انخفضت درجة الحرارة.</p>
+                    </li>
+                </ul>
+                <p className='text-xs mt-3 text-muted-foreground'>
+                    (ملاحظة: زيادة الحرارة تقلل من قوة الترابط بين الجسيمات وتزيد من طاقتها الحركية، مما يجعلها تسلك سلوكًا أقرب للمثالي).
+                </p>
             </CardContent>
           </Card>
 
