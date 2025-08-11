@@ -16,7 +16,7 @@ const Diagram = dynamic(() => import('./diagram'), {
   loading: () => (
     <div className="flex flex-col items-center gap-4">
       <Skeleton className="h-[300px] w-full rounded-lg" />
-      <Skeleton className="h-12 w-1/2" />
+      <Skeleton className="h-12 w-full" />
     </div>
   ),
 });
@@ -25,7 +25,7 @@ const Diagram = dynamic(() => import('./diagram'), {
 export default function ExperimentPage() {
   return (
     <div className="container mx-auto p-8 relative">
-       <Link href="/" passHref>
+       <Link href="/experiments" passHref>
           <Button variant="ghost" size="icon" className="absolute top-4 left-4">
             <X className="h-6 w-6" />
             <span className="sr-only">إغلاق</span>
@@ -39,7 +39,7 @@ export default function ExperimentPage() {
       </header>
 
       <main className="space-y-8">
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 items-start">
             <div className="space-y-8">
                 <Card>
                     <CardHeader>

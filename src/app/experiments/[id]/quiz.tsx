@@ -7,6 +7,7 @@ import { Loader2, CheckCircle, XCircle, RefreshCw } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils.tsx';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 export interface QuizQuestion {
     question: string;
@@ -96,8 +97,11 @@ export default function Quiz() {
 
   if (isFinished) {
     return (
-        <div className="text-center space-y-4 p-4 rounded-lg bg-muted">
-            <h3 className="text-2xl font-bold">اكتمل الاختبار!</h3>
+      <Card className="text-center">
+        <CardHeader>
+          <CardTitle>اكتمل الاختبار!</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
             <p className="text-lg">
                 نتيجتك النهائية هي: <span className="font-bold text-primary">{score}</span> من {quiz?.length}
             </p>
@@ -105,11 +109,14 @@ export default function Quiz() {
                 <Progress value={(score / (quiz?.length || 1)) * 100} className="w-1/2" />
                 <span>{Math.round((score / (quiz?.length || 1)) * 100)}%</span>
             </div>
-            <Button onClick={handleRestartQuiz}>
+        </CardContent>
+        <CardFooter className="justify-center">
+             <Button onClick={handleRestartQuiz}>
                  <RefreshCw className="ml-2 h-4 w-4" />
                 إعادة الاختبار
             </Button>
-        </div>
+        </CardFooter>
+      </Card>
     )
   }
 
@@ -120,51 +127,57 @@ export default function Quiz() {
   const currentQuestion = quiz[currentQuestionIndex];
 
   return (
-    <div className="space-y-6">
-       <div className="flex items-center justify-between">
-         <h4 className="font-bold">
+    <Card>
+      <CardHeader>
+        <div className="flex items-center justify-between mb-4">
+          <CardTitle className="text-lg">
             السؤال {currentQuestionIndex + 1} من {quiz.length}
-         </h4>
-       </div>
+          </CardTitle>
+        </div>
         <Progress value={((currentQuestionIndex + 1) / quiz.length) * 100} className="w-full" />
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <p className="text-lg font-semibold pt-2">{currentQuestion.question}</p>
 
-      <p className="text-lg font-semibold">{currentQuestion.question}</p>
+        <div className="grid grid-cols-1 gap-3">
+          {currentQuestion.options.map((option, index) => {
+            const isCorrect = index === currentQuestion.correctAnswerIndex;
+            const isSelected = selectedAnswer === index;
+            
+            let buttonClass = '';
+            if (answerStatus === 'correct' && isCorrect) {
+              buttonClass = 'border-green-500 bg-green-500/10 text-green-700 hover:bg-green-500/20';
+            } else if (answerStatus === 'incorrect' && isSelected) {
+              buttonClass = 'border-red-500 bg-red-500/10 text-red-700 hover:bg-red-500/20';
+            } else if (answerStatus !== 'unanswered' && isCorrect) {
+              buttonClass = 'border-green-500 bg-green-500/10 text-green-700';
+            }
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {currentQuestion.options.map((option, index) => {
-          const isCorrect = index === currentQuestion.correctAnswerIndex;
-          const isSelected = selectedAnswer === index;
-          
-          let buttonClass = '';
-          if (answerStatus === 'correct' && isCorrect) {
-            buttonClass = 'bg-green-500/20 border-green-500 text-green-700';
-          } else if (answerStatus === 'incorrect' && isSelected) {
-            buttonClass = 'bg-red-500/20 border-red-500 text-red-700';
-          } else if (answerStatus !== 'unanswered' && isCorrect) {
-             buttonClass = 'bg-green-500/20 border-green-500 text-green-700';
-          }
-
-          return (
-            <Button
-              key={index}
-              variant="outline"
-              size="lg"
-              className={cn("justify-start text-right h-auto py-3 whitespace-normal", buttonClass)}
-              onClick={() => handleAnswerSelect(index)}
-              disabled={answerStatus !== 'unanswered'}
-            >
-              <span className="ml-4 font-bold">{String.fromCharCode(65 + index)}</span>
-              <span>{option}</span>
-            </Button>
-          );
-        })}
-      </div>
+            return (
+              <Button
+                key={index}
+                variant="outline"
+                className={cn("w-full justify-start text-right h-auto py-3 text-sm flex items-start", buttonClass)}
+                onClick={() => handleAnswerSelect(index)}
+                disabled={answerStatus !== 'unanswered'}
+              >
+                  <span className="ml-3 font-bold">{["أ", "ب", "ج", "د"][index]}</span>
+                  <span className="flex-1 whitespace-normal">{option}</span>
+              </Button>
+            );
+          })}
+        </div>
+      </CardContent>
 
       {answerStatus !== 'unanswered' && (
-         <div className="space-y-4">
-            <Alert variant={answerStatus === 'correct' ? 'default' : 'destructive'} className={cn(answerStatus === 'correct' && 'border-green-500')}>
-                {answerStatus === 'correct' ? <CheckCircle className="h-4 w-4 text-green-500" /> : <XCircle className="h-4 w-4" />}
-                <AlertTitle>
+         <CardFooter className="flex-col items-stretch gap-4 pt-4">
+            <Alert variant={answerStatus === 'correct' ? 'default' : 'destructive'} className={cn(
+              answerStatus === 'correct' 
+                ? 'border-green-500 bg-green-500/5' 
+                : 'border-red-500 bg-red-500/5'
+            )}>
+                {answerStatus === 'correct' ? <CheckCircle className="h-4 w-4 text-green-500" /> : <XCircle className="h-4 w-4 text-red-500" />}
+                <AlertTitle className="font-bold">
                     {answerStatus === 'correct' ? 'إجابة صحيحة!' : 'إجابة خاطئة!'}
                 </AlertTitle>
                 <AlertDescription>
@@ -174,8 +187,8 @@ export default function Quiz() {
             <Button onClick={handleNextQuestion} className="w-full">
                 {currentQuestionIndex < quiz.length - 1 ? 'السؤال التالي' : 'إنهاء الاختبار'}
             </Button>
-         </div>
+         </CardFooter>
       )}
-    </div>
+    </Card>
   );
 }
