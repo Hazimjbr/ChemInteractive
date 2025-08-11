@@ -124,7 +124,7 @@ export default function LessonPartPage() {
              <ul className="space-y-4 text-sm">
                 <li className="flex items-start gap-3">
                   <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
-                  <p>يتكون الغاز من جسيمات صغيرة جدا (مهملة الحجم) متباعدة جدا وقوى التجاذب بينها شبه معدومة (باستثناء ما يحدث في أثناء لحظة التصادم) لذلك معظم حجم الغاز فراغ (تفسير كثافة الغاز القليلة وقابلية الانضغاط وتشابه جميع الغازات في خصائصها)</p>
+                  <p><strong className="font-semibold">تكوين الغاز:</strong> جسيمات صغيرة جدا (مهملة الحجم) متباعدة جدا وقوى التجاذب بينها شبه معدومة (باستثناء ما يحدث في أثناء لحظة التصادم) لذلك معظم حجم الغاز فراغ (تفسير كثافة الغاز القليلة وقابلية الانضغاط وتشابه جميع الغازات في خصائصها)</p>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
