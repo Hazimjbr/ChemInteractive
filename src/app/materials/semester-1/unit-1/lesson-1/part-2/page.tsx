@@ -182,7 +182,7 @@ export default function LessonPartPage() {
                 <p className="text-muted-foreground">أجب عن الأسئلة السريعة التالية لترسيخ المفاهيم.</p>
               </div>
             </div>
-            <div className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-6">
                 <InteractiveQuestionCard 
                     question="بالون يحتوي على غاز الهيليوم ضغطه 900 mmHg فإن قيمة ضغطه بوحدة atm تساوي:"
                     options={[
