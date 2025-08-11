@@ -75,7 +75,7 @@ export default function Diagram() {
       // Calculate piston position based on pressure
       // High pressure -> piston moves down -> smaller volume
       // Low pressure -> piston at the top -> larger volume
-      const pistonY = pressure === 'low' ? 0 : (boxHeight * 0.5) - PISTON_THICKNESS;
+      const pistonY = pressure === 'low' ? 0 : (boxHeight * (7/8)) - PISTON_THICKNESS;
       const topBoundary = pistonY + PISTON_THICKNESS;
       const bottomBoundary = boxHeight;
 
