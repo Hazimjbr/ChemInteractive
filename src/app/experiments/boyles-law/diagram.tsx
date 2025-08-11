@@ -8,13 +8,12 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 
 // --- Constants ---
-const CANVAS_HEIGHT = 350; // Restore original canvas height
-const TUBE_WIDTH = 15; // Half of original 30
+const CANVAS_HEIGHT = 350; 
+const TUBE_WIDTH = 15; 
 const TUBE_WALL_THICKNESS = 2;
-const TUBE_BEND_RADIUS = 20; // Half of original 40
-const INITIAL_GAS_HEIGHT = 75; // Half of original 150
-const INITIAL_PRESSURE = 1; // in atm
-const PRESSURE_TO_HEIGHT_SCALE = 38; // Half of original 76
+const TUBE_BEND_RADIUS = 20; 
+const INITIAL_GAS_HEIGHT = 75; 
+const PRESSURE_TO_HEIGHT_SCALE = 38;
 
 // --- React Component ---
 export default function Diagram() {
@@ -50,9 +49,9 @@ export default function Diagram() {
         currentGasHeight = p.lerp(currentGasHeight, targetGasHeight, 0.1);
         
         const centerX = width / 2;
-        // Center the drawing vertically
-        const tubeBottomY = (CANVAS_HEIGHT / 2) + 100;
-        const tubeTopY = tubeBottomY - 200; // Original height was 200, scale it down for visual positioning
+        // Position the drawing at the bottom
+        const tubeBottomY = CANVAS_HEIGHT - 50;
+        const tubeTopY = tubeBottomY - 200; 
         const tubeCapY = tubeTopY;
         const innerTubeWidth = TUBE_WIDTH - (TUBE_WALL_THICKNESS * 2);
 
