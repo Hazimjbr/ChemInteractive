@@ -13,6 +13,7 @@ const TUBE_WIDTH = 25;
 const TUBE_BEND_RADIUS = 40;
 const INITIAL_GAS_HEIGHT = 150;
 const INITIAL_PRESSURE = 1; // in atm
+const PRESSURE_TO_HEIGHT_SCALE = 76; // 1 atm pressure diff = 76px mercury height diff
 
 // --- React Component ---
 export default function Diagram() {
@@ -48,76 +49,66 @@ export default function Diagram() {
         currentGasHeight = p.lerp(currentGasHeight, targetGasHeight, 0.1);
         
         const centerX = width / 2;
-        const tubeBottom = CANVAS_HEIGHT - TUBE_BEND_RADIUS;
+        const tubeBottomY = CANVAS_HEIGHT - 50;
+        const tubeCapY = 50;
 
-        // Draw J-Tube
+        // --- Calculate Mercury Levels ---
+        const gasVolumeBottomY = tubeCapY + currentGasHeight;
+        const leftMercuryTopY = gasVolumeBottomY;
+        const rightMercuryTopY = leftMercuryTopY - (pressure - 1) * PRESSURE_TO_HEIGHT_SCALE;
+
+        // --- Draw Gas ---
+        p.fill(173, 216, 230, 150); // Light blue for gas
+        p.noStroke();
+        p.rect(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, tubeCapY, TUBE_WIDTH, currentGasHeight);
+
+        // --- Draw Mercury ---
+        p.fill(180, 180, 180); // Silver-gray for mercury
+        // Left arm mercury
+        p.rect(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, leftMercuryTopY, TUBE_WIDTH, tubeBottomY - leftMercuryTopY);
+        // Right arm mercury
+        p.rect(centerX + TUBE_BEND_RADIUS, rightMercuryTopY, TUBE_WIDTH, tubeBottomY - rightMercuryTopY);
+        // U-bend mercury
+        p.arc(centerX, tubeBottomY, (TUBE_BEND_RADIUS * 2) + TUBE_WIDTH, (TUBE_BEND_RADIUS * 2) + TUBE_WIDTH, 0, p.PI);
+        p.fill('hsl(var(--card))');
+        p.arc(centerX, tubeBottomY, (TUBE_BEND_RADIUS * 2), (TUBE_BEND_RADIUS * 2), 0, p.PI);
+        
+
+        // --- Draw J-Tube Glass ---
+        p.noFill();
         p.stroke('hsl(var(--border))');
         p.strokeWeight(3);
-        p.fill('hsl(var(--muted))');
-
+        
         // Left arm (closed)
-        p.line(centerX - TUBE_BEND_RADIUS, tubeBottom, centerX - TUBE_BEND_RADIUS, 50);
-        p.line(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, tubeBottom, centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, 50);
-        p.line(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, 50, centerX - TUBE_BEND_RADIUS, 50); // top cap
+        p.line(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, tubeBottomY, centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, tubeCapY);
+        p.line(centerX - TUBE_BEND_RADIUS, tubeBottomY, centerX - TUBE_BEND_RADIUS, tubeCapY);
+        p.line(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, tubeCapY, centerX - TUBE_BEND_RADIUS, tubeCapY); // top cap
         
         // Right arm (open)
-        p.line(centerX + TUBE_BEND_RADIUS, tubeBottom, centerX + TUBE_BEND_RADIUS, 10);
-        p.line(centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, tubeBottom, centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, 10);
+        p.line(centerX + TUBE_BEND_RADIUS, tubeBottomY, centerX + TUBE_BEND_RADIUS, 10);
+        p.line(centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, tubeBottomY, centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, 10);
         
         // Bend
-        p.noFill();
-        p.arc(centerX, tubeBottom, TUBE_BEND_RADIUS * 2, TUBE_BEND_RADIUS * 2, 0, p.PI);
-        p.arc(centerX, tubeBottom, (TUBE_BEND_RADIUS + TUBE_WIDTH) * 2, (TUBE_BEND_RADIUS + TUBE_WIDTH) * 2, 0, p.PI);
-        
-        // --- Draw Mercury & Gas ---
-        p.noStroke();
-        
-        // Mercury level in left arm depends on gas volume
-        const leftMercuryY = tubeBottom - currentGasHeight;
-        
-        // Mercury level in right arm depends on pressure
-        // 1 atm = 760 mmHg. We'll scale this. Let's say 1 atm difference = 76px difference.
-        const pressureHeightDifference = (pressure - 1) * 76;
-        const rightMercuryY = leftMercuryY - pressureHeightDifference;
+        p.arc(centerX, tubeBottomY, TUBE_BEND_RADIUS * 2, TUBE_BEND_RADIUS * 2, 0, p.PI);
+        p.arc(centerX, tubeBottomY, (TUBE_BEND_RADIUS + TUBE_WIDTH) * 2, (TUBE_BEND_RADIUS + TUBE_WIDTH) * 2, 0, p.PI);
 
-        // Fill Mercury
-        p.fill(180, 180, 180); // Silver-gray for mercury
-
-        // Bottom U-part
-        p.beginShape();
-        p.vertex(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, tubeBottom);
-        p.vertex(centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, tubeBottom);
-        p.vertex(centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, rightMercuryY > tubeBottom ? tubeBottom : rightMercuryY);
-        p.vertex(centerX + TUBE_BEND_RADIUS, rightMercuryY > tubeBottom ? tubeBottom : rightMercuryY);
-        p.endShape(p.CLOSE);
-        p.arc(centerX, tubeBottom, (TUBE_BEND_RADIUS + TUBE_WIDTH) * 2, (TUBE_BEND_RADIUS + TUBE_WIDTH) * 2, 0, p.PI);
-        p.fill('hsl(var(--card))'); // cover inner part
-        p.arc(centerX, tubeBottom, TUBE_BEND_RADIUS * 2, TUBE_BEND_RADIUS * 2, 0, p.PI);
-        
-        
-        // Left arm mercury
-        p.fill(180, 180, 180);
-        p.rect(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, leftMercuryY, TUBE_WIDTH, tubeBottom - leftMercuryY);
-        
-        // Right arm mercury
-        if (rightMercuryY < tubeBottom) {
-             p.rect(centerX + TUBE_BEND_RADIUS, rightMercuryY, TUBE_WIDTH, tubeBottom - rightMercuryY);
-        }
-
-        // Fill Gas in left arm
-        p.fill(173, 216, 230, 150); // Light blue for gas
-        p.rect(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, 50, TUBE_WIDTH, leftMercuryY - 50);
 
         // --- Draw Labels ---
+        p.noStroke();
         p.fill('hsl(var(--foreground))');
-        p.textAlign(p.CENTER);
-        p.textSize(12);
+        p.textAlign(p.CENTER, p.CENTER);
+        p.textSize(14);
         
         // Volume Label
-        p.text('V', centerX - TUBE_BEND_RADIUS - (TUBE_WIDTH/2), leftMercuryY - (currentGasHeight/2));
+        p.text('V', centerX - TUBE_BEND_RADIUS - (TUBE_WIDTH/2), tubeCapY + (currentGasHeight / 2));
         
         // Pressure Label
-        p.text(`${pressure.toFixed(1)} atm`, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryY - 10);
+        p.textSize(12);
+        p.text(`${pressure.toFixed(1)} atm`, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY - 20);
+        // Line pointing to pressure
+        p.stroke('hsl(var(--foreground))');
+        p.strokeWeight(1);
+        p.line(centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY - 10, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY);
 
       };
     };
