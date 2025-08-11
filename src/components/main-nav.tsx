@@ -8,13 +8,19 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 
+function Logo() {
+    return (
+        <Link href="/" className="flex items-center space-x-2">
+            <Beaker className="h-6 w-6 text-primary" />
+            <span className="inline-block font-bold">ChemInteractive</span>
+        </Link>
+    )
+}
+
 export default function MainNav() {
   return (
     <div className="flex w-full items-center justify-between">
-      <Link href="/" className="flex items-center space-x-2">
-        <Beaker className="h-6 w-6 text-primary" />
-        <span className="inline-block font-bold">ChemInteractive</span>
-      </Link>
+      <Logo />
       <nav className="flex items-center gap-6 text-sm">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
