@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Dot, ArrowLeft, X, Info, Beaker, GitCommitHorizontal } from 'lucide-react';
+import { Check, Dot, ArrowLeft, X, Info, Beaker, GitCommitHorizontal, HelpCircle } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import Quiz from './quiz';
 import FlippableCard from './flippable-card';
@@ -105,6 +105,38 @@ export default function LessonPartPage() {
             className="prose prose-lg max-w-none text-foreground"
             dangerouslySetInnerHTML={{ __html: lessonContent }}
           />
+
+          <FlippableCard
+            cardTitle="ما هي نظرية الحركة الجزيئية؟"
+            cardIcon={<HelpCircle className="h-6 w-6" />}
+          >
+             <ul className="space-y-4 text-sm">
+                <li className="flex items-start gap-3">
+                  <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
+                  <div>
+                    <p className='font-semibold'>تصف سلوك جسيمات المادة وتفترض حركتها الدائمة المستمرة:</p>
+                     <ul className="mt-2 space-y-1 mr-4 text-xs">
+                        <li><strong className="font-semibold text-accent/80">أ) الصلبة:</strong> حركة اهتزازية في مكانها.</li>
+                        <li><strong className="font-semibold text-accent/80">ب) السائلة والغازية:</strong> تتحرك عشوائيا في جميع الاتجاهات.</li>
+                    </ul>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
+                   <div>
+                    <p className='font-semibold'>تفسر الخصائص الفيزيائية والسلوك الفيزيائي للمواد اعتمادا على:</p>
+                     <ul className="mt-2 space-y-1 mr-4 text-xs">
+                        <li><strong className="font-semibold text-accent/80">أ) الطاقة الحركية للجسيمات</strong></li>
+                        <li><strong className="font-semibold text-accent/80">ب) قوى التجاذب بين الجسيمات</strong></li>
+                    </ul>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
+                  <p className='font-semibold'>تستخدم قوانين الغازات في وصف العلاقة بين العوامل المؤثرة في سلوك الغاز الفيزيائي.</p>
+                </li>
+             </ul>
+          </FlippableCard>
 
           <FlippableCard
             cardTitle="بنود نظرية الحركة الجزيئية"
