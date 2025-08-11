@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Dot, ArrowLeft, X, Info, Beaker, GitCommitHorizontal, HelpCircle, Cloud, Lightbulb } from 'lucide-react';
+import { Check, Dot, ArrowLeft, X, Info, Beaker, GitCommitHorizontal, HelpCircle, Cloud, Lightbulb, Thermometer, Move, Boxes, RefreshCw, Ban, BookOpen } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import Quiz from './quiz';
 import FlippableCard from './flippable-card';
@@ -24,7 +24,7 @@ const Diagram = dynamic(() => import('./diagram'), {
   ),
 });
 
-const lessonContent = `<p>استكشف المفاهيم الأساسية للحالة الغازية من خلال البطاقات التفاعلية التالية:</p>`;
+const lessonContent = `<p>هل تساءلت يومًا كيف يملأ الهواء إطار السيارة أو كيف تنتشر رائحة العطر في أرجاء الغرفة؟ كل هذا يمكن تفسيره من خلال فهم سلوك الجزيئات في الحالة الغازية. في هذا الدرس، سنغوص في أعماق نظرية الحركة الجزيئية لنكتشف أسرار عالم الغازات.</p>`;
 
 
 export default function LessonPartPage() {
@@ -67,6 +67,30 @@ export default function LessonPartPage() {
                   </span>
                 </li>
               </ul>
+            </CardContent>
+          </Card>
+          
+           <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><BookOpen className="h-6 w-6 text-primary" /> مصطلحات أساسية</CardTitle>
+            </CardHeader>
+            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div>
+                  <h4 className="font-bold text-accent">نظرية الحركة الجزيئية</h4>
+                  <p className="text-muted-foreground">نموذج علمي يصف سلوك المادة (صلبة، سائلة، غازية) بناءً على حركة جسيماتها المستمرة.</p>
+              </div>
+               <div>
+                  <h4 className="font-bold text-accent">الغاز المثالي</h4>
+                  <p className="text-muted-foreground">غاز افتراضي تنطبق عليه تمامًا جميع افتراضات نظرية الحركة الجزيئية.</p>
+              </div>
+                <div>
+                  <h4 className="font-bold text-accent">الغاز الحقيقي</h4>
+                  <p className="text-muted-foreground">الغازات الموجودة فعليًا في الطبيعة، والتي تحيد عن السلوك المثالي في ظروف معينة.</p>
+              </div>
+               <div>
+                  <h4 className="font-bold text-accent">الحركة البراونية</h4>
+                  <p className="text-muted-foreground">الحركة العشوائية للجسيمات المعلقة في مائع (سائل أو غاز) نتيجة اصطدامها بجزيئات ذلك المائع.</p>
+              </div>
             </CardContent>
           </Card>
 
@@ -112,31 +136,21 @@ export default function LessonPartPage() {
             cardIcon={<Info className="h-6 w-6" />}
           >
              <ul className="space-y-4 text-sm">
-                <li className="flex items-start gap-3">
-                  <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
-                  <p>تكوين الغاز: يتكون الغاز من جسيمات صغيرة جدا (مهملة الحجم) متباعدة جدا وقوى التجاذب بينها شبه معدومة (باستثناء ما يحدث في أثناء لحظة التصادم) لذلك معظم حجم الغاز فراغ (تفسير كثافة الغاز القليلة وقابلية الانضغاط وتشابه جميع الغازات في خصائصها)</p>
+                 <li className="flex items-start gap-3">
+                  <Boxes className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <p><strong className="font-semibold">تكوين الغاز:</strong> يتكون من جسيمات صغيرة جدا (مهملة الحجم) ومتباعدة، وقوى التجاذب بينها شبه معدومة، لذلك معظم حجمه فراغ.</p>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
-                  <p><strong className="font-semibold">حركة الجسيمات:</strong> حركة مستمرة، عشوائية، وسريعة في خطوط مستقيمة، مما يكسبها طاقة حركية تمكنها من التغلب على قوى التجاذب بينها (تفسير انتشار وتدفق الغازات – الحركة البراونية).</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
-                  <div>
-                      <p><strong className="font-semibold">التصادمات المرنة:</strong></p>
-                      <ul className="mt-2 space-y-1 mr-4">
-                          <li><span className="font-semibold text-accent/80">أ) مع جدار الوعاء:</span> لا تلتصق وتسبب ضغط الغاز.</li>
-                          <li><span className="font-semibold text-accent/80">ب) مع بعضها البعض:</span> لا تتفاعل، ويبقى مجموع الطاقة الحركية ثابت.</li>
-                      </ul>
-                  </div>
+                  <Move className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <p><strong className="font-semibold">حركة الجسيمات:</strong> مستمرة، عشوائية، وسريعة في خطوط مستقيمة، مما يكسبها طاقة حركية عالية.</p>
                 </li>
                  <li className="flex items-start gap-3">
-                  <span className="font-bold text-primary text-lg mt-[-2px]">4.</span>
-                  <p><strong className="font-semibold">الطاقة الحركية والحرارة:</strong> يتناسب متوسط الطاقة الحركية (KE) للجسيمات تناسبا طرديا مع سرعتها التي تزداد بازدياد درجة الحرارة.</p>
+                  <RefreshCw className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <p><strong className="font-semibold">التصادمات المرنة:</strong> تصادمات لا تفقد فيها الطاقة الحركية الكلية للنظام، وتسبب ضغط الغاز عند اصطدامها بجدار الوعاء.</p>
                 </li>
                  <li className="flex items-start gap-3">
-                  <span className="font-bold text-primary text-lg mt-[-2px]">5.</span>
-                  <p><strong className="font-semibold">قوى التجاذب في الغاز المثالي:</strong> معدومة فلا يمكن إسالته مهما زاد الضغط أو انخفضت حرارته.</p>
+                  <Thermometer className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <p><strong className="font-semibold">الطاقة والحرارة:</strong> متوسط الطاقة الحركية للجسيمات يتناسب طرديًا مع درجة الحرارة المطلقة (بالكلفن).</p>
                 </li>
              </ul>
           </FlippableCard>
@@ -169,7 +183,7 @@ export default function LessonPartPage() {
               </p>
           </FlippableCard>
 
-          <FlippableCard
+           <FlippableCard
             cardTitle="الغاز الحقيقي (Real Gas)"
             cardIcon={<Cloud className="h-6 w-6" />}
           >
@@ -177,7 +191,7 @@ export default function LessonPartPage() {
               <ul className="space-y-3 text-sm">
                   <li className="flex items-start gap-3">
                       <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
-                      <p>حجم جسيماته صغير جدًا <strong className="font-semibold">ولكنه ليس صفرًا</strong> (لا يمكن إهماله في الحسابات الدقيقة).</p>
+                      <p>حجم جسيماته صغير جدًا ولكنه ليس صفرًا (لا يمكن إهماله في الحسابات الدقيقة).</p>
                   </li>
                   <li className="flex items-start gap-3">
                       <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
@@ -185,11 +199,11 @@ export default function LessonPartPage() {
                   </li>
                   <li className="flex items-start gap-3">
                       <span className="font-bold text-primary text-lg mt-[-2px]">3.</span>
-                      <p>يسلك سلوكًا قريبًا جدًا من الغاز المثالي في <strong className="font-semibold">الظروف العادية</strong> (الضغط الجوي ودرجة حرارة الغرفة).</p>
+                      <p>يسلك سلوكًا قريبًا جدًا من الغاز المثالي في الظروف العادية (الضغط الجوي ودرجة حرارة الغرفة).</p>
                   </li>
                   <li className="flex items-start gap-3">
                       <span className="font-bold text-primary text-lg mt-[-2px]">4.</span>
-                      <p>يمكن تحويله إلى سائل (إسالته) عن طريق <strong className="font-semibold">زيادة الضغط وخفض درجة الحرارة</strong>.</p>
+                      <p>يمكن تحويله إلى سائل (إسالته) عن طريق زيادة الضغط وخفض درجة الحرارة.</p>
                   </li>
               </ul>
           </FlippableCard>
