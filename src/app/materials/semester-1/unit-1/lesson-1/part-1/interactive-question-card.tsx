@@ -22,7 +22,7 @@ export default function InteractiveQuestionCard({ question, options, correctAnsw
   const [answerStatus, setAnswerStatus] = useState<AnswerStatus>('unanswered');
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   
-  const cardHeight = 'h-[320px]';
+  const cardHeight = 'h-[380px]';
 
   const handleAnswerSelect = (index: number) => {
     setSelectedAnswer(index);
