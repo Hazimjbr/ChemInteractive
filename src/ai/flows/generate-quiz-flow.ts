@@ -29,6 +29,7 @@ const GenerateQuizOutputSchema = z.object({
     .length(5)
     .describe('An array of 5 quiz questions.'),
 });
+export type GenerateQuizOutput = z.infer<typeof GenerateQuizOutputSchema>;
 
 const GenerateQuizInputSchema = z.object({
     lessonContent: z.string(),

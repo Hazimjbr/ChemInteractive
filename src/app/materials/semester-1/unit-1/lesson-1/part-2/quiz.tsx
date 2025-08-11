@@ -3,20 +3,15 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { generateQuiz } from '@/ai/flows/generate-quiz-flow';
-import { Loader2, CheckCircle, XCircle, Star, Sparkles } from 'lucide-react';
+import { generateQuiz, GenerateQuizOutput } from '@/ai/flows/generate-quiz-flow';
+import { Loader2, CheckCircle, XCircle, Star, Sparkles, RefreshCw } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils.tsx';
 import { useToast } from '@/hooks/use-toast';
-
-// Define the type here as it's no longer exported from the server action
-export interface QuizQuestion {
-    question: string;
-    options: string[];
-    correctAnswerIndex: number;
-    explanation: string;
-}
+import { QuizQuestion } from './exam'; // Import from a local exam file if it exists
+import { staticQuizLvl1, staticQuizLvl2, staticQuizLvl3 } from './exam';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface QuizProps {
   lessonContent: string;
@@ -24,179 +19,25 @@ interface QuizProps {
 
 type AnswerStatus = 'unanswered' | 'correct' | 'incorrect';
 
-const staticQuizLvl1: QuizQuestion[] = [
-    {
-        "question": "أي من التالي ليست من المتغيرات الأربعة الأساسية لوصف سلوك الغاز المحصور؟",
-        "options": [
-            "الضغط (P)",
-            "الحجم (V)",
-            "الكثافة (D)",
-            "درجة الحرارة (T)"
-        ],
-        "correctAnswerIndex": 2,
-        "explanation": "المتغيرات الأربعة الأساسية هي الضغط (P)، الحجم (V)، درجة الحرارة (T)، وكمية الغاز (n). الكثافة هي خاصية مهمة ولكنها ليست من المتغيرات الأساسية الأربعة المستخدمة في قوانين الغازات الأولية."
-    },
-    {
-        "question": "ما هي وحدة قياس درجة الحرارة التي يجب استخدامها دائمًا في قوانين الغازات؟",
-        "options": [
-            "سيليزية (°C)",
-            "فهرنهايت (°F)",
-            "كلفن (K)",
-            "جميع ما سبق صحيح"
-        ],
-        "correctAnswerIndex": 2,
-        "explanation": "يجب استخدام درجة الحرارة المطلقة (كلفن) في جميع حسابات قوانين الغازات لأنها تبدأ من الصفر المطلق، حيث تتوقف حركة الجسيمات نظريًا."
-    },
-    {
-        "question": "قيمة الضغط الجوي المعياري (1 atm) تعادل:",
-        "options": [
-            "101.3 mmHg",
-            "760 Pa",
-            "273 K",
-            "760 mmHg"
-        ],
-        "correctAnswerIndex": 3,
-        "explanation": "الضغط الجوي المعياري (1 atm) يعادل 760 مليمتر زئبق (mmHg) أو 101.3 كيلوباسكال (kPa)."
-    },
-    {
-        "question": "أسطوانة تحتوي على غاز الهيليوم ضغطه 1.2 Pa فإن قيمة ضغطه بوحدة atm تساوي:",
-        "options": [
-            "1.18e-5",
-            "1.2e5",
-            "121560",
-            "0.009"
-        ],
-        "correctAnswerIndex": 0,
-        "explanation": "للتحويل من باسكال (Pa) إلى ضغط جوي (atm)، نستخدم العلاقة: 1 atm = 101325 Pa. إذن، نقسم قيمة الضغط بالباسكال على 101325. العملية الحسابية: 1.2 Pa / 101325 Pa/atm ≈ 1.18 x 10⁻⁵ atm."
-    },
-    {
-        "question": "خزان سعته 2 ml فإن حجمه يساوي:",
-        "options": [
-            "0.002 L",
-            "2000 L",
-            "0.2 L",
-            "2 L"
-        ],
-        "correctAnswerIndex": 0,
-        "explanation": "للتحويل من مليلتر (mL) إلى لتر (L)، نقوم بالقسمة على 1000. المعادلة هي: 2 mL / 1000 = 0.002 L."
+// Helper function to shuffle an array and return the new index of the correct answer
+const shuffleOptions = (question: QuizQuestion): QuizQuestion => {
+    const correctAnswerValue = question.options[question.correctAnswerIndex];
+    
+    const indices = [0, 1, 2, 3];
+    for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indices[i], indices[j]] = [indices[j], indices[i]];
     }
-];
 
-const staticQuizLvl2: QuizQuestion[] = [
-    {
-        "question": "إذا كانت درجة حرارة غرفة 298 كلفن، فما هي قيمتها بالدرجة المئوية (°C)؟",
-        "options": [
-            "25 °C",
-            "273 °C",
-            "571 °C",
-            "-25 °C"
-        ],
-        "correctAnswerIndex": 0,
-        "explanation": "للتحويل من كلفن إلى سيليزيوس، نستخدم العلاقة: T(°C) = T(K) - 273. إذن، 298 - 273 = 25 °C."
-    },
-    {
-        "question": "إذا كان ضغط غاز يساوي 202.6 kPa، فما هي قيمة هذا الضغط بوحدة atm؟",
-        "options": [
-            "1 atm",
-            "1.5 atm",
-            "2 atm",
-            "0.5 atm"
-        ],
-        "correctAnswerIndex": 2,
-        "explanation": "نعلم أن 1 atm = 101.3 kPa. لمعرفة كم atm يعادل 202.6 kPa، نقسم: 202.6 / 101.3 = 2 atm."
-    },
-    {
-        "question": "لماذا لا يمكن أن تكون قيمة درجة الحرارة بالكلفن سالبة؟",
-        "options": [
-            "لأنها وحدة قياس بريطانية.",
-            "لأن الصفر كلفن (الصفر المطلق) يمثل أدنى طاقة حركية ممكنة للجسيمات.",
-            "لأن التحويل من سيليزيوس يتطلب دائمًا إضافة 273.",
-            "لأن الكلفن يستخدم فقط لقياس درجات الحرارة العالية جدًا."
-        ],
-        "correctAnswerIndex": 1,
-        "explanation": "مقياس كلفن هو مقياس مطلق لدرجة الحرارة. الصفر المطلق (0 K) هو النقطة التي تتوقف عندها حركة الجسيمات تمامًا نظريًا، ولا يمكن وجود طاقة حركية أقل من الصفر، لذلك لا توجد درجات حرارة سالبة بالكلفن."
-    },
-    {
-        "question": "في أي من الحالات التالية يكون عدد مولات الغاز (n) هو العامل الأكثر أهمية في تحديد الضغط؟",
-        "options": [
-            "عند مقارنة غازين مختلفين في نفس الوعاء ونفس درجة الحرارة.",
-            "عند تغيير حجم الوعاء فقط.",
-            "عند تغيير درجة حرارة الغاز فقط.",
-            "عدد المولات لا يؤثر على الضغط أبدًا."
-        ],
-        "correctAnswerIndex": 0,
-        "explanation": "عند ثبات الحجم ودرجة الحرارة، فإن ضغط الغاز يتناسب طرديًا مع عدد جسيماته (عدد المولات). كلما زادت كمية الغاز في نفس الحيز، زادت التصادمات مع الجدار وزاد الضغط."
-    },
-    {
-        "question": "ماذا يعني أن حجم الغاز يساوي حجم الوعاء؟",
-        "options": [
-            "أن جسيمات الغاز تملأ جزءًا صغيرًا من الوعاء.",
-            "أن جسيمات الغاز تتجمع في قاع الوعاء.",
-            "أن جسيمات الغاز تنتشر لتشغل كل الحيز المتاح لها داخل الوعاء.",
-            "أن حجم الوعاء يتغير ليتناسب مع حجم الغاز."
-        ],
-        "correctAnswerIndex": 2,
-        "explanation": "بسبب الطاقة الحركية العالية وقوى التجاذب الضعيفة جدًا بين جسيمات الغاز، فإنها تتحرك بحرية وتتباعد لتملأ أي وعاء توضع فيه بالكامل، مما يجعل حجم الغاز مطابقًا لحجم الوعاء."
-    }
-];
+    const shuffledOptions = indices.map(i => question.options[i]);
+    const newCorrectAnswerIndex = shuffledOptions.findIndex(opt => opt === correctAnswerValue);
 
-const staticQuizLvl3: QuizQuestion[] = [
-    {
-        "question": "وعاء حجمه 500 مل. ما هو حجمه بوحدة المتر المكعب (m³)?",
-        "options": [
-            "0.5 m³",
-            "0.005 m³",
-            "0.0005 m³",
-            "500000 m³"
-        ],
-        "correctAnswerIndex": 2,
-        "explanation": "العلاقة هي 1 m³ = 1000 L = 1,000,000 mL. للتحويل من mL إلى m³، نقسم على 1,000,000. إذن، 500 / 1,000,000 = 0.0005 m³."
-    },
-    {
-        "question": "الضغط داخل علبة مرطب جو هو 150 kPa. إذا كان الضغط الجوي الخارجي 750 mmHg، فهل الضغط داخل العلبة أعلى أم أقل من الخارج؟",
-        "options": [
-            "أعلى",
-            "أقل",
-            "متساويان",
-            "لا يمكن المقارنة"
-        ],
-        "correctAnswerIndex": 0,
-        "explanation": "يجب توحيد الوحدات للمقارنة. لنحول 750 mmHg إلى kPa. نعلم أن 760 mmHg = 101.3 kPa. إذن، (750 / 760) * 101.3 ≈ 99.9 kPa. بما أن 150 kPa > 99.9 kPa، فإن الضغط داخل العلبة أعلى."
-    },
-    {
-        "question": "أي من المتغيرات التالية يتم التعبير عنه بوحدة \"مول\"؟",
-        "options": [
-            "الضغط (P)",
-            "كمية الغاز (n)",
-            "الحجم (V)",
-            "درجة الحرارة (T)"
-        ],
-        "correctAnswerIndex": 1,
-        "explanation": "المول (mol) هو الوحدة الأساسية المستخدمة لقياس كمية المادة (عدد جسيماتها)، والتي يرمز لها بالرمز n في قوانين الغازات."
-    },
-    {
-        "question": "ماذا تعني درجة حرارة 0 كلفن (الصفر المطلق)؟",
-        "options": [
-            "درجة تجمد الماء.",
-            "نقطة لا يمكن الوصول إليها عمليًا.",
-            "النقطة التي تكون عندها الطاقة الحركية للجسيمات نظريًا تساوي صفرًا.",
-            "درجة حرارة الغرفة المعيارية."
-        ],
-        "correctAnswerIndex": 2,
-        "explanation": "الصفر المطلق (0 كلفن) هو أدنى درجة حرارة ممكنة نظريًا، وهي النقطة التي تتوقف عندها كل حركة للجسيمات (الطاقة الحركية = 0)."
-    },
-    {
-        "question": "عند الظروف المعيارية (STP)، أي من العبارات التالية صحيحة؟",
-        "options": [
-            "T = 25 °C و P = 1 atm",
-            "T = 0 K و P = 760 mmHg",
-            "T = 273 K و P = 101.3 kPa",
-            "T = 0 °C و P = 101.3 mmHg"
-        ],
-        "correctAnswerIndex": 2,
-        "explanation": "الظروف المعيارية (STP) محددة عند درجة حرارة 0 °C (والتي تساوي 273 K) وضغط 1 atm (والذي يعادل 101.3 kPa أو 760 mmHg). الخيار الثالث هو الوحيد الذي يجمع قيمتين متكافئتين وصحيحتين للظروف المعيارية."
-    }
-];
+    return {
+        ...question,
+        options: shuffledOptions,
+        correctAnswerIndex: newCorrectAnswerIndex,
+    };
+};
 
 
 export default function Quiz({ lessonContent }: QuizProps) {
@@ -219,18 +60,32 @@ export default function Quiz({ lessonContent }: QuizProps) {
     setAnswerStatus('unanswered');
     setSelectedAnswer(null);
 
-    // Simulate loading
-    setTimeout(() => {
-        if (level === 1) {
-            setQuiz(staticQuizLvl1);
-        } else if (level === 2) {
-            setQuiz(staticQuizLvl2);
+    try {
+        let generatedQuestions: QuizQuestion[] = [];
+
+        if (level <= 3) {
+            let staticQuestions: QuizQuestion[] = [];
+            if (level === 1) staticQuestions = staticQuizLvl1;
+            if (level === 2) staticQuestions = staticQuizLvl2;
+            if (level === 3) staticQuestions = staticQuizLvl3;
+            generatedQuestions = staticQuestions.map(q => shuffleOptions(q));
         } else {
-            // For any level > 2, use the most difficult quiz
-            setQuiz(staticQuizLvl3);
+            const result: GenerateQuizOutput = await generateQuiz(lessonContent, level);
+            generatedQuestions = result.quiz;
         }
+
+        setQuiz(generatedQuestions);
+
+    } catch (error) {
+        console.error('Failed to generate quiz:', error);
+        toast({
+            variant: 'destructive',
+            title: 'حدث خطأ',
+            description: 'لم نتمكن من إنشاء الاختبار. الرجاء المحاولة مرة أخرى.',
+        });
+    } finally {
         setIsLoading(false);
-    }, 1000);
+    }
   };
 
   const handleAnswerSelect = (answerIndex: number) => {
@@ -255,7 +110,7 @@ export default function Quiz({ lessonContent }: QuizProps) {
     } else {
         // Quiz is finished
         const finalScore = score / quiz!.length;
-        if(finalScore >= 0.8) {
+        if(finalScore >= 0.8 && difficultyLevel < 5) {
             setDifficultyLevel(prev => prev + 1);
              toast({
                 title: 'مستوى الصعوبة ارتفع!',
@@ -274,8 +129,11 @@ export default function Quiz({ lessonContent }: QuizProps) {
 
   if (isFinished) {
     return (
-        <div className="text-center space-y-4 p-4 rounded-lg bg-muted">
-            <h3 className="text-2xl font-bold">اكتمل الاختبار!</h3>
+      <Card className="text-center">
+        <CardHeader>
+          <CardTitle>اكتمل الاختبار!</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
             <p className="text-lg">
                 نتيجتك النهائية هي: <span className="font-bold text-primary">{score}</span> من {quiz?.length}
             </p>
@@ -283,36 +141,40 @@ export default function Quiz({ lessonContent }: QuizProps) {
                 <Progress value={(score / (quiz?.length || 1)) * 100} className="w-1/2" />
                 <span>{Math.round((score / (quiz?.length || 1)) * 100)}%</span>
             </div>
-            <Button onClick={handleRestartQuiz}>
-                 <Sparkles className="ml-2 h-4 w-4" />
-                {score / (quiz?.length || 1) >= 0.8 ? `تحدّ جديد (المستوى ${difficultyLevel})` : `إعادة الاختبار (المستوى ${difficultyLevel})`}
+        </CardContent>
+        <CardFooter className="justify-center">
+             <Button onClick={handleRestartQuiz}>
+                 <RefreshCw className="ml-2 h-4 w-4" />
+                {score / (quiz?.length || 1) >= 0.8 && difficultyLevel < 5 ? `تحدّ جديد (المستوى ${difficultyLevel})` : `إعادة الاختبار (المستوى ${difficultyLevel})`}
             </Button>
-        </div>
+        </CardFooter>
+      </Card>
     )
   }
 
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground p-8">
-        <Loader2 className="h-8 w-8 animate-spin" />
-        <p>جاري إنشاء اختبار مخصص لك...</p>
-        <p className="text-sm font-semibold">مستوى الصعوبة: {difficultyLevel}</p>
+      <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground p-8 min-h-[200px]">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <p className="mt-2">جاري إنشاء اختبار مخصص لك...</p>
+        <p className="text-sm font-semibold text-accent">مستوى الصعوبة: {difficultyLevel}</p>
       </div>
     );
   }
 
   if (!quiz) {
     return (
-      <div className="text-center space-y-3">
+      <div className="text-center space-y-3 p-4 rounded-lg bg-muted/50 min-h-[200px] flex flex-col justify-center items-center">
          <div className='flex justify-center items-center gap-1 font-bold text-accent'>
             <Star className='h-5 w-5' />
-            <span>مستوى الصعوبة: {difficultyLevel}</span>
+            <span>مستوى الصعوبة الحالي: {difficultyLevel}</span>
         </div>
-        <Button onClick={() => handleGenerateQuiz(difficultyLevel)}>
+        <Button onClick={() => handleGenerateQuiz(difficultyLevel)} size="lg">
+          <Sparkles className="ml-2 h-4 w-4" />
           أنشئ اختباري
         </Button>
-        <p className="text-sm text-muted-foreground mt-2">
-            انقر لإنشاء اختبار قصير مخصص حول هذا الدرس بواسطة الذكاء الاصطناعي.
+        <p className="text-sm text-muted-foreground mt-2 max-w-sm mx-auto">
+            انقر لإنشاء اختبار قصير. تزداد الصعوبة تلقائيًا عند تحقيق نتيجة 80% أو أعلى.
         </p>
       </div>
     );
@@ -321,56 +183,62 @@ export default function Quiz({ lessonContent }: QuizProps) {
   const currentQuestion = quiz[currentQuestionIndex];
 
   return (
-    <div className="space-y-6">
-       <div className="flex items-center justify-between">
-         <h4 className="font-bold">
+    <Card>
+      <CardHeader>
+        <div className="flex items-center justify-between mb-4">
+          <CardTitle className="text-lg">
             السؤال {currentQuestionIndex + 1} من {quiz.length}
-         </h4>
-        <div className='flex items-center gap-1 text-sm font-semibold text-accent'>
+          </CardTitle>
+          <div className='flex items-center gap-1 text-sm font-semibold text-accent'>
             <Star className='h-4 w-4' />
             <span>مستوى الصعوبة: {difficultyLevel}</span>
+          </div>
         </div>
-       </div>
         <Progress value={((currentQuestionIndex + 1) / quiz.length) * 100} className="w-full" />
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <p className="text-lg font-semibold pt-2">{currentQuestion.question}</p>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          {currentQuestion.options.map((option, index) => {
+            const isCorrect = index === currentQuestion.correctAnswerIndex;
+            const isSelected = selectedAnswer === index;
+            
+            let buttonClass = 'border-input hover:bg-accent/50';
+            if (answerStatus === 'correct' && isSelected) {
+              buttonClass = 'border-green-500 bg-green-500/10 text-green-700 hover:bg-green-500/20';
+            } else if (answerStatus === 'incorrect' && isSelected) {
+              buttonClass = 'border-red-500 bg-red-500/10 text-red-700 hover:bg-red-500/20';
+            } else if (answerStatus !== 'unanswered' && isCorrect) {
+              // Highlight the correct answer if a wrong one was chosen
+              buttonClass = 'border-green-500 bg-green-500/10 text-green-700';
+            }
 
-      <p className="text-lg font-semibold">{currentQuestion.question}</p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {currentQuestion.options.map((option, index) => {
-          const isCorrect = index === currentQuestion.correctAnswerIndex;
-          const isSelected = selectedAnswer === index;
-          
-          let buttonClass = '';
-          if (answerStatus === 'correct' && isCorrect) {
-            buttonClass = 'bg-green-500/20 border-green-500 text-green-700';
-          } else if (answerStatus === 'incorrect' && isSelected) {
-            buttonClass = 'bg-red-500/20 border-red-500 text-red-700';
-          } else if (answerStatus !== 'unanswered' && isCorrect) {
-             buttonClass = 'bg-green-500/20 border-green-500 text-green-700';
-          }
-
-          return (
-            <Button
-              key={index}
-              variant="outline"
-              size="lg"
-              className={cn("justify-start text-right h-auto py-3 whitespace-normal", buttonClass)}
-              onClick={() => handleAnswerSelect(index)}
-              disabled={answerStatus !== 'unanswered'}
-            >
-              <span className="ml-4 font-bold">{String.fromCharCode(65 + index)}</span>
-              <span>{option}</span>
-            </Button>
-          );
-        })}
-      </div>
+            return (
+              <Button
+                key={index}
+                variant="outline"
+                className={cn("w-full justify-start text-right h-auto py-2 px-3 text-sm flex items-start", buttonClass)}
+                onClick={() => handleAnswerSelect(index)}
+                disabled={answerStatus !== 'unanswered'}
+              >
+                  <span className="ml-3 font-bold">{["أ", "ب", "ج", "د"][index]}</span>
+                  <span className="flex-1 whitespace-normal">{option}</span>
+              </Button>
+            );
+          })}
+        </div>
+      </CardContent>
 
       {answerStatus !== 'unanswered' && (
-         <div className="space-y-4">
-            <Alert variant={answerStatus === 'correct' ? 'default' : 'destructive'} className={cn(answerStatus === 'correct' && 'border-green-500')}>
-                {answerStatus === 'correct' ? <CheckCircle className="h-4 w-4 text-green-500" /> : <XCircle className="h-4 w-4" />}
-                <AlertTitle>
+         <CardFooter className="flex-col items-stretch gap-4 pt-4">
+            <Alert variant={answerStatus === 'correct' ? 'default' : 'destructive'} className={cn(
+              answerStatus === 'correct' 
+                ? 'border-green-500 bg-green-100/30' 
+                : 'border-red-500 bg-red-100/30'
+            )}>
+                {answerStatus === 'correct' ? <CheckCircle className="h-4 w-4 text-green-500" /> : <XCircle className="h-4 w-4 text-red-500" />}
+                <AlertTitle className="font-bold">
                     {answerStatus === 'correct' ? 'إجابة صحيحة!' : 'إجابة خاطئة!'}
                 </AlertTitle>
                 <AlertDescription>
@@ -380,8 +248,9 @@ export default function Quiz({ lessonContent }: QuizProps) {
             <Button onClick={handleNextQuestion} className="w-full">
                 {currentQuestionIndex < quiz.length - 1 ? 'السؤال التالي' : 'إنهاء الاختبار'}
             </Button>
-         </div>
+         </CardFooter>
       )}
-    </div>
+    </Card>
   );
 }
+

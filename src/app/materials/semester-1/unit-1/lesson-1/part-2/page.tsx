@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, ArrowLeft, X, BookOpen, Thermometer, Box, Beaker, GitCompare, Pipette, Scale, Lightbulb, HelpCircle } from 'lucide-react';
+import { Check, ArrowLeft, X, BookOpen, Thermometer, Box, Beaker, GitCompare, Pipette, Scale, Lightbulb, HelpCircle, ArrowRight } from 'lucide-react';
 import Quiz from './quiz';
 import FlippableCard from '@/app/materials/semester-1/unit-1/lesson-1/part-1/flippable-card'; // Re-using the same component
 import InteractiveQuestionCard from '@/app/materials/semester-1/unit-1/lesson-1/part-1/interactive-question-card';
@@ -226,7 +226,7 @@ export default function LessonPartPage() {
         <div className="flex justify-between">
             <Link href="/materials/semester-1/unit-1/lesson-1/part-1" passHref>
                 <Button size="lg" variant="outline">
-                <ArrowLeft className="ml-2 h-5 w-5 rotate-180" />
+                <ArrowRight className="ml-2 h-5 w-5" />
                 الجزء السابق
                 </Button>
             </Link>
