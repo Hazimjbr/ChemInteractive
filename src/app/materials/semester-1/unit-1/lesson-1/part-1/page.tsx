@@ -113,7 +113,7 @@ export default function LessonPartPage() {
              <ul className="space-y-4 text-sm">
                 <li className="flex items-start gap-3">
                   <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
-                  <p><strong className="font-semibold">تكوين الغاز:</strong> جسيمات صغيرة جدا (مهملة الحجم) متباعدة جدا وقوى التجاذب بينها شبه معدومة (باستثناء ما يحدث في أثناء لحظة التصادم) لذلك معظم حجم الغاز فراغ (تفسير كثافة الغاز القليلة وقابلية الانضغاط وتشابه جميع الغازات في خصائصها)</p>
+                  <p><strong className="font-semibold">تكوين الغاز:</strong> يتكون الغاز من جسيمات صغيرة جدا (مهملة الحجم) متباعدة جدا وقوى التجاذب بينها شبه معدومة (باستثناء ما يحدث في أثناء لحظة التصادم) لذلك معظم حجم الغاز فراغ (تفسير كثافة الغاز القليلة وقابلية الانضغاط وتشابه جميع الغازات في خصائصها)</p>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
@@ -172,6 +172,7 @@ export default function LessonPartPage() {
             cardTitle="انحراف الغازات الحقيقية"
             cardIcon={<GitCommitHorizontal className="h-6 w-6" />}
           >
+              <p className="mb-4 text-sm">تتشابه الغازات الحقيقية مع الغاز المثالي في الظروف الطبيعية إلى حد كبير.</p>
               <p className="mb-4 font-semibold">يزداد انحراف الغازات الحقيقية عن سلوك الغاز المثالي كلما:</p>
               <ul className="space-y-4 text-sm">
                   <li className="flex items-start gap-3">
@@ -237,6 +238,8 @@ export default function LessonPartPage() {
     </div>
   );
 }
+
+    
 
     
 
