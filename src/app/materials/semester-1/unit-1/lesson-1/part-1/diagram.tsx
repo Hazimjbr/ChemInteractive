@@ -3,58 +3,86 @@
 
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import p5 from 'p5';
-import { Slider } from '@/components/ui/slider';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+
+// --- Types ---
+type Temperature = 'low' | 'high';
+type Pressure = 'low' | 'high';
 
 // --- Constants ---
-const CONTAINER_HEIGHT = 250; // The fixed height of the container card
-const INITIAL_BOX_HEIGHT = 250; // The initial height of the simulation box
+const CANVAS_HEIGHT = 250;
 const NUM_PARTICLES = 30;
-const PARTICLE_RADIUS = 5; // Slightly larger for visibility
-const BASE_SPEED = 1.5;
+const PARTICLE_RADIUS = 4;
+const BASE_SPEED = 1.0;
+const PISTON_HEIGHT = 20;
+
+const explanations: Record<Pressure, Record<Temperature, { title: string; text: string }>> = {
+  low: {
+    low: {
+      title: 'سلوك مثالي تقريبًا',
+      text: 'في الضغط المنخفض والحرارة المنخفضة، تكون الجسيمات متباعدة وطاقتها الحركية قليلة. قوى التجاذب ضعيفة جدًا.'
+    },
+    high: {
+      title: 'أقرب ما يمكن للسلوك المثالي',
+      text: 'في الضغط المنخفض والحرارة المرتفعة، تكون الجسيمات متباعدة جدًا وتتحرك بسرعة هائلة، مما يتغلب على أي قوى تجاذب بينها.'
+    }
+  },
+  high: {
+    low: {
+      title: 'أقصى انحراف عن السلوك المثالي',
+      text: 'في الضغط المرتفع والحرارة المنخفضة، تكون الجسيمات متقاربة جدًا وطاقتها الحركية منخفضة، مما يسمح لقوى التجاذب بأن تصبح مؤثرة.'
+    },
+    high: {
+      title: 'انحراف عن السلوك المثالي',
+      text: 'الحرارة المرتفعة تزيد من طاقة الجسيمات، ولكن الضغط العالي يبقيها متقاربة، مما يسبب انحرافًا عن السلوك المثالي.'
+    }
+  }
+};
 
 // --- React Component ---
 export default function Diagram() {
   const sketchRef = useRef<HTMLDivElement>(null);
   const p5InstanceRef = useRef<p5 | null>(null);
 
-  // State for the simulation box height, controlled by the slider
-  const [boxHeight, setBoxHeight] = useState(INITIAL_BOX_HEIGHT);
-  // State for the container width, determined once on layout
+  const [temperature, setTemperature] = useState<Temperature>('low');
+  const [pressure, setPressure] = useState<Pressure>('low');
   const [width, setWidth] = useState(0);
 
-  // Measure the container's width once it's on the page
+  const explanation = explanations[pressure][temperature];
+
   useLayoutEffect(() => {
     if (sketchRef.current) {
       setWidth(sketchRef.current.clientWidth);
     }
   }, []);
 
-  // Main effect to create and manage the p5.js sketch
   useEffect(() => {
-    // Don't run if the container width hasn't been measured yet
     if (width <= 0) return;
 
-    // Cleanup the previous sketch instance before creating a new one
     p5InstanceRef.current?.remove();
 
-    // --- The p5.js Sketch Definition ---
     const sketch = (p: p5) => {
       let particles: Particle[] = [];
-      const speedMultiplier = INITIAL_BOX_HEIGHT / boxHeight;
+      
+      const boxHeight = pressure === 'low' ? CANVAS_HEIGHT - PISTON_HEIGHT : CANVAS_HEIGHT / 2;
+      const speedMultiplier = temperature === 'low' ? BASE_SPEED : BASE_SPEED * 3;
+      const pistonY = pressure === 'low' ? 0 : CANVAS_HEIGHT - (CANVAS_HEIGHT / 2) - PISTON_HEIGHT;
+
 
       class Particle {
         pos: p5.Vector;
         vel: p5.Vector;
-        radius: number;
+        radius: number = PARTICLE_RADIUS;
 
         constructor() {
-          this.radius = PARTICLE_RADIUS;
-          // Ensure particles are created well within the bounds
+          const effectiveBoxHeight = boxHeight - PISTON_HEIGHT;
           this.pos = p.createVector(
             p.random(this.radius, width - this.radius),
-            p.random(this.radius, boxHeight - this.radius)
+            p.random(PISTON_HEIGHT + this.radius, boxHeight - this.radius)
           );
-          this.vel = p5.Vector.random2D().mult(BASE_SPEED * speedMultiplier);
+          this.vel = p5.Vector.random2D().mult(speedMultiplier);
         }
 
         update() {
@@ -63,46 +91,49 @@ export default function Diagram() {
         }
 
         checkBoundaries() {
-          // Check X axis collision
+          const topBoundary = PISTON_HEIGHT;
+          const bottomBoundary = boxHeight;
+
           if (this.pos.x <= this.radius || this.pos.x >= width - this.radius) {
             this.vel.x *= -1;
             this.pos.x = p.constrain(this.pos.x, this.radius, width - this.radius);
           }
-          // Check Y axis collision
-          if (this.pos.y <= this.radius || this.pos.y >= boxHeight - this.radius) {
+          if (this.pos.y <= topBoundary + this.radius || this.pos.y >= bottomBoundary - this.radius) {
             this.vel.y *= -1;
-            this.pos.y = p.constrain(this.pos.y, this.radius, boxHeight - this.radius);
+            this.pos.y = p.constrain(this.pos.y, topBoundary + this.radius, bottomBoundary - this.radius);
           }
         }
 
         show() {
-          // As requested: Red fill, Black stroke
-          p.fill(255, 0, 0); // Red
-          p.stroke(0);       // Black
-          p.strokeWeight(1);
+          p.noStroke();
+          p.fill('hsl(var(--primary))');
           p.ellipse(this.pos.x, this.pos.y, this.radius * 2);
         }
       }
 
       p.setup = () => {
-        p.createCanvas(width, boxHeight);
-        // Create all particles
+        p.createCanvas(width, CANVAS_HEIGHT);
         for (let i = 0; i < NUM_PARTICLES; i++) {
           particles.push(new Particle());
         }
       };
 
       p.draw = () => {
-        // Draw the background of the simulation box
         p.background('hsl(var(--card))');
 
-        // Draw the border of the simulation box
-        p.stroke('hsl(var(--primary))');
+        // Draw dashed border
+        p.stroke('hsl(var(--border))');
         p.strokeWeight(2);
+        p.drawingContext.setLineDash([5, 5]);
         p.noFill();
-        p.rect(0, 0, width - 1, boxHeight - 1);
-        
-        // Update and show all particles
+        p.rect(0, 0, width-1, CANVAS_HEIGHT-1);
+        p.drawingContext.setLineDash([]); // Reset line dash
+
+        // Draw piston
+        p.fill(200);
+        p.noStroke();
+        p.rect(1, pistonY + 1, width - 2, PISTON_HEIGHT - 2);
+
         for (const particle of particles) {
           particle.update();
           particle.show();
@@ -110,45 +141,71 @@ export default function Diagram() {
       };
     };
 
-    // Create the new p5 instance
     p5InstanceRef.current = new p5(sketch, sketchRef.current!);
 
-    // The cleanup function for this effect
     return () => {
       p5InstanceRef.current?.remove();
     };
-    // This effect re-runs whenever the boxHeight or width changes
-  }, [boxHeight, width]);
+  }, [temperature, pressure, width]);
 
   return (
     <div className="flex flex-col items-center gap-4 w-full">
-      {/* This is the container with a FIXED height, acting as a viewport */}
       <div
         ref={sketchRef}
-        className="rounded-lg border bg-muted w-full flex items-center justify-center"
-        style={{ height: `${CONTAINER_HEIGHT}px` }}
-        data-ai-hint="gas particles simulation p5js"
+        className="rounded-lg border bg-muted w-full"
+        style={{ height: `${CANVAS_HEIGHT}px` }}
+        data-ai-hint="gas particles piston simulation"
       >
-        {/* The p5 canvas is created by the script and injected here */}
-        {/* Its height will be `boxHeight`, which can be smaller than `CONTAINER_HEIGHT` */}
+        {/* p5 canvas is injected here */}
       </div>
-       <div className="w-full space-y-2">
-        <div className="w-full flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">حجم الوعاء</span>
-            <Slider
-            value={[boxHeight]}
-            min={80} // Minimum height for the simulation box
-            max={CONTAINER_HEIGHT} // Maximum height is the container's height
-            step={1}
-            onValueChange={(value) => setBoxHeight(value[0])}
-            dir="ltr"
-            />
-        </div>
-        <div className="w-full flex justify-between text-xs text-muted-foreground px-1" dir="ltr">
-            <span>حجم أصغر، ضغط أعلى</span>
-            <span>حجم أكبر، ضغط أقل</span>
-        </div>
+
+      <div className="w-full grid grid-cols-2 gap-4">
+        <Card className="p-3">
+          <Label className="font-semibold text-sm">درجة الحرارة</Label>
+          <RadioGroup
+            dir="rtl"
+            value={temperature}
+            onValueChange={(value: Temperature) => setTemperature(value)}
+            className="mt-2"
+          >
+            <div className="flex items-center space-x-2 space-x-reverse">
+              <RadioGroupItem value="low" id="t-low" />
+              <Label htmlFor="t-low">منخفضة</Label>
+            </div>
+            <div className="flex items-center space-x-2 space-x-reverse">
+              <RadioGroupItem value="high" id="t-high" />
+              <Label htmlFor="t-high">مرتفعة</Label>
+            </div>
+          </RadioGroup>
+        </Card>
+        <Card className="p-3">
+          <Label className="font-semibold text-sm">الضغط</Label>
+          <RadioGroup
+            dir="rtl"
+            value={pressure}
+            onValueChange={(value: Pressure) => setPressure(value)}
+            className="mt-2"
+          >
+            <div className="flex items-center space-x-2 space-x-reverse">
+              <RadioGroupItem value="low" id="p-low" />
+              <Label htmlFor="p-low">منخفض</Label>
+            </div>
+            <div className="flex items-center space-x-2 space-x-reverse">
+              <RadioGroupItem value="high" id="p-high" />
+              <Label htmlFor="p-high">مرتفع</Label>
+            </div>
+          </RadioGroup>
+        </Card>
       </div>
+
+      <Card className="w-full bg-accent/10 border-accent/20">
+        <CardHeader className="p-3">
+          <CardTitle className="text-base text-accent">{explanation.title}</CardTitle>
+        </CardHeader>
+        <CardContent className="p-3 pt-0">
+          <p className="text-sm text-muted-foreground">{explanation.text}</p>
+        </CardContent>
+      </Card>
     </div>
   );
 }

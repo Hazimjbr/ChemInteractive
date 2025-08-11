@@ -16,10 +16,11 @@ const Diagram = dynamic(() => import('./diagram'), {
   loading: () => (
     <div className="flex flex-col items-center gap-4">
       <Skeleton className="h-[250px] w-full rounded-lg" />
-      <div className="w-full flex items-center gap-2">
-         <span className="text-sm text-muted-foreground">حجم الوعاء</span>
-         <Skeleton className="h-4 w-full" />
+       <div className="w-full grid grid-cols-2 gap-4">
+        <Skeleton className="h-20 w-full" />
+        <Skeleton className="h-20 w-full" />
       </div>
+      <Skeleton className="h-24 w-full" />
     </div>
   ),
 });
@@ -290,12 +291,12 @@ export default function LessonPartPage() {
         <aside className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>محاكاة حركة الجزيئات</CardTitle>
+              <CardTitle>محاكاة سلوك الغاز</CardTitle>
             </CardHeader>
             <CardContent>
               <Diagram />
               <p className="text-sm text-muted-foreground mt-4 text-center">
-                محاكاة تفاعلية تظهر حركة الجسيمات العشوائية في الحالة الغازية وفقًا لفرضيات نظرية الحركة الجزيئية.
+                تحكم في درجة الحرارة والضغط ولاحظ كيف يتغير سلوك الغاز بين المثالي والحقيقي.
               </p>
             </CardContent>
           </Card>
