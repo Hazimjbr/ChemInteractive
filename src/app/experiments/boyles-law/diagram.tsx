@@ -8,13 +8,13 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 
 // --- Constants ---
-const CANVAS_HEIGHT = 350;
-const TUBE_WIDTH = 30;
-const TUBE_WALL_THICKNESS = 4;
-const TUBE_BEND_RADIUS = 40;
-const INITIAL_GAS_HEIGHT = 150;
+const CANVAS_HEIGHT = 175;
+const TUBE_WIDTH = 15;
+const TUBE_WALL_THICKNESS = 2;
+const TUBE_BEND_RADIUS = 20;
+const INITIAL_GAS_HEIGHT = 75;
 const INITIAL_PRESSURE = 1; // in atm
-const PRESSURE_TO_HEIGHT_SCALE = 76; // 1 atm pressure diff = 76px mercury height diff
+const PRESSURE_TO_HEIGHT_SCALE = 38; // 1 atm pressure diff = 38px mercury height diff
 
 // --- React Component ---
 export default function Diagram() {
@@ -50,8 +50,8 @@ export default function Diagram() {
         currentGasHeight = p.lerp(currentGasHeight, targetGasHeight, 0.1);
         
         const centerX = width / 2;
-        const tubeBottomY = CANVAS_HEIGHT - 50;
-        const tubeCapY = 50;
+        const tubeBottomY = CANVAS_HEIGHT - 25; // Adjusted for smaller size
+        const tubeCapY = 25; // Adjusted for smaller size
         const innerTubeWidth = TUBE_WIDTH - (TUBE_WALL_THICKNESS * 2);
 
         // --- Calculate Mercury Levels ---
@@ -87,8 +87,8 @@ export default function Diagram() {
         p.line(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, tubeCapY, centerX - TUBE_BEND_RADIUS, tubeCapY); // top cap
         
         // Right arm (open)
-        p.line(centerX + TUBE_BEND_RADIUS, tubeBottomY, centerX + TUBE_BEND_RADIUS, 10);
-        p.line(centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, tubeBottomY, centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, 10);
+        p.line(centerX + TUBE_BEND_RADIUS, tubeBottomY, centerX + TUBE_BEND_RADIUS, 5); // Adjusted for smaller size
+        p.line(centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, tubeBottomY, centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, 5); // Adjusted for smaller size
         
         // Bend
         p.noFill();
@@ -101,18 +101,18 @@ export default function Diagram() {
         p.noStroke();
         p.fill(0); // Set fill to black for text
         p.textAlign(p.CENTER, p.CENTER);
-        p.textSize(14);
+        p.textSize(12); // Adjusted for smaller size
         
         // Volume Label
         p.text('V', centerX - TUBE_BEND_RADIUS - (TUBE_WIDTH/2), tubeCapY + (currentGasHeight / 2));
         
         // Pressure Label
-        p.textSize(12);
-        p.text(`${pressure.toFixed(1)} atm`, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY - 20);
+        p.textSize(10); // Adjusted for smaller size
+        p.text(`${pressure.toFixed(1)} atm`, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY - 10);
         // Line pointing to pressure
         p.stroke(0); // Set stroke to black
         p.strokeWeight(1);
-        p.line(centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY - 10, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY);
+        p.line(centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY - 5, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY);
 
       };
     };
