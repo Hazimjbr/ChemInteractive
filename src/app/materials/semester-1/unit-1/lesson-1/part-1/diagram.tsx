@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
@@ -131,16 +132,22 @@ export default function Diagram() {
         {/* The p5 canvas is created by the script and injected here */}
         {/* Its height will be `boxHeight`, which can be smaller than `CONTAINER_HEIGHT` */}
       </div>
-      <div className="w-full flex items-center gap-2">
-        <span className="text-sm text-muted-foreground">حجم الوعاء</span>
-        <Slider
-          value={[boxHeight]}
-          min={80} // Minimum height for the simulation box
-          max={CONTAINER_HEIGHT} // Maximum height is the container's height
-          step={1}
-          onValueChange={(value) => setBoxHeight(value[0])}
-          dir="ltr"
-        />
+       <div className="w-full space-y-2">
+        <div className="w-full flex items-center gap-2">
+            <span className="text-sm text-muted-foreground">حجم الوعاء</span>
+            <Slider
+            value={[boxHeight]}
+            min={80} // Minimum height for the simulation box
+            max={CONTAINER_HEIGHT} // Maximum height is the container's height
+            step={1}
+            onValueChange={(value) => setBoxHeight(value[0])}
+            dir="ltr"
+            />
+        </div>
+        <div className="w-full flex justify-between text-xs text-muted-foreground px-1">
+            <span>حجم أصغر، ضغط أعلى</span>
+            <span>حجم أكبر، ضغط أقل</span>
+        </div>
       </div>
     </div>
   );
