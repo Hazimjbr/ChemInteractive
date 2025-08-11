@@ -12,11 +12,17 @@ import {
 import PeriodicTable from './periodic-table';
 import CalculatorComponent from './calculator';
 import ChatAssistant from './chat-assistant';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export default function FloatingActions() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
 
   const actions = [
     {
@@ -43,6 +49,10 @@ export default function FloatingActions() {
       dialogClassName: 'max-w-sm',
     },
   ];
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <div className="fixed top-1/2 -translate-y-1/2 right-0 flex flex-row-reverse items-center gap-3 z-50">
