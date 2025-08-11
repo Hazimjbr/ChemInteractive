@@ -9,7 +9,8 @@ import { Card, CardContent } from '@/components/ui/card';
 
 // --- Constants ---
 const CANVAS_HEIGHT = 350;
-const TUBE_WIDTH = 25;
+const TUBE_WIDTH = 30; // Increased width for better visibility
+const TUBE_WALL_THICKNESS = 4; // Define wall thickness
 const TUBE_BEND_RADIUS = 40;
 const INITIAL_GAS_HEIGHT = 150;
 const INITIAL_PRESSURE = 1; // in atm
@@ -51,6 +52,7 @@ export default function Diagram() {
         const centerX = width / 2;
         const tubeBottomY = CANVAS_HEIGHT - 50;
         const tubeCapY = 50;
+        const innerTubeWidth = TUBE_WIDTH - (TUBE_WALL_THICKNESS * 2);
 
         // --- Calculate Mercury Levels ---
         const gasVolumeBottomY = tubeCapY + currentGasHeight;
@@ -60,24 +62,24 @@ export default function Diagram() {
         // --- Draw Gas ---
         p.fill(173, 216, 230, 150); // Light blue for gas
         p.noStroke();
-        p.rect(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, tubeCapY, TUBE_WIDTH, currentGasHeight);
+        p.rect(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH + TUBE_WALL_THICKNESS, tubeCapY, innerTubeWidth, currentGasHeight);
 
         // --- Draw Mercury ---
         p.fill(180, 180, 180); // Silver-gray for mercury
         // Left arm mercury
-        p.rect(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, leftMercuryTopY, TUBE_WIDTH, tubeBottomY - leftMercuryTopY);
+        p.rect(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH + TUBE_WALL_THICKNESS, leftMercuryTopY, innerTubeWidth, tubeBottomY - leftMercuryTopY);
         // Right arm mercury
-        p.rect(centerX + TUBE_BEND_RADIUS, rightMercuryTopY, TUBE_WIDTH, tubeBottomY - rightMercuryTopY);
+        p.rect(centerX + TUBE_BEND_RADIUS + TUBE_WALL_THICKNESS, rightMercuryTopY, innerTubeWidth, tubeBottomY - rightMercuryTopY);
         // U-bend mercury
         p.arc(centerX, tubeBottomY, (TUBE_BEND_RADIUS * 2) + TUBE_WIDTH, (TUBE_BEND_RADIUS * 2) + TUBE_WIDTH, 0, p.PI);
         p.fill('hsl(var(--card))');
-        p.arc(centerX, tubeBottomY, (TUBE_BEND_RADIUS * 2), (TUBE_BEND_RADIUS * 2), 0, p.PI);
+        p.arc(centerX, tubeBottomY, (TUBE_BEND_RADIUS * 2) + TUBE_WIDTH - (TUBE_WALL_THICKNESS * 2), (TUBE_BEND_RADIUS * 2) + TUBE_WIDTH - (TUBE_WALL_THICKNESS * 2), 0, p.PI);
         
 
         // --- Draw J-Tube Glass ---
         p.noFill();
         p.stroke('hsl(var(--border))');
-        p.strokeWeight(3);
+        p.strokeWeight(TUBE_WALL_THICKNESS);
         
         // Left arm (closed)
         p.line(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, tubeBottomY, centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, tubeCapY);
@@ -89,8 +91,10 @@ export default function Diagram() {
         p.line(centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, tubeBottomY, centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, 10);
         
         // Bend
-        p.arc(centerX, tubeBottomY, TUBE_BEND_RADIUS * 2, TUBE_BEND_RADIUS * 2, 0, p.PI);
-        p.arc(centerX, tubeBottomY, (TUBE_BEND_RADIUS + TUBE_WIDTH) * 2, (TUBE_BEND_RADIUS + TUBE_WIDTH) * 2, 0, p.PI);
+        p.noFill();
+        p.strokeWeight(TUBE_WALL_THICKNESS);
+        p.arc(centerX, tubeBottomY, TUBE_BEND_RADIUS * 2, TUBE_BEND_RADIUS * 2, 0, p.PI, p.OPEN);
+        p.arc(centerX, tubeBottomY, TUBE_BEND_RADIUS * 2 + TUBE_WIDTH * 2, TUBE_BEND_RADIUS * 2 + TUBE_WIDTH * 2, 0, p.PI, p.OPEN);
 
 
         // --- Draw Labels ---
