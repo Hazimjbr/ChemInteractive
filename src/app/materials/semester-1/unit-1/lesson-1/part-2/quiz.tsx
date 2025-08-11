@@ -24,7 +24,7 @@ interface QuizProps {
 
 type AnswerStatus = 'unanswered' | 'correct' | 'incorrect';
 
-const staticQuiz: QuizQuestion[] = [
+const staticQuizLvl1: QuizQuestion[] = [
     {
         "question": "أي من التالي ليست من المتغيرات الأربعة الأساسية لوصف سلوك الغاز المحصور؟",
         "options": [
@@ -82,6 +82,64 @@ const staticQuiz: QuizQuestion[] = [
     }
 ];
 
+const staticQuizLvl2: QuizQuestion[] = [
+    {
+        "question": "إذا كانت درجة حرارة غرفة 298 كلفن، فما هي قيمتها بالدرجة المئوية (°C)؟",
+        "options": [
+            "25 °C",
+            "273 °C",
+            "571 °C",
+            "-25 °C"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "للتحويل من كلفن إلى سيليزيوس، نستخدم العلاقة: T(°C) = T(K) - 273. إذن، 298 - 273 = 25 °C."
+    },
+    {
+        "question": "إذا كان ضغط غاز يساوي 202.6 kPa، فما هي قيمة هذا الضغط بوحدة atm؟",
+        "options": [
+            "1 atm",
+            "1.5 atm",
+            "2 atm",
+            "0.5 atm"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "نعلم أن 1 atm = 101.3 kPa. لمعرفة كم atm يعادل 202.6 kPa، نقسم: 202.6 / 101.3 = 2 atm."
+    },
+    {
+        "question": "لماذا لا يمكن أن تكون قيمة درجة الحرارة بالكلفن سالبة؟",
+        "options": [
+            "لأنها وحدة قياس بريطانية.",
+            "لأن الصفر كلفن (الصفر المطلق) يمثل أدنى طاقة حركية ممكنة للجسيمات.",
+            "لأن التحويل من سيليزيوس يتطلب دائمًا إضافة 273.",
+            "لأن الكلفن يستخدم فقط لقياس درجات الحرارة العالية جدًا."
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "مقياس كلفن هو مقياس مطلق لدرجة الحرارة. الصفر المطلق (0 K) هو النقطة التي تتوقف عندها حركة الجسيمات تمامًا نظريًا، ولا يمكن وجود طاقة حركية أقل من الصفر، لذلك لا توجد درجات حرارة سالبة بالكلفن."
+    },
+    {
+        "question": "في أي من الحالات التالية يكون عدد مولات الغاز (n) هو العامل الأكثر أهمية في تحديد الضغط؟",
+        "options": [
+            "عند مقارنة غازين مختلفين في نفس الوعاء ونفس درجة الحرارة.",
+            "عند تغيير حجم الوعاء فقط.",
+            "عند تغيير درجة حرارة الغاز فقط.",
+            "عدد المولات لا يؤثر على الضغط أبدًا."
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "عند ثبات الحجم ودرجة الحرارة، فإن ضغط الغاز يتناسب طرديًا مع عدد جسيماته (عدد المولات). كلما زادت كمية الغاز في نفس الحيز، زادت التصادمات مع الجدار وزاد الضغط."
+    },
+    {
+        "question": "ماذا يعني أن حجم الغاز يساوي حجم الوعاء؟",
+        "options": [
+            "أن جسيمات الغاز تملأ جزءًا صغيرًا من الوعاء.",
+            "أن جسيمات الغاز تتجمع في قاع الوعاء.",
+            "أن جسيمات الغاز تنتشر لتشغل كل الحيز المتاح لها داخل الوعاء.",
+            "أن حجم الوعاء يتغير ليتناسب مع حجم الغاز."
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "بسبب الطاقة الحركية العالية وقوى التجاذب الضعيفة جدًا بين جسيمات الغاز، فإنها تتحرك بحرية وتتباعد لتملأ أي وعاء توضع فيه بالكامل، مما يجعل حجم الغاز مطابقًا لحجم الوعاء."
+    }
+];
+
 export default function Quiz({ lessonContent }: QuizProps) {
   const [quiz, setQuiz] = useState<QuizQuestion[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -104,7 +162,12 @@ export default function Quiz({ lessonContent }: QuizProps) {
 
     // Simulate loading
     setTimeout(() => {
-        setQuiz(staticQuiz);
+        if (level === 1) {
+            setQuiz(staticQuizLvl1);
+        } else {
+            // For any level > 1, use the more difficult quiz
+            setQuiz(staticQuizLvl2);
+        }
         setIsLoading(false);
     }, 1000);
   };
@@ -261,3 +324,5 @@ export default function Quiz({ lessonContent }: QuizProps) {
     </div>
   );
 }
+
+    
