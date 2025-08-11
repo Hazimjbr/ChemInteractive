@@ -139,17 +139,18 @@ export default function Quiz() {
       <CardContent className="space-y-6">
         <p className="text-lg font-semibold pt-2">{currentQuestion.question}</p>
 
-        <div className="grid grid-cols-1 gap-3">
+        <div className="grid grid-cols-1 gap-2">
           {currentQuestion.options.map((option, index) => {
             const isCorrect = index === currentQuestion.correctAnswerIndex;
             const isSelected = selectedAnswer === index;
             
-            let buttonClass = '';
-            if (answerStatus === 'correct' && isCorrect) {
+            let buttonClass = 'border-input hover:bg-accent/50';
+            if (answerStatus === 'correct' && isSelected) {
               buttonClass = 'border-green-500 bg-green-500/10 text-green-700 hover:bg-green-500/20';
             } else if (answerStatus === 'incorrect' && isSelected) {
               buttonClass = 'border-red-500 bg-red-500/10 text-red-700 hover:bg-red-500/20';
             } else if (answerStatus !== 'unanswered' && isCorrect) {
+              // Highlight the correct answer if a wrong one was chosen
               buttonClass = 'border-green-500 bg-green-500/10 text-green-700';
             }
 
@@ -157,7 +158,7 @@ export default function Quiz() {
               <Button
                 key={index}
                 variant="outline"
-                className={cn("w-full justify-start text-right h-auto py-3 text-sm flex items-start", buttonClass)}
+                className={cn("w-full justify-start text-right h-auto py-2 px-3 text-sm flex items-start", buttonClass)}
                 onClick={() => handleAnswerSelect(index)}
                 disabled={answerStatus !== 'unanswered'}
               >
@@ -173,8 +174,8 @@ export default function Quiz() {
          <CardFooter className="flex-col items-stretch gap-4 pt-4">
             <Alert variant={answerStatus === 'correct' ? 'default' : 'destructive'} className={cn(
               answerStatus === 'correct' 
-                ? 'border-green-500 bg-green-500/5' 
-                : 'border-red-500 bg-red-500/5'
+                ? 'border-green-500 bg-green-100/30' 
+                : 'border-red-500 bg-red-100/30'
             )}>
                 {answerStatus === 'correct' ? <CheckCircle className="h-4 w-4 text-green-500" /> : <XCircle className="h-4 w-4 text-red-500" />}
                 <AlertTitle className="font-bold">
