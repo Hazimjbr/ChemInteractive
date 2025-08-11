@@ -227,7 +227,7 @@ export default function LessonPartPage() {
             <Link href="/materials/semester-1/unit-1/lesson-1/part-1" passHref>
                 <Button size="lg" variant="outline">
                 <ArrowLeft className="ml-2 h-5 w-5 rotate-180" />
-                الدرس السابق
+                الجزء السابق
                 </Button>
             </Link>
             <Link href="/materials/semester-1/unit-1/lesson-1/part-3" passHref>
