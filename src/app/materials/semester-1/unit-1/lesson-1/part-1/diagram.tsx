@@ -6,6 +6,7 @@ import p5 from 'p5';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // --- Types ---
 type Temperature = 'low' | 'high';
@@ -16,7 +17,7 @@ const CANVAS_HEIGHT = 250;
 const NUM_PARTICLES = 30;
 const PARTICLE_RADIUS = 4;
 const BASE_SPEED = 1.0;
-const PISTON_HEIGHT = 20;
+const PISTON_THICKNESS = 20;
 
 const explanations: Record<Pressure, Record<Temperature, { title: string; text: string }>> = {
   low: {
@@ -51,6 +52,7 @@ export default function Diagram() {
   const [width, setWidth] = useState(0);
 
   const explanation = explanations[pressure][temperature];
+  const explanationKey = `${pressure}-${temperature}`;
 
   useLayoutEffect(() => {
     if (sketchRef.current) {
@@ -66,10 +68,16 @@ export default function Diagram() {
     const sketch = (p: p5) => {
       let particles: Particle[] = [];
       
-      const boxHeight = pressure === 'low' ? CANVAS_HEIGHT - PISTON_HEIGHT : CANVAS_HEIGHT / 2;
+      const boxHeight = CANVAS_HEIGHT;
       const speedMultiplier = temperature === 'low' ? BASE_SPEED : BASE_SPEED * 3;
-      const pistonY = pressure === 'low' ? 0 : CANVAS_HEIGHT - (CANVAS_HEIGHT / 2) - PISTON_HEIGHT;
-
+      const particleColor = temperature === 'low' ? p.color(128, 128, 128) : p.color(255, 0, 0);
+      
+      // Calculate piston position based on pressure
+      // High pressure -> piston moves down -> smaller volume
+      // Low pressure -> piston at the top -> larger volume
+      const pistonY = pressure === 'low' ? 0 : (boxHeight / 2) - PISTON_THICKNESS / 2;
+      const topBoundary = pistonY + PISTON_THICKNESS;
+      const bottomBoundary = boxHeight;
 
       class Particle {
         pos: p5.Vector;
@@ -77,10 +85,9 @@ export default function Diagram() {
         radius: number = PARTICLE_RADIUS;
 
         constructor() {
-          const effectiveBoxHeight = boxHeight - PISTON_HEIGHT;
           this.pos = p.createVector(
             p.random(this.radius, width - this.radius),
-            p.random(PISTON_HEIGHT + this.radius, boxHeight - this.radius)
+            p.random(topBoundary + this.radius, bottomBoundary - this.radius)
           );
           this.vel = p5.Vector.random2D().mult(speedMultiplier);
         }
@@ -91,9 +98,6 @@ export default function Diagram() {
         }
 
         checkBoundaries() {
-          const topBoundary = PISTON_HEIGHT;
-          const bottomBoundary = boxHeight;
-
           if (this.pos.x <= this.radius || this.pos.x >= width - this.radius) {
             this.vel.x *= -1;
             this.pos.x = p.constrain(this.pos.x, this.radius, width - this.radius);
@@ -106,7 +110,7 @@ export default function Diagram() {
 
         show() {
           p.noStroke();
-          p.fill('hsl(var(--primary))');
+          p.fill(particleColor);
           p.ellipse(this.pos.x, this.pos.y, this.radius * 2);
         }
       }
@@ -121,23 +125,27 @@ export default function Diagram() {
       p.draw = () => {
         p.background('hsl(var(--card))');
 
-        // Draw dashed border
+        // Draw dashed border for the container
         p.stroke('hsl(var(--border))');
         p.strokeWeight(2);
         p.drawingContext.setLineDash([5, 5]);
         p.noFill();
-        p.rect(0, 0, width-1, CANVAS_HEIGHT-1);
+        p.rect(1, 1, width-2, CANVAS_HEIGHT-2);
         p.drawingContext.setLineDash([]); // Reset line dash
 
-        // Draw piston
-        p.fill(200);
-        p.noStroke();
-        p.rect(1, pistonY + 1, width - 2, PISTON_HEIGHT - 2);
-
+        // Draw particles
         for (const particle of particles) {
           particle.update();
           particle.show();
         }
+
+        // Draw piston
+        p.fill(200);
+        p.noStroke();
+        p.rect(1, pistonY, width-2, PISTON_THICKNESS);
+        // Piston handle
+        p.fill(150);
+        p.rect(width/2 - 20, pistonY - 5, 40, 5);
       };
     };
 
@@ -152,7 +160,7 @@ export default function Diagram() {
     <div className="flex flex-col items-center gap-4 w-full">
       <div
         ref={sketchRef}
-        className="rounded-lg border bg-muted w-full"
+        className="rounded-lg border bg-muted w-full overflow-hidden"
         style={{ height: `${CANVAS_HEIGHT}px` }}
         data-ai-hint="gas particles piston simulation"
       >
@@ -165,7 +173,7 @@ export default function Diagram() {
           <RadioGroup
             dir="rtl"
             value={temperature}
-            onValueChange={(value: Temperature) => setTemperature(value)}
+            onValueChange={(value: string) => setTemperature(value as Temperature)}
             className="mt-2"
           >
             <div className="flex items-center space-x-2 space-x-reverse">
@@ -183,7 +191,7 @@ export default function Diagram() {
           <RadioGroup
             dir="rtl"
             value={pressure}
-            onValueChange={(value: Pressure) => setPressure(value)}
+            onValueChange={(value: string) => setPressure(value as Pressure)}
             className="mt-2"
           >
             <div className="flex items-center space-x-2 space-x-reverse">
@@ -197,14 +205,25 @@ export default function Diagram() {
           </RadioGroup>
         </Card>
       </div>
-
-      <Card className="w-full bg-accent/10 border-accent/20">
-        <CardHeader className="p-3">
-          <CardTitle className="text-base text-accent">{explanation.title}</CardTitle>
-        </CardHeader>
-        <CardContent className="p-3 pt-0">
-          <p className="text-sm text-muted-foreground">{explanation.text}</p>
-        </CardContent>
+      
+      <Card className="w-full bg-accent/10 border-accent/20 h-[100px]">
+        <AnimatePresence mode="wait">
+            <motion.div
+                key={explanationKey}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="w-full h-full"
+            >
+                <CardHeader className="p-3">
+                    <CardTitle className="text-base text-accent">{explanation.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-3 pt-0">
+                    <p className="text-sm text-muted-foreground">{explanation.text}</p>
+                </CardContent>
+            </motion.div>
+        </AnimatePresence>
       </Card>
     </div>
   );
