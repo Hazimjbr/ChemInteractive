@@ -144,7 +144,7 @@ export default function Diagram() {
             dir="ltr"
             />
         </div>
-        <div className="w-full flex justify-between text-xs text-muted-foreground px-1">
+        <div className="w-full flex justify-between text-xs text-muted-foreground px-1" dir="ltr">
             <span>حجم أصغر، ضغط أعلى</span>
             <span>حجم أكبر، ضغط أقل</span>
         </div>
