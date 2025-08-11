@@ -8,13 +8,13 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 
 // --- Constants ---
-const CANVAS_HEIGHT = 175;
-const TUBE_WIDTH = 15;
+const CANVAS_HEIGHT = 350; // Restore original canvas height
+const TUBE_WIDTH = 15; // Half of original 30
 const TUBE_WALL_THICKNESS = 2;
-const TUBE_BEND_RADIUS = 20;
-const INITIAL_GAS_HEIGHT = 75;
+const TUBE_BEND_RADIUS = 20; // Half of original 40
+const INITIAL_GAS_HEIGHT = 75; // Half of original 150
 const INITIAL_PRESSURE = 1; // in atm
-const PRESSURE_TO_HEIGHT_SCALE = 38; // 1 atm pressure diff = 38px mercury height diff
+const PRESSURE_TO_HEIGHT_SCALE = 38; // Half of original 76
 
 // --- React Component ---
 export default function Diagram() {
@@ -50,8 +50,10 @@ export default function Diagram() {
         currentGasHeight = p.lerp(currentGasHeight, targetGasHeight, 0.1);
         
         const centerX = width / 2;
-        const tubeBottomY = CANVAS_HEIGHT - 25; // Adjusted for smaller size
-        const tubeCapY = 25; // Adjusted for smaller size
+        // Center the drawing vertically
+        const tubeBottomY = (CANVAS_HEIGHT / 2) + 100;
+        const tubeTopY = tubeBottomY - 200; // Original height was 200, scale it down for visual positioning
+        const tubeCapY = tubeTopY;
         const innerTubeWidth = TUBE_WIDTH - (TUBE_WALL_THICKNESS * 2);
 
         // --- Calculate Mercury Levels ---
@@ -86,9 +88,9 @@ export default function Diagram() {
         p.line(centerX - TUBE_BEND_RADIUS, tubeBottomY, centerX - TUBE_BEND_RADIUS, tubeCapY);
         p.line(centerX - TUBE_BEND_RADIUS - TUBE_WIDTH, tubeCapY, centerX - TUBE_BEND_RADIUS, tubeCapY); // top cap
         
-        // Right arm (open)
-        p.line(centerX + TUBE_BEND_RADIUS, tubeBottomY, centerX + TUBE_BEND_RADIUS, 5); // Adjusted for smaller size
-        p.line(centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, tubeBottomY, centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, 5); // Adjusted for smaller size
+        // Right arm (open) - Make it taller
+        p.line(centerX + TUBE_BEND_RADIUS, tubeBottomY, centerX + TUBE_BEND_RADIUS, 10);
+        p.line(centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, tubeBottomY, centerX + TUBE_BEND_RADIUS + TUBE_WIDTH, 10);
         
         // Bend
         p.noFill();
@@ -101,13 +103,13 @@ export default function Diagram() {
         p.noStroke();
         p.fill(0); // Set fill to black for text
         p.textAlign(p.CENTER, p.CENTER);
-        p.textSize(12); // Adjusted for smaller size
+        p.textSize(12);
         
         // Volume Label
         p.text('V', centerX - TUBE_BEND_RADIUS - (TUBE_WIDTH/2), tubeCapY + (currentGasHeight / 2));
         
         // Pressure Label
-        p.textSize(10); // Adjusted for smaller size
+        p.textSize(10);
         p.text(`${pressure.toFixed(1)} atm`, centerX + TUBE_BEND_RADIUS + (TUBE_WIDTH/2), rightMercuryTopY - 10);
         // Line pointing to pressure
         p.stroke(0); // Set stroke to black
