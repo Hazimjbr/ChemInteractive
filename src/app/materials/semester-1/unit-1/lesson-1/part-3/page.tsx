@@ -112,12 +112,16 @@ export default function LessonPartPage() {
                 <CardContent className="flex justify-center items-center p-4">
                     <svg width="300" height="200" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-sm h-auto">
                         
-                        <path d="M 10 90 L 10 10 L 140 90" fill="none" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                        {/* Axes Lines */}
+                        <line x1="10" y1="90" x2="140" y2="90" stroke="hsl(var(--muted-foreground))" strokeWidth="1" /> {/* X axis */}
+                        <line x1="10" y1="10" x2="10" y2="90" stroke="hsl(var(--muted-foreground))" strokeWidth="1" /> {/* Y axis */}
                         
-                        <text x="5" y="8" dominantBaseline="middle" textAnchor="middle" fontSize="8" fill="hsl(var(--foreground))">V</text>
+                        {/* Axes Labels */}
+                        <text x="5" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="8" fill="hsl(var(--foreground))">V</text>
                         <text x="145" y="95" dominantBaseline="middle" textAnchor="middle" fontSize="8" fill="hsl(var(--foreground))">P</text>
                         
-                        <path d="M 20 15 Q 40 20, 90 80" stroke="hsl(var(--primary))" strokeWidth="2" fill="none" />
+                        {/* Curve */}
+                        <path d="M 20 80 Q 40 20, 130 15" stroke="hsl(var(--primary))" strokeWidth="2" fill="none" />
                     </svg>
                 </CardContent>
             </Card>
@@ -239,5 +243,7 @@ export default function LessonPartPage() {
     </div>
   );
 }
+
+    
 
     
