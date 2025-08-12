@@ -181,7 +181,7 @@ export default function Diagram() {
                     </CardHeader>
                     <CardContent>
                     <p className="text-xs text-muted-foreground text-center mb-2">
-                        يمثل المنحنى العلاقة العكسية بين الحجم والضغط. عند ثبات درجة الحرارة وعدد المولات.
+                        يمثل المنحنى العلاقة العكسية بين الحجم والضغط، عند ثبات درجة الحرارة وعدد المولات.
                     </p>
                     <div className="flex justify-center items-center p-4">
                         <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
@@ -213,7 +213,7 @@ export default function Diagram() {
                 </CardHeader>
                 <CardContent>
                     <p className="text-xs text-muted-foreground text-center mb-2">
-                        يمثل المنحنى العلاقة الطردية بين الحجم ومقلوب الضغط. عند ثبات درجة الحرارة وعدد المولات.
+                        يمثل المنحنى العلاقة الطردية بين الحجم ومقلوب الضغط، عند ثبات درجة الحرارة وعدد المولات.
                     </p>
                     <div className="flex justify-center items-center p-4">
                         <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
