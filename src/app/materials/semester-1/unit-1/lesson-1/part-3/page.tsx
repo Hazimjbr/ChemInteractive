@@ -39,151 +39,148 @@ export default function LessonPartPage() {
       </header>
 
       <main className="space-y-8">
-        <div className="grid md:grid-cols-2 gap-6 items-start">
-            <div className="space-y-6">
-                 <Card>
-                    <CardHeader>
-                        <CardTitle>الفكرة الرئيسة</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-lg">
-                        عند ثبات درجة الحرارة وكمية الغاز، يتناسب حجم الغاز تناسبًا عكسيًا مع الضغط الواقع عليه.
-                        </p>
-                    </CardContent>
-                </Card>
+        <Card>
+            <CardHeader>
+                <CardTitle>الفكرة الرئيسة</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-lg">
+                عند ثبات درجة الحرارة وكمية الغاز، يتناسب حجم الغاز تناسبًا عكسيًا مع الضغط الواقع عليه.
+                </p>
+            </CardContent>
+        </Card>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle>نتاجات التعلم</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <ul className="space-y-3">
-                        <li className="flex items-start">
-                            <Check className="h-6 w-6 text-green-500 ml-2 flex-shrink-0" />
-                            <span>
-                            أصف العلاقة بين الضغط والحجم لغاز محصور عند ثبات درجة حرارته.
-                            </span>
-                        </li>
-                        <li className="flex items-start">
-                            <Check className="h-6 w-6 text-green-500 ml-2 flex-shrink-0" />
-                            <span>
-                            أحل مسائل حسابية على قانون بويل.
-                            </span>
-                        </li>
-                        </ul>
-                    </CardContent>
-                </Card>
-                
-                <article 
-                  className="prose prose-lg max-w-none text-foreground"
-                  dangerouslySetInnerHTML={{ __html: lessonContent }}
-                />
-                 <FlippableCard
-                    cardTitle="نص قانون بويل"
-                    cardIcon={<GitCompare className="h-6 w-6" />}
-                    >
-                    <div className="space-y-3">
-                        <blockquote className="border-r-4 border-primary pr-4 text-base">
-                        "يتناسب حجم الغاز المحصور عكسيًا مع الضغط الواقع عليه عند ثبات درجة الحرارة."
-                        </blockquote>
-                        <p className="text-xs text-muted-foreground pt-2 border-t">اعتمد بويل في تجاربه على ملاحظة انكماش حجم الهواء المحصور في أنبوب على شكل حرف J عند إضافة الزئبق إليه، مما يزيد الضغط.</p>
-                    </div>
-                </FlippableCard>
+        <Card>
+            <CardHeader>
+                <CardTitle>نتاجات التعلم</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <ul className="space-y-3">
+                <li className="flex items-start">
+                    <Check className="h-6 w-6 text-green-500 ml-2 flex-shrink-0" />
+                    <span>
+                    أصف العلاقة بين الضغط والحجم لغاز محصور عند ثبات درجة حرارته.
+                    </span>
+                </li>
+                <li className="flex items-start">
+                    <Check className="h-6 w-6 text-green-500 ml-2 flex-shrink-0" />
+                    <span>
+                    أحل مسائل حسابية على قانون بويل.
+                    </span>
+                </li>
+                </ul>
+            </CardContent>
+        </Card>
+        
+        <article 
+          className="prose prose-lg max-w-none text-foreground"
+          dangerouslySetInnerHTML={{ __html: lessonContent }}
+        />
 
-                <FlippableCard
-                    cardTitle="العلاقة الرياضية"
-                    cardIcon={<Cpu className="h-6 w-6" />}
-                >
-                    <div className="space-y-2 text-center">
-                        <p className="text-sm">التناسب العكسي:</p>
-                        <div dir="ltr"><BlockMath math="V \propto \frac{1}{P}" /></div>
-                        <p className="text-sm">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
-                         <div dir="ltr"><BlockMath math="P \cdot V = k" /></div>
-                        <p className="text-sm">لمقارنة حالتين للغاز:</p>
-                        <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div>
-                    </div>
-                </FlippableCard>
+        <FlippableCard
+            cardTitle="نص قانون بويل"
+            cardIcon={<GitCompare className="h-6 w-6" />}
+            >
+            <div className="space-y-3">
+                <blockquote className="border-r-4 border-primary pr-4 text-base">
+                "يتناسب حجم الغاز المحصور عكسيًا مع الضغط الواقع عليه عند ثبات درجة الحرارة."
+                </blockquote>
+                <p className="text-xs text-muted-foreground pt-2 border-t">اعتمد بويل في تجاربه على ملاحظة انكماش حجم الهواء المحصور في أنبوب على شكل حرف J عند إضافة الزئبق إليه، مما يزيد الضغط.</p>
             </div>
-            <div className="space-y-6">
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><Box className="h-6 w-6 text-primary" /> محاكاة وتوضيح</CardTitle>
-                        <CardDescription>حرّك المنزلق لتغيير الضغط ولاحظ ما يحدث لحجم الغاز.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <Diagram />
-                    </CardContent>
-                </Card>
-                 <Card>
-                    <CardHeader>
-                    <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> V مقابل P</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                    <p className="text-xs text-muted-foreground text-center mb-2">
-                        يمثل المنحنى العلاقة العكسية بين الحجم والضغط، عند ثبات درجة الحرارة وعدد المولات.
-                    </p>
-                    <div className="flex justify-center items-center p-4">
-                        <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
+        </FlippableCard>
+
+        <FlippableCard
+            cardTitle="العلاقة الرياضية"
+            cardIcon={<Cpu className="h-6 w-6" />}
+        >
+            <div className="space-y-2 text-center">
+                <p className="text-sm">التناسب العكسي:</p>
+                <BlockMath math="V \propto \frac{1}{P}" />
+                <p className="text-sm">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
+                <BlockMath math="P \cdot V = k" />
+                <p className="text-sm">لمقارنة حالتين للغاز:</p>
+                <BlockMath math="P_1 V_1 = P_2 V_2" />
+            </div>
+        </FlippableCard>
+
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Box className="h-6 w-6 text-primary" /> محاكاة وتوضيح</CardTitle>
+                <CardDescription>حرّك المنزلق لتغيير الضغط ولاحظ ما يحدث لحجم الغاز.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Diagram />
+            </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> V مقابل P</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-muted-foreground text-center mb-2">
+                يمثل المنحنى العلاقة العكسية بين الحجم والضغط، عند ثبات درجة الحرارة وعدد المولات.
+            </p>
+            <div className="flex justify-center items-center p-4">
+                <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
+                            <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
+                        </marker>
+                    </defs>
+                    
+                    <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+                    <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
+                    
+                    <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+                    <text x="140" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
+                    
+                    <path d="M 30 20 C 40 80, 80 100, 120 105" stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none" />
+                </svg>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold">
+                    <LineChart className="h-5 w-5 text-primary" />
+                    <span>V مقابل</span>
+                    <InlineMath math="\frac{1}{P}" />
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-xs text-muted-foreground text-center mb-2">
+                    يمثل المنحنى العلاقة الطردية بين الحجم ومقلوب الضغط، عند ثبات درجة الحرارة وعدد المولات.
+                </p>
+                <div className="flex justify-center items-center p-4">
+                    <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
+                        <g transform="translate(0 -11)">
                             <defs>
-                                <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
+                                <marker id="arrowhead2" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
                                     <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
                                 </marker>
                             </defs>
                             
-                            <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-                            <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
-                            
-                            <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-                            <text x="140" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
-                            
-                            <path d="M 30 20 C 40 80, 80 100, 120 105" stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none" />
-                        </svg>
-                    </div>
-                </CardContent>
-            </Card>
+                            <g transform="translate(0, 5)">
+                                <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
+                                <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold">
-                        <LineChart className="h-5 w-5 text-primary" />
-                        <span>V مقابل</span>
-                        <InlineMath math="\frac{1}{P}" />
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p className="text-xs text-muted-foreground text-center mb-2">
-                        يمثل المنحنى العلاقة الطردية بين الحجم ومقلوب الضغط، عند ثبات درجة الحرارة وعدد المولات.
-                    </p>
-                    <div className="flex justify-center items-center p-4">
-                        <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
-                            <g transform="translate(0 -11)">
-                                <defs>
-                                    <marker id="arrowhead2" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
-                                        <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
-                                    </marker>
-                                </defs>
+                                <line x1="20" y1="110" x2="130" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
                                 
-                                <g transform="translate(0, 5)">
-                                    <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
-                                    <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
-
-                                    <line x1="20" y1="110" x2="130" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
-                                    
-                                    <g transform="translate(138, 110)">
-                                        <text x="0" y="-2" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">1</text>
-                                        <line x1="-5" y1="5" x2="5" y2="5" stroke="hsl(var(--foreground))" strokeWidth="1.5" />
-                                        <text x="0" y="12" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
-                                    </g>
-                                    
-                                    <line x1="25" y1="105" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
+                                <g transform="translate(138, 110)">
+                                    <text x="0" y="-2" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">1</text>
+                                    <line x1="-5" y1="5" x2="5" y2="5" stroke="hsl(var(--foreground))" strokeWidth="1.5" />
+                                    <text x="0" y="12" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
                                 </g>
+                                
+                                <line x1="25" y1="105" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
                             </g>
-                        </svg>
-                    </div>
-                </CardContent>
-            </Card>
-            </div>
-        </div>
+                        </g>
+                    </svg>
+                </div>
+            </CardContent>
+        </Card>
 
         <Card>
             <CardHeader>
@@ -194,24 +191,30 @@ export default function LessonPartPage() {
                     عينة من غاز النيتروجين حجمها <span dir="ltr">150 mL</span> عند ضغط مقداره <span dir="ltr">98.8 kPa</span>. ما الحجم الجديد للعينة إذا انخفض الضغط إلى <span dir="ltr">96.1 kPa</span> مع بقاء درجة الحرارة ثابتة؟
                 </p>
                 <div className="bg-muted/50 p-4 rounded-lg space-y-3">
-                    <div>
-                        <p><strong className="text-accent">المعطيات:</strong></p>
-                        <div className="space-y-1" dir="ltr">
-                            <BlockMath math="V_1 = 150 \text{ mL}" />
-                            <BlockMath math="P_1 = 98.8 \text{ kPa}" />
-                            <BlockMath math="P_2 = 96.1 \text{ kPa}" />
-                        </div>
+                    <div className="text-left" dir="ltr">
+                        <p className="text-right font-bold text-accent">المعطيات:</p>
+                        <BlockMath math="V_1 = 150 \text{ mL}" />
+                        <BlockMath math="P_1 = 98.8 \text{ kPa}" />
+                        <BlockMath math="P_2 = 96.1 \text{ kPa}" />
                     </div>
-                    <div>
+                     <div className="text-right">
                         <p><strong className="text-accent">المطلوب:</strong> الحجم الجديد <InlineMath math="V_2" /></p>
                     </div>
                     <div>
-                        <p><strong className="text-accent">الحل:</strong></p>
+                        <p className="text-right"><strong className="text-accent">الحل:</strong></p>
                         <ol className="list-decimal mr-6 text-sm space-y-2">
-                            <li>نكتب قانون بويل: <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div></li>
-                            <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: <div dir="ltr"><BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" /></div></li>
-                            <li>نعوض القيم: <div dir="ltr"><BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" /></div></li>
-                            <li>نحسب الناتج: <div dir="ltr"><BlockMath math="V_2 \approx 154.2 \text{ mL}" /></div></li>
+                            <li>نكتب قانون بويل: 
+                                <BlockMath math="P_1 V_1 = P_2 V_2" />
+                            </li>
+                            <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: 
+                                <BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" />
+                            </li>
+                            <li>نعوض القيم: 
+                                <BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" />
+                            </li>
+                            <li>نحسب الناتج: 
+                                <BlockMath math="V_2 \approx 154.2 \text{ mL}" />
+                            </li>
                         </ol>
                     </div>
                     <div className="border-t pt-3">
