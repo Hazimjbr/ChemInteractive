@@ -191,29 +191,28 @@ export default function LessonPartPage() {
                     عينة من غاز النيتروجين حجمها <span dir="ltr">150 mL</span> عند ضغط مقداره <span dir="ltr">98.8 kPa</span>. ما الحجم الجديد للعينة إذا انخفض الضغط إلى <span dir="ltr">96.1 kPa</span> مع بقاء درجة الحرارة ثابتة؟
                 </p>
                 <div className="bg-muted/50 p-4 rounded-lg space-y-3">
+                    <p className="font-bold text-accent">المعطيات:</p>
                     <div className="text-left" dir="ltr">
-                        <p className="text-right font-bold text-accent">المعطيات:</p>
                         <BlockMath math="V_1 = 150 \text{ mL}" />
                         <BlockMath math="P_1 = 98.8 \text{ kPa}" />
                         <BlockMath math="P_2 = 96.1 \text{ kPa}" />
                     </div>
-                     <div className="text-right">
-                        <p>المطلوب: الحجم الجديد <InlineMath math="V_2" /></p>
-                    </div>
+                    <p>المطلوب: الحجم الجديد <InlineMath math="V_2" /></p>
+                    
                     <div>
-                        <p className="text-right"><strong className="text-accent">الحل:</strong></p>
+                        <p><strong className="text-accent">الحل:</strong></p>
                         <ol className="list-decimal mr-6 text-sm space-y-2">
-                            <li>نكتب قانون بويل:
-                                <BlockMath math="P_1 V_1 = P_2 V_2" />
+                            <li>نكتب قانون بويل
+                                <div className="text-left" dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div>
                             </li>
                             <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />
-                                <BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" />
+                                <div className="text-left" dir="ltr"><BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" /></div>
                             </li>
-                            <li>نعوض القيم:
-                                <BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" />
+                            <li>نعوض القيم
+                                <div className="text-left" dir="ltr"><BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" /></div>
                             </li>
-                            <li>نحسب الناتج:
-                                <BlockMath math="V_2 \approx 154.2 \text{ mL}" />
+                            <li>نحسب الناتج
+                                <div className="text-left" dir="ltr"><BlockMath math="V_2 \approx 154.2 \text{ mL}" /></div>
                             </li>
                         </ol>
                     </div>
