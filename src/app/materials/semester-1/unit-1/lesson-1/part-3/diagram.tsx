@@ -212,7 +212,7 @@ export default function Diagram() {
                         يمثل المنحنى العلاقة الطردية بين الحجم ومقلوب الضغط عند ثبات درجة الحرارة وعدد المولات.
                     </p>
                     <div className="flex justify-center items-center p-4">
-                        <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
+                        <svg width="250" height="200" viewBox="0 0 150 130" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
                             <defs>
                                 <marker id="arrowhead2" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
                                     <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
@@ -224,9 +224,9 @@ export default function Diagram() {
 
                             <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
                             
-                            <text x="135" y="110" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">1</text>
-                            <line x1="130" y1="116" x2="140" y2="116" stroke="hsl(var(--foreground))" strokeWidth="1.5" />
-                            <text x="135" y="124" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
+                            <text x="135" y="116" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">1</text>
+                            <line x1="130" y1="122" x2="140" y2="122" stroke="hsl(var(--foreground))" strokeWidth="1.5" />
+                            <text x="135" y="130" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
                             
                             <line x1="25" y1="105" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
                         </svg>
