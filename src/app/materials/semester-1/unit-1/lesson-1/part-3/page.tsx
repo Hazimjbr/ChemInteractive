@@ -115,7 +115,7 @@ export default function LessonPartPage() {
                     <CardDescription>يمثل المنحنى العلاقة العكسية بين الحجم والضغط.</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center items-center p-4">
-                    <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
+                    <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
                         <defs>
                             <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
                                 <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
