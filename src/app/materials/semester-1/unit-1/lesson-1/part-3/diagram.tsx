@@ -175,14 +175,12 @@ export default function Diagram() {
         </Card>
         
         <div className="grid md:grid-cols-2 gap-6 items-start w-full mt-4">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-base"><LineChart className="h-5 w-5 text-primary" /> V مقابل P</CardTitle>
-                    <CardDescription className="text-xs">
-                        العلاقة العكسية بين الحجم والضغط عند ثبات درجة الحرارة وعدد المولات.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent className="flex justify-center items-center p-4">
+            <div className="border rounded-lg p-2">
+                 <h3 className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> V مقابل P</h3>
+                <p className="text-xs text-muted-foreground text-center mb-2">
+                    العلاقة العكسية بين الحجم والضغط عند ثبات درجة الحرارة وعدد المولات.
+                </p>
+                <div className="flex justify-center items-center p-4">
                      <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
                         <defs>
                             <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
@@ -198,17 +196,15 @@ export default function Diagram() {
                         
                         <path d="M 30 20 C 40 80, 80 100, 120 105" stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none" />
                     </svg>
-                </CardContent>
-            </Card>
+                </div>
+            </div>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-base"><LineChart className="h-5 w-5 text-primary" /> V مقابل 1/P</CardTitle>
-                     <CardDescription className="text-xs">
-                        العلاقة الطردية بين الحجم ومقلوب الضغط عند ثبات درجة الحرارة وعدد المولات.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent className="flex justify-center items-center p-4">
+            <div className="border rounded-lg p-2">
+                 <h3 className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> V مقابل 1/P</h3>
+                <p className="text-xs text-muted-foreground text-center mb-2">
+                    العلاقة الطردية بين الحجم ومقلوب الضغط عند ثبات درجة الحرارة وعدد المولات.
+                </p>
+                <div className="flex justify-center items-center p-4">
                    <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
                         <defs>
                             <marker id="arrowhead2" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
@@ -224,8 +220,8 @@ export default function Diagram() {
                         
                         <line x1="25" y1="105" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
                     </svg>
-                </CardContent>
-            </Card>
+                </div>
+            </div>
         </div>
     </div>
   );
