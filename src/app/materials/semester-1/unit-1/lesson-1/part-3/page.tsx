@@ -114,78 +114,80 @@ export default function LessonPartPage() {
                         <Diagram />
                     </CardContent>
                 </Card>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start w-full mt-4">
-                    <Card>
-                            <CardHeader>
-                            <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> V مقابل P</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                            <p className="text-xs text-muted-foreground text-center mb-2">
-                                يمثل المنحنى العلاقة العكسية بين الحجم والضغط، عند ثبات درجة الحرارة وعدد المولات.
-                            </p>
-                            <div className="flex justify-center items-center p-4">
-                                <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
-                                    <defs>
-                                        <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
-                                            <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
-                                        </marker>
-                                    </defs>
-                                    
-                                    <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-                                    <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
-                                    
-                                    <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-                                    <text x="140" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
-                                    
-                                    <path d="M 30 20 C 40 80, 80 100, 120 105" stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none" />
-                                </svg>
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold">
-                                <LineChart className="h-5 w-5 text-primary" />
-                                <span>V مقابل</span>
-                                <InlineMath math="\frac{1}{P}" />
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-xs text-muted-foreground text-center mb-2">
-                               يمثل المنحنى العلاقة الطردية بين الحجم ومقلوب الضغط، عند ثبات درجة الحرارة وعدد المولات.
-                            </p>
-                            <div className="flex justify-center items-center p-4">
-                               <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
-                                   <g transform="translate(0 -11)">
-                                        <defs>
-                                            <marker id="arrowhead2" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
-                                                <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
-                                            </marker>
-                                        </defs>
-                                        
-                                        <g transform="translate(0, 5)">
-                                            <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
-                                            <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
-
-                                            <line x1="20" y1="110" x2="130" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
-                                            
-                                            <g transform="translate(138, 110)">
-                                                <text x="0" y="-2" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">1</text>
-                                                <line x1="-5" y1="5" x2="5" y2="5" stroke="hsl(var(--foreground))" strokeWidth="1.5" />
-                                                <text x="0" y="12" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
-                                            </g>
-                                            
-                                            <line x1="25" y1="105" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
-                                        </g>
-                                   </g>
-                                </svg>
-                            </div>
-                        </CardContent>
-                    </Card>
-                </div>
             </div>
         </div>
+
+        <div className="grid md:grid-cols-2 gap-6 items-start w-full mt-4">
+             <Card>
+                <CardHeader>
+                <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> V مقابل P</CardTitle>
+                </CardHeader>
+                <CardContent>
+                <p className="text-xs text-muted-foreground text-center mb-2">
+                    يمثل المنحنى العلاقة العكسية بين الحجم والضغط، عند ثبات درجة الحرارة وعدد المولات.
+                </p>
+                <div className="flex justify-center items-center p-4">
+                    <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
+                        <defs>
+                            <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
+                                <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
+                            </marker>
+                        </defs>
+                        
+                        <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+                        <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
+                        
+                        <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+                        <text x="140" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
+                        
+                        <path d="M 30 20 C 40 80, 80 100, 120 105" stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none" />
+                    </svg>
+                </div>
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold">
+                    <LineChart className="h-5 w-5 text-primary" />
+                    <span>V مقابل</span>
+                    <InlineMath math="\frac{1}{P}" />
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-xs text-muted-foreground text-center mb-2">
+                    يمثل المنحنى العلاقة الطردية بين الحجم ومقلوب الضغط، عند ثبات درجة الحرارة وعدد المولات.
+                </p>
+                <div className="flex justify-center items-center p-4">
+                    <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
+                        <g transform="translate(0 -11)">
+                            <defs>
+                                <marker id="arrowhead2" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
+                                    <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
+                                </marker>
+                            </defs>
+                            
+                            <g transform="translate(0, 5)">
+                                <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
+                                <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
+
+                                <line x1="20" y1="110" x2="130" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
+                                
+                                <g transform="translate(138, 110)">
+                                    <text x="0" y="-2" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">1</text>
+                                    <line x1="-5" y1="5" x2="5" y2="5" stroke="hsl(var(--foreground))" strokeWidth="1.5" />
+                                    <text x="0" y="12" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
+                                </g>
+                                
+                                <line x1="25" y1="105" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </CardContent>
+        </Card>
+        </div>
+
 
         <Card>
             <CardHeader>
@@ -193,11 +195,11 @@ export default function LessonPartPage() {
             </CardHeader>
             <CardContent>
                 <p className="mb-4">
-                    عينة من غاز النيتروجين حجمها <InlineMath math="150 \text{ mL}" /> عند ضغط مقداره <InlineMath math="98.8 \text{ kPa}" />. ما الحجم الجديد للعينة إذا انخفض الضغط إلى <InlineMath math="96.1 \text{ kPa}" /> مع بقاء درجة الحرارة ثابتة؟
+                    عينة من غاز النيتروجين حجمها <span dir="ltr">150 mL</span> عند ضغط مقداره <span dir="ltr">98.8 kPa</span>. ما الحجم الجديد للعينة إذا انخفض الضغط إلى <span dir="ltr">96.1 kPa</span> مع بقاء درجة الحرارة ثابتة؟
                 </p>
                 <div className="bg-muted/50 p-4 rounded-lg space-y-3">
                     <p><strong className="text-accent">المعطيات:</strong></p>
-                    <ul className="list-disc mr-6 text-sm" dir="ltr">
+                    <ul className="list-disc mr-6 text-sm">
                         <li><InlineMath math="V_1 = 150 \text{ mL}" /></li>
                         <li><InlineMath math="P_1 = 98.8 \text{ kPa}" /></li>
                         <li><InlineMath math="P_2 = 96.1 \text{ kPa}" /></li>
@@ -205,10 +207,10 @@ export default function LessonPartPage() {
                     <p><strong className="text-accent">المطلوب:</strong> الحجم الجديد <InlineMath math="V_2" /></p>
                     <p><strong className="text-accent">الحل:</strong></p>
                     <ol className="list-decimal mr-6 text-sm space-y-2">
-                        <li>نكتب قانون بويل: <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div></li>
-                        <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: <div dir="ltr"><BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" /></div></li>
-                        <li>نعوض القيم: <div dir="ltr"><BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" /></div></li>
-                        <li>نحسب الناتج: <div dir="ltr"><BlockMath math="V_2 \approx 154.2 \text{ mL}" /></div></li>
+                        <li>نكتب قانون بويل: <BlockMath math="P_1 V_1 = P_2 V_2" /></li>
+                        <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: <BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" /></li>
+                        <li>نعوض القيم: <BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" /></li>
+                        <li>نحسب الناتج: <BlockMath math="V_2 \approx 154.2 \text{ mL}" /></li>
                     </ol>
                     <p className="text-sm font-semibold border-t pt-2">
                        الجواب: الحجم الجديد للغاز هو <InlineMath math="154.2 \text{ mL}" />. وهذا منطقي، لأن الضغط انخفض، فمن المتوقع أن يزداد الحجم.
@@ -284,5 +286,3 @@ export default function LessonPartPage() {
     </div>
   );
 }
-
-    
