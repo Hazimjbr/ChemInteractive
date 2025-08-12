@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Check, ArrowLeft, X, BookOpen, GitCompare, Thermometer, Box, Lightbulb, HelpCircle, ArrowRight, BookCopy, LineChart, Cpu } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import Quiz from './quiz';
+import FlippableCard from '@/app/materials/semester-1/unit-1/lesson-1/part-1/flippable-card';
 import InteractiveQuestionCard from '@/app/materials/semester-1/unit-1/lesson-1/part-1/interactive-question-card';
 import { InlineMath, BlockMath } from 'react-katex';
 
@@ -38,41 +39,82 @@ export default function LessonPartPage() {
       </header>
 
       <main className="space-y-8">
+        <Card>
+            <CardHeader>
+                <CardTitle>الفكرة الرئيسة</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-lg">
+                عند ثبات درجة الحرارة، يرتبط حجم الغاز وضغطه بعلاقة عكسية؛ فزيادة أحدهما تؤدي إلى نقصان الآخر.
+                </p>
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardHeader>
+                <CardTitle>نتاجات التعلم</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <ul className="space-y-3">
+                <li className="flex items-start">
+                    <Check className="h-6 w-6 text-green-500 ml-2 flex-shrink-0" />
+                    <span>
+                    أصف العلاقة بين الضغط والحجم لغاز محصور عند ثبات درجة حرارته.
+                    </span>
+                </li>
+                <li className="flex items-start">
+                    <Check className="h-6 w-6 text-green-500 ml-2 flex-shrink-0" />
+                    <span>
+                    أحل مسائل حسابية على قانون بويل.
+                    </span>
+                </li>
+                </ul>
+            </CardContent>
+        </Card>
+        
+        <article 
+          className="prose prose-lg max-w-none text-foreground"
+          dangerouslySetInnerHTML={{ __html: lessonContent }}
+        />
+
         <div className="grid md:grid-cols-2 gap-8 items-start">
             <div className="space-y-8">
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><BookCopy className="h-6 w-6 text-primary" /> الخلفية العلمية</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p>
-                        أجرى العالم بويل تجاربه باستخدام أنبوب زجاجي على شكل حرف J، حيث حصر كمية من الهواء باستخدام الزئبق. لاحظ أنه كلما أضاف زئبقًا (مما يزيد الضغط)، قل حجم الهواء المحصور.
-                        </p>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><GitCompare className="h-6 w-6 text-primary" /> نص قانون بويل</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <blockquote className="border-r-4 border-primary pr-4">
-                          "يتناسب حجم كمية محددة من الغاز المحصور تناسبًا عكسيًا مع الضغط الواقع عليه عند ثبات درجة حرارته."
+                 <FlippableCard
+                    cardTitle="نص قانون بويل"
+                    cardIcon={<GitCompare className="h-6 w-6" />}
+                    >
+                    <div className="space-y-3">
+                        <blockquote className="border-r-4 border-primary pr-4 text-base">
+                        "يتناسب حجم كمية محددة من الغاز المحصور تناسبًا عكسيًا مع الضغط الواقع عليه عند ثبات درجة حرارته."
                         </blockquote>
-                         <p className="text-sm text-muted-foreground mt-2">بعبارة أخرى: كلما زاد الضغط، قل الحجم، والعكس صحيح.</p>
-                    </CardContent>
-                </Card>
+                        <p className="text-sm text-muted-foreground mt-2">بعبارة أخرى: كلما زاد الضغط، قل الحجم، والعكس صحيح.</p>
+                        <p className="text-xs text-muted-foreground pt-2 border-t">اعتمد بويل في تجاربه على ملاحظة انكماش حجم الهواء المحصور في أنبوب على شكل حرف J عند إضافة الزئبق إليه (مما يزيد الضغط).</p>
+                    </div>
+                </FlippableCard>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><Cpu className="h-6 w-6 text-primary" /> تفسير القانون</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p>
-                        عند زيادة الضغط على وعاء يحتوي على غاز (مع ثبات الحرارة)، تقل المسافة بين جدران الوعاء فتتقارب جسيمات الغاز ويقل حجمه. ولأن متوسط الطاقة الحركية للجسيمات ثابت، فإن تقاربها يزيد من عدد تصادماتها مع جدار الوعاء في وحدة الزمن، مما يظهر على شكل زيادة في الضغط.
-                        </p>
-                    </CardContent>
-                </Card>
+                <FlippableCard
+                    cardTitle="العلاقة الرياضية"
+                    cardIcon={<Cpu className="h-6 w-6" />}
+                >
+                    <div className="space-y-2 text-center">
+                        <p className="text-sm">التناسب العكسي:</p>
+                        <BlockMath math="V \propto \frac{1}{P}" />
+                        <p className="text-sm">بإضافة ثابت التناسب (k)، تصبح المعادلة:</p>
+                        <BlockMath math="P \cdot V = k" />
+                        <p className="text-sm">لمقارنة حالتين للغاز:</p>
+                        <BlockMath math="P_1 V_1 = P_2 V_2" />
+                    </div>
+                </FlippableCard>
+
+                <FlippableCard
+                    cardTitle="تفسير القانون"
+                    cardIcon={<Cpu className="h-6 w-6" />}
+                >
+                    <p className="text-sm">
+                    عند زيادة الضغط على وعاء (بتقليل حجمه)، تقل المسافات بين جسيمات الغاز. ولأن درجة الحرارة ثابتة (الطاقة الحركية ثابتة)، فإن تقارب الجسيمات يؤدي إلى زيادة وتيرة تصادمها مع جدران الوعاء، وهو ما نلاحظه كزيادة في الضغط.
+                    </p>
+                </FlippableCard>
+
             </div>
              <Card>
                 <CardHeader>
@@ -84,23 +126,6 @@ export default function LessonPartPage() {
                 </CardContent>
             </Card>
         </div>
-
-        <Card>
-            <CardHeader>
-                <CardTitle>العلاقة الرياضية</CardTitle>
-            </CardHeader>
-            <CardContent className="text-center space-y-4">
-                <p>يمكن التعبير عن العلاقة العكسية بين الضغط (P) والحجم (V) رياضيًا كالتالي:</p>
-                <BlockMath math="V \propto \frac{1}{P}" />
-                <p>لتحويل التناسب إلى مساواة، نستخدم ثابتًا (k)، لتصبح المعادلة:</p>
-                <BlockMath math="P \cdot V = k" />
-                <p>وهذا يعني أن حاصل ضرب الضغط في الحجم لكمية معينة من الغاز عند درجة حرارة ثابتة هو قيمة ثابتة. ويمكن استخدام هذه العلاقة لمقارنة حالتين مختلفتين للغاز (قبل وبعد التغيير):</p>
-                 <BlockMath math="P_1 V_1 = P_2 V_2" />
-                 <p className="text-sm text-muted-foreground" dir="rtl">
-                    حيث <InlineMath math="P_1, V_1" /> هما الضغط والحجم الابتدائيان، و <InlineMath math="P_2, V_2" /> هما الضغط والحجم النهائيان.
-                 </p>
-            </CardContent>
-        </Card>
 
         <Card>
             <CardHeader>
