@@ -5,7 +5,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, ArrowLeft, X, BookOpen, GitCompare, Thermometer, Box, Lightbulb, HelpCircle, ArrowRight, BookCopy, LineChart, Cpu } from 'lucide-react';
+import { Check, ArrowLeft, X, BookCopy, GitCompare, Thermometer, Box, Lightbulb, HelpCircle, ArrowRight, Cpu } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import Quiz from './quiz';
 import FlippableCard from '@/app/materials/semester-1/unit-1/lesson-1/part-1/flippable-card';
@@ -76,8 +76,8 @@ export default function LessonPartPage() {
           className="prose prose-lg max-w-none text-foreground"
           dangerouslySetInnerHTML={{ __html: lessonContent }}
         />
-
-        <div className="grid md:grid-cols-2 gap-6">
+        
+        <div className="space-y-6">
             <FlippableCard
                 cardTitle="نص قانون بويل"
                 cardIcon={<GitCompare className="h-6 w-6" />}
@@ -96,11 +96,11 @@ export default function LessonPartPage() {
             >
                 <div className="space-y-2 text-center">
                     <p className="text-sm">التناسب العكسي:</p>
-                    <BlockMath math="V \propto \frac{1}{P}" />
+                    <div dir="ltr"><BlockMath math="V \propto \frac{1}{P}" /></div>
                     <p className="text-sm">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
-                    <BlockMath math="P \cdot V = k" />
+                    <div dir="ltr"><BlockMath math="P \cdot V = k" /></div>
                     <p className="text-sm">لمقارنة حالتين للغاز:</p>
-                    <BlockMath math="P_2 V_2 = P_1 V_1" />
+                    <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div>
                 </div>
             </FlippableCard>
 
@@ -142,10 +142,10 @@ export default function LessonPartPage() {
                     <p><strong className="text-accent">المطلوب:</strong> الحجم الجديد <InlineMath math="V_2" /></p>
                     <p><strong className="text-accent">الحل:</strong></p>
                     <ol className="list-decimal mr-6 text-sm space-y-2">
-                        <li>نكتب قانون بويل: <BlockMath math="P_2 V_2 = P_1 V_1" /></li>
-                        <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: <BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" /></li>
-                        <li>نعوض القيم: <BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" /></li>
-                        <li>نحسب الناتج: <BlockMath math="V_2 \approx 154.2 \text{ mL}" /></li>
+                        <li>نكتب قانون بويل: <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div></li>
+                        <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: <div dir="ltr"><BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" /></div></li>
+                        <li>نعوض القيم: <div dir="ltr"><BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" /></div></li>
+                        <li>نحسب الناتج: <div dir="ltr"><BlockMath math="V_2 \approx 154.2 \text{ mL}" /></div></li>
                     </ol>
                     <p className="text-sm font-semibold border-t pt-2">
                        الجواب: الحجم الجديد للغاز هو <InlineMath math="154.2 \text{ mL}" />. وهذا منطقي، لأن الضغط انخفض، فمن المتوقع أن يزداد الحجم.
@@ -195,7 +195,7 @@ export default function LessonPartPage() {
               <CardDescription>
                   بعد أن تعرفت على قانون بويل، اختبر فهمك له من خلال هذا الاختبار القصير.
               </CardDescription>
-          </CardHeader>
+          </Header>
           <CardContent>
               <Quiz lessonContent={lessonContent} />
           </CardContent>
