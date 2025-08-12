@@ -45,7 +45,7 @@ export default function LessonPartPage() {
             </CardHeader>
             <CardContent>
                 <p className="text-lg">
-                عند ثبات درجة الحرارة، يرتبط حجم الغاز وضغطه بعلاقة عكسية؛ فزيادة أحدهما تؤدي إلى نقصان الآخر.
+                عند ثبات درجة الحرارة وكمية الغاز، يتناسب حجم الغاز تناسبًا عكسيًا مع الضغط الواقع عليه.
                 </p>
             </CardContent>
         </Card>
@@ -77,55 +77,52 @@ export default function LessonPartPage() {
           dangerouslySetInnerHTML={{ __html: lessonContent }}
         />
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-            <div className="space-y-8">
-                 <FlippableCard
-                    cardTitle="نص قانون بويل"
-                    cardIcon={<GitCompare className="h-6 w-6" />}
-                    >
-                    <div className="space-y-3">
-                        <blockquote className="border-r-4 border-primary pr-4 text-base">
-                        "يتناسب حجم كمية محددة من الغاز المحصور تناسبًا عكسيًا مع الضغط الواقع عليه عند ثبات درجة حرارته."
-                        </blockquote>
-                        <p className="text-sm text-muted-foreground mt-2">بعبارة أخرى: كلما زاد الضغط، قل الحجم، والعكس صحيح.</p>
-                        <p className="text-xs text-muted-foreground pt-2 border-t">اعتمد بويل في تجاربه على ملاحظة انكماش حجم الهواء المحصور في أنبوب على شكل حرف J عند إضافة الزئبق إليه (مما يزيد الضغط).</p>
-                    </div>
-                </FlippableCard>
-
-                <FlippableCard
-                    cardTitle="العلاقة الرياضية"
-                    cardIcon={<Cpu className="h-6 w-6" />}
+        <div className="grid md:grid-cols-2 gap-6">
+            <FlippableCard
+                cardTitle="نص قانون بويل"
+                cardIcon={<GitCompare className="h-6 w-6" />}
                 >
-                    <div className="space-y-2 text-center">
-                        <p className="text-sm">التناسب العكسي:</p>
-                        <BlockMath math="V \propto \frac{1}{P}" />
-                        <p className="text-sm">بإضافة ثابت التناسب (k)، تصبح المعادلة:</p>
-                        <BlockMath math="P \cdot V = k" />
-                        <p className="text-sm">لمقارنة حالتين للغاز:</p>
-                        <BlockMath math="P_1 V_1 = P_2 V_2" />
-                    </div>
-                </FlippableCard>
+                <div className="space-y-3">
+                    <blockquote className="border-r-4 border-primary pr-4 text-base">
+                    "يتناسب حجم الغاز المحصور عكسيًا مع الضغط الواقع عليه عند ثبات درجة الحرارة وكمية الغاز."
+                    </blockquote>
+                    <p className="text-xs text-muted-foreground pt-2 border-t">اعتمد بويل في تجاربه على ملاحظة انكماش حجم الهواء المحصور في أنبوب على شكل حرف J عند إضافة الزئبق إليه، مما يزيد الضغط.</p>
+                </div>
+            </FlippableCard>
 
-                <FlippableCard
-                    cardTitle="تفسير القانون"
-                    cardIcon={<Cpu className="h-6 w-6" />}
-                >
-                    <p className="text-sm">
-                    عند زيادة الضغط على وعاء (بتقليل حجمه)، تقل المسافات بين جسيمات الغاز. ولأن درجة الحرارة ثابتة (الطاقة الحركية ثابتة)، فإن تقارب الجسيمات يؤدي إلى زيادة وتيرة تصادمها مع جدران الوعاء، وهو ما نلاحظه كزيادة في الضغط.
-                    </p>
-                </FlippableCard>
-
-            </div>
-             <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><Box className="h-6 w-6 text-primary" /> محاكاة التجربة</CardTitle>
-                    <CardDescription>حرّك المنزلق لتغيير الضغط ولاحظ ما يحدث لحجم الغاز.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <Diagram />
-                </CardContent>
-            </Card>
+            <FlippableCard
+                cardTitle="العلاقة الرياضية"
+                cardIcon={<Cpu className="h-6 w-6" />}
+            >
+                <div className="space-y-2 text-center">
+                    <p className="text-sm">التناسب العكسي:</p>
+                    <BlockMath math="V \propto \frac{1}{P}" />
+                    <p className="text-sm">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
+                    <BlockMath math="P \cdot V = k" />
+                    <p className="text-sm">لمقارنة حالتين للغاز:</p>
+                    <BlockMath math="P_1 V_1 = P_2 V_2" />
+                </div>
+            </FlippableCard>
         </div>
+        
+        <FlippableCard
+            cardTitle="تفسير القانون"
+            cardIcon={<Cpu className="h-6 w-6" />}
+        >
+            <p className="text-sm">
+            عند زيادة الضغط على الوعاء (بتقليل حجمه)، تقل المسافة بين جدران الوعاء وتتقارب جسيمات الغاز. ولأن متوسط الطاقة الحركية للجسيمات ثابت عند نفس درجة الحرارة، يزداد عدد تصادمات الجسيمات مع جدران الوعاء في وحدة الزمن، وهو ما نلاحظه كزيادة في الضغط.
+            </p>
+        </FlippableCard>
+
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Box className="h-6 w-6 text-primary" /> محاكاة التجربة</CardTitle>
+                <CardDescription>حرّك المنزلق لتغيير الضغط ولاحظ ما يحدث لحجم الغاز.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Diagram />
+            </CardContent>
+        </Card>
 
         <Card>
             <CardHeader>
