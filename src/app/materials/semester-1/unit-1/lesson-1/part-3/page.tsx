@@ -196,7 +196,7 @@ export default function LessonPartPage() {
                 <div className="bg-muted/50 p-4 rounded-lg space-y-3">
                     <div>
                         <p><strong className="text-accent">المعطيات:</strong></p>
-                        <div className="space-y-1 text-left" dir="ltr">
+                        <div className="space-y-1" dir="ltr">
                             <BlockMath math="V_1 = 150 \text{ mL}" />
                             <BlockMath math="P_1 = 98.8 \text{ kPa}" />
                             <BlockMath math="P_2 = 96.1 \text{ kPa}" />
