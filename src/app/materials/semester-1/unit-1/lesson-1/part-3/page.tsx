@@ -206,7 +206,7 @@ export default function LessonPartPage() {
                             <li>نكتب قانون بويل: 
                                 <BlockMath math="P_1 V_1 = P_2 V_2" />
                             </li>
-                            <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: 
+                            <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />
                                 <BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" />
                             </li>
                             <li>نعوض القيم: 
