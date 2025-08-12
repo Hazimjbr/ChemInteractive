@@ -224,9 +224,9 @@ export default function Diagram() {
 
                             <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
                             
-                            <text x="135" y="108" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">1</text>
-                            <line x1="130" y1="114" x2="140" y2="114" stroke="hsl(var(--foreground))" strokeWidth="1.5" />
-                            <text x="135" y="122" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
+                            <text x="135" y="110" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">1</text>
+                            <line x1="130" y1="116" x2="140" y2="116" stroke="hsl(var(--foreground))" strokeWidth="1.5" />
+                            <text x="135" y="124" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
                             
                             <line x1="25" y1="105" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
                         </svg>
@@ -237,3 +237,5 @@ export default function Diagram() {
     </>
   );
 }
+
+    
