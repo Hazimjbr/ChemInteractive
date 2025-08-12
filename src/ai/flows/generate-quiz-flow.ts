@@ -39,7 +39,7 @@ const GenerateQuizInputSchema = z.object({
 
 const quizGenerationPrompt = ai.definePrompt({
   name: 'quizGenerationPrompt',
-  model: 'googleai/gemini-1.5-pro',
+  model: 'googleai/gemini-1.5-flash',
   input: { schema: GenerateQuizInputSchema },
   output: { schema: GenerateQuizOutputSchema },
   prompt: `أنت مساعد تعليمي خبير في الكيمياء. مهمتك هي إنشاء اختبار قصير (كويز) من 5 أسئلة اختيار من متعدد بناءً على محتوى الدرس التالي ومستوى الصعوبة المحدد.
