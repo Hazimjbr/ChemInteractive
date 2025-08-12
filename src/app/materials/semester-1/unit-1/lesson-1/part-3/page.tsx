@@ -195,11 +195,11 @@ export default function LessonPartPage() {
                 </p>
                 <div className="bg-muted/50 p-4 rounded-lg space-y-3">
                     <p><strong className="text-accent">المعطيات:</strong></p>
-                    <ul className="list-disc mr-6 text-sm">
-                        <li><InlineMath math="V_1 = 150 \text{ mL}" /></li>
-                        <li><InlineMath math="P_1 = 98.8 \text{ kPa}" /></li>
-                        <li><InlineMath math="P_2 = 96.1 \text{ kPa}" /></li>
-                    </ul>
+                    <div className="space-y-1 text-sm text-left" dir="ltr">
+                        <BlockMath math="V_1 = 150 \text{ mL}" />
+                        <BlockMath math="P_1 = 98.8 \text{ kPa}" />
+                        <BlockMath math="P_2 = 96.1 \text{ kPa}" />
+                    </div>
                     <p><strong className="text-accent">المطلوب:</strong> الحجم الجديد <InlineMath math="V_2" /></p>
                     <p><strong className="text-accent">الحل:</strong></p>
                     <ol className="list-decimal mr-6 text-sm space-y-2">
@@ -282,5 +282,3 @@ export default function LessonPartPage() {
     </div>
   );
 }
-
-    
