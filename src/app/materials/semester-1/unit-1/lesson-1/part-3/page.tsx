@@ -162,7 +162,7 @@ export default function LessonPartPage() {
                     </p>
                     <div className="flex justify-center items-center p-4">
                        <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
-                           <g transform="translate(0 -8)">
+                           <g transform="translate(0 -11)">
                                 <defs>
                                     <marker id="arrowhead2" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
                                         <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
