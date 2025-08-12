@@ -5,9 +5,7 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import p5 from 'p5';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { LineChart } from 'lucide-react';
-import { InlineMath } from 'react-katex';
+import { Card, CardContent } from '@/components/ui/card';
 
 // --- Constants ---
 const CANVAS_HEIGHT = 350; 
@@ -174,74 +172,6 @@ export default function Diagram() {
                 <span className="text-sm font-mono">1.0</span>
             </div>
         </Card>
-         <div className="grid md:grid-cols-2 gap-6 items-start w-full mt-4">
-            <Card>
-                    <CardHeader>
-                    <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> V مقابل P</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                    <p className="text-xs text-muted-foreground text-center mb-2">
-                        يمثل المنحنى العلاقة العكسية بين الحجم والضغط، عند ثبات درجة الحرارة وعدد المولات.
-                    </p>
-                    <div className="flex justify-center items-center p-4">
-                        <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
-                            <defs>
-                                <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
-                                    <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
-                                </marker>
-                            </defs>
-                            
-                            <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-                            <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
-                            
-                            <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-                            <text x="140" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
-                            
-                            <path d="M 30 20 C 40 80, 80 100, 120 105" stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none" />
-                        </svg>
-                    </div>
-                </CardContent>
-            </Card>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold">
-                        <LineChart className="h-5 w-5 text-primary" />
-                        <span>V مقابل</span>
-                        <InlineMath math="\frac{1}{P}" />
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p className="text-xs text-muted-foreground text-center mb-2">
-                        يمثل المنحنى العلاقة الطردية بين الحجم ومقلوب الضغط، عند ثبات درجة الحرارة وعدد المولات.
-                    </p>
-                    <div className="flex justify-center items-center p-4">
-                        <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
-                            <defs>
-                                <marker id="arrowhead2" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
-                                    <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
-                                </marker>
-                            </defs>
-                            
-                            <g transform="translate(0, 5)">
-                                <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
-                                <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
-
-                                <line x1="20" y1="110" x2="130" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
-                                
-                                <g transform="translate(138, 110)">
-                                    <text x="0" y="-2" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">1</text>
-                                    <line x1="-5" y1="5" x2="5" y2="5" stroke="hsl(var(--foreground))" strokeWidth="1.5" />
-                                    <text x="0" y="12" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
-                                </g>
-                                
-                                <line x1="25" y1="105" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
-                            </g>
-                        </svg>
-                    </div>
-                </CardContent>
-            </Card>
-        </div>
     </div>
   );
 }

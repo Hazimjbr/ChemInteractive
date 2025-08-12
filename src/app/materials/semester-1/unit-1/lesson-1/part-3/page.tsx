@@ -112,14 +112,14 @@ export default function LessonPartPage() {
         <Card>
             <CardHeader>
                 <CardTitle className="flex items-center gap-2"><Box className="h-6 w-6 text-primary" /> محاكاة وتوضيح</CardTitle>
-                <CardDescription>حرّك المنزلق لتغيير الضغط ولاحظ ما يحدث لحجم الغاز، وتأمل الرسوم البيانية التي توضح قانون بويل.</CardDescription>
+                <CardDescription>حرّك المنزلق لتغيير الضغط ولاحظ ما يحدث لحجم الغاز.</CardDescription>
             </CardHeader>
             <CardContent>
                 <Diagram />
             </CardContent>
         </Card>
-        
-        <div className="grid md:grid-cols-2 gap-6 items-start w-full mt-4">
+
+         <div className="grid md:grid-cols-2 gap-6 items-start w-full mt-4">
             <Card>
                     <CardHeader>
                     <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> V مقابل P</CardTitle>
