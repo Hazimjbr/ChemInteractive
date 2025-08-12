@@ -102,7 +102,7 @@ export default function LessonPartPage() {
                         <p className="text-sm">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
                          <div dir="ltr"><BlockMath math="P \cdot V = k" /></div>
                         <p className="text-sm">لمقارنة حالتين للغاز:</p>
-                        <div dir="ltr"><BlockMath math="P_2 V_2 = P_1 V_1" /></div>
+                        <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div>
                     </div>
                 </FlippableCard>
             </div>
@@ -122,17 +122,16 @@ export default function LessonPartPage() {
                             </marker>
                         </defs>
                         
-                        {/* Y axis */}
+                        {/* Y axis (Volume) */}
                         <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-                        {/* X axis */}
+                        <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
+
+                        {/* X axis (Pressure) */}
                         <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-                        
-                        {/* Labels */}
-                        <text x="10" y="50" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
-                        <text x="80" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
+                        <text x="140" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
                         
                         {/* Curve */}
-                        <path d="M 30 20 Q 50 50, 120 100" stroke="hsl(var(--primary))" strokeWidth="2" fill="none" />
+                        <path d="M 30 20 Q 40 80, 120 100" stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none" />
                     </svg>
                 </CardContent>
             </Card>
@@ -175,7 +174,7 @@ export default function LessonPartPage() {
                     <p><strong className="text-accent">المطلوب:</strong> الحجم الجديد <InlineMath math="V_2" /></p>
                     <p><strong className="text-accent">الحل:</strong></p>
                     <ol className="list-decimal mr-6 text-sm space-y-2">
-                        <li>نكتب قانون بويل: <div dir="ltr"><BlockMath math="P_2 V_2 = P_1 V_1" /></div></li>
+                        <li>نكتب قانون بويل: <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div></li>
                         <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: <div dir="ltr"><BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" /></div></li>
                         <li>نعوض القيم: <div dir="ltr"><BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" /></div></li>
                         <li>نحسب الناتج: <div dir="ltr"><BlockMath math="V_2 \approx 154.2 \text{ mL}" /></div></li>
@@ -254,7 +253,3 @@ export default function LessonPartPage() {
     </div>
   );
 }
-
-    
-
-    
