@@ -93,7 +93,7 @@ export default function LessonPartPage() {
                 <p>يمكن التعبير عن العلاقة العكسية بين الضغط (P) والحجم (V) رياضيًا كالتالي:</p>
                 <BlockMath math="V \propto \frac{1}{P}" />
                 <p>لتحويل التناسب إلى مساواة، نستخدم ثابتًا (k)، لتصبح المعادلة:</p>
-                <BlockMath math="V = \frac{k}{P} \quad \Rightarrow \quad P \cdot V = k" />
+                <BlockMath math="P \cdot V = k" />
                 <p>وهذا يعني أن حاصل ضرب الضغط في الحجم لكمية معينة من الغاز عند درجة حرارة ثابتة هو قيمة ثابتة. ويمكن استخدام هذه العلاقة لمقارنة حالتين مختلفتين للغاز (قبل وبعد التغيير):</p>
                  <BlockMath math="P_1 V_1 = P_2 V_2" />
                  <p className="text-sm text-muted-foreground" dir="rtl">
