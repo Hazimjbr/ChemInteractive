@@ -113,7 +113,7 @@ export default function LessonPartPage() {
             </CardContent>
         </Card>
 
-        <Card>
+         <Card>
           <CardHeader>
             <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> V مقابل P</CardTitle>
           </CardHeader>
@@ -198,21 +198,21 @@ export default function LessonPartPage() {
                         <BlockMath math="P_2 = 96.1 \text{ kPa}" />
                     </div>
                      <div className="text-right">
-                        <p><strong className="text-accent">المطلوب:</strong> الحجم الجديد <InlineMath math="V_2" /></p>
+                        <p>المطلوب: الحجم الجديد <InlineMath math="V_2" /></p>
                     </div>
                     <div>
                         <p className="text-right"><strong className="text-accent">الحل:</strong></p>
                         <ol className="list-decimal mr-6 text-sm space-y-2">
-                            <li>نكتب قانون بويل: 
+                            <li>نكتب قانون بويل:
                                 <BlockMath math="P_1 V_1 = P_2 V_2" />
                             </li>
                             <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />
                                 <BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" />
                             </li>
-                            <li>نعوض القيم: 
+                            <li>نعوض القيم:
                                 <BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" />
                             </li>
-                            <li>نحسب الناتج: 
+                            <li>نحسب الناتج:
                                 <BlockMath math="V_2 \approx 154.2 \text{ mL}" />
                             </li>
                         </ol>
