@@ -39,89 +39,100 @@ export default function LessonPartPage() {
       </header>
 
       <main className="space-y-8">
-        <Card>
-            <CardHeader>
-                <CardTitle>الفكرة الرئيسة</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="text-lg">
-                عند ثبات درجة الحرارة وكمية الغاز، يتناسب حجم الغاز تناسبًا عكسيًا مع الضغط الواقع عليه.
-                </p>
-            </CardContent>
-        </Card>
+        <div className="grid md:grid-cols-2 gap-6 items-start">
+            <div className="space-y-6">
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>الفكرة الرئيسة</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-lg">
+                        عند ثبات درجة الحرارة وكمية الغاز، يتناسب حجم الغاز تناسبًا عكسيًا مع الضغط الواقع عليه.
+                        </p>
+                    </CardContent>
+                </Card>
 
-        <Card>
-            <CardHeader>
-                <CardTitle>نتاجات التعلم</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <ul className="space-y-3">
-                <li className="flex items-start">
-                    <Check className="h-6 w-6 text-green-500 ml-2 flex-shrink-0" />
-                    <span>
-                    أصف العلاقة بين الضغط والحجم لغاز محصور عند ثبات درجة حرارته.
-                    </span>
-                </li>
-                <li className="flex items-start">
-                    <Check className="h-6 w-6 text-green-500 ml-2 flex-shrink-0" />
-                    <span>
-                    أحل مسائل حسابية على قانون بويل.
-                    </span>
-                </li>
-                </ul>
-            </CardContent>
-        </Card>
-        
-        <article 
-          className="prose prose-lg max-w-none text-foreground"
-          dangerouslySetInnerHTML={{ __html: lessonContent }}
-        />
-        
-        <div className="space-y-6">
-            <FlippableCard
-                cardTitle="نص قانون بويل"
-                cardIcon={<GitCompare className="h-6 w-6" />}
+                <Card>
+                    <CardHeader>
+                        <CardTitle>نتاجات التعلم</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <ul className="space-y-3">
+                        <li className="flex items-start">
+                            <Check className="h-6 w-6 text-green-500 ml-2 flex-shrink-0" />
+                            <span>
+                            أصف العلاقة بين الضغط والحجم لغاز محصور عند ثبات درجة حرارته.
+                            </span>
+                        </li>
+                        <li className="flex items-start">
+                            <Check className="h-6 w-6 text-green-500 ml-2 flex-shrink-0" />
+                            <span>
+                            أحل مسائل حسابية على قانون بويل.
+                            </span>
+                        </li>
+                        </ul>
+                    </CardContent>
+                </Card>
+                
+                <article 
+                  className="prose prose-lg max-w-none text-foreground"
+                  dangerouslySetInnerHTML={{ __html: lessonContent }}
+                />
+            </div>
+            <div className="space-y-6">
+                <FlippableCard
+                    cardTitle="نص قانون بويل"
+                    cardIcon={<GitCompare className="h-6 w-6" />}
+                    >
+                    <div className="space-y-3">
+                        <blockquote className="border-r-4 border-primary pr-4 text-base">
+                        "يتناسب حجم الغاز المحصور عكسيًا مع الضغط الواقع عليه عند ثبات درجة الحرارة."
+                        </blockquote>
+                        <p className="text-xs text-muted-foreground pt-2 border-t">اعتمد بويل في تجاربه على ملاحظة انكماش حجم الهواء المحصور في أنبوب على شكل حرف J عند إضافة الزئبق إليه، مما يزيد الضغط.</p>
+                    </div>
+                </FlippableCard>
+
+                <FlippableCard
+                    cardTitle="العلاقة الرياضية"
+                    cardIcon={<Cpu className="h-6 w-6" />}
                 >
-                <div className="space-y-3">
-                    <blockquote className="border-r-4 border-primary pr-4 text-base">
-                    "يتناسب حجم الغاز المحصور عكسيًا مع الضغط الواقع عليه عند ثبات درجة الحرارة."
-                    </blockquote>
-                    <p className="text-xs text-muted-foreground pt-2 border-t">اعتمد بويل في تجاربه على ملاحظة انكماش حجم الهواء المحصور في أنبوب على شكل حرف J عند إضافة الزئبق إليه، مما يزيد الضغط.</p>
-                </div>
-            </FlippableCard>
-
-            <FlippableCard
-                cardTitle="العلاقة الرياضية"
-                cardIcon={<Cpu className="h-6 w-6" />}
-            >
-                <div className="space-y-2 text-center">
-                    <p className="text-sm">التناسب العكسي:</p>
-                    <div dir="ltr"><BlockMath math="V \propto \frac{1}{P}" /></div>
-                    <p className="text-sm">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
-                    <div dir="ltr"><BlockMath math="P V = k" /></div>
-                    <p className="text-sm">لمقارنة حالتين للغاز:</p>
-                    <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div>
-                </div>
-            </FlippableCard>
-
+                    <div className="space-y-2 text-center">
+                        <p className="text-sm">التناسب العكسي:</p>
+                        <div dir="ltr"><BlockMath math="V \propto \frac{1}{P}" /></div>
+                        <p className="text-sm">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
+                         <div dir="ltr"><BlockMath math="P \cdot V = k" /></div>
+                        <p className="text-sm">لمقارنة حالتين للغاز:</p>
+                        <div dir="ltr"><BlockMath math="P_2 V_2 = P_1 V_1" /></div>
+                    </div>
+                </FlippableCard>
+            </div>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-6 items-start">
             <Card>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2"><LineChart className="h-6 w-6 text-primary" /> العلاقة البيانية</CardTitle>
                     <CardDescription>يمثل المنحنى العلاقة العكسية بين الحجم والضغط.</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center items-center p-4">
-                    <svg width="300" height="200" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-sm h-auto">
+                    <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
+                        <defs>
+                            <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
+                                <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
+                            </marker>
+                        </defs>
                         
-                        {/* Axes Lines */}
-                        <line x1="10" y1="90" x2="140" y2="90" stroke="hsl(var(--muted-foreground))" strokeWidth="1" /> {/* X axis */}
-                        <line x1="10" y1="10" x2="10" y2="90" stroke="hsl(var(--muted-foreground))" strokeWidth="1" /> {/* Y axis */}
+                        {/* Y axis */}
+                        <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+                        {/* X axis */}
+                        <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
                         
-                        {/* Axes Labels */}
-                        <text x="5" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="8" fill="hsl(var(--foreground))">V</text>
-                        <text x="145" y="95" dominantBaseline="middle" textAnchor="middle" fontSize="8" fill="hsl(var(--foreground))">P</text>
+                        {/* Labels */}
+                        <text x="10" y="50" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
+                        <text x="80" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
                         
                         {/* Curve */}
-                        <path d="M 20 80 Q 40 20, 130 15" stroke="hsl(var(--primary))" strokeWidth="2" fill="none" />
+                        <path d="M 30 20 Q 50 50, 120 100" stroke="hsl(var(--primary))" strokeWidth="2" fill="none" />
                     </svg>
                 </CardContent>
             </Card>
@@ -134,17 +145,17 @@ export default function LessonPartPage() {
                  عند زيادة الضغط على الوعاء تقل المسافة بين جدران الوعاء وتتقارب جسيمات الغاز ويقل حجم الغاز ولأن متوسط الطاقة الحركية للجزيئات ثابت عند نفس درجة الحرارة يزداد عدد التصادمات مع جدران الوعاء فيزداد الضغط.
                 </p>
             </FlippableCard>
-            
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><Box className="h-6 w-6 text-primary" /> محاكاة التجربة</CardTitle>
-                    <CardDescription>حرّك المنزلق لتغيير الضغط ولاحظ ما يحدث لحجم الغاز.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <Diagram />
-                </CardContent>
-            </Card>
         </div>
+            
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Box className="h-6 w-6 text-primary" /> محاكاة التجربة</CardTitle>
+                <CardDescription>حرّك المنزلق لتغيير الضغط ولاحظ ما يحدث لحجم الغاز.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Diagram />
+            </CardContent>
+        </Card>
         
         <Card>
             <CardHeader>
@@ -164,7 +175,7 @@ export default function LessonPartPage() {
                     <p><strong className="text-accent">المطلوب:</strong> الحجم الجديد <InlineMath math="V_2" /></p>
                     <p><strong className="text-accent">الحل:</strong></p>
                     <ol className="list-decimal mr-6 text-sm space-y-2">
-                        <li>نكتب قانون بويل: <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div></li>
+                        <li>نكتب قانون بويل: <div dir="ltr"><BlockMath math="P_2 V_2 = P_1 V_1" /></div></li>
                         <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: <div dir="ltr"><BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" /></div></li>
                         <li>نعوض القيم: <div dir="ltr"><BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" /></div></li>
                         <li>نحسب الناتج: <div dir="ltr"><BlockMath math="V_2 \approx 154.2 \text{ mL}" /></div></li>
