@@ -111,7 +111,7 @@ export default function LessonPartPage() {
         <div className="grid md:grid-cols-2 gap-6 items-start">
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><LineChart className="h-6 w-6 text-primary" /> العلاقة البيانية</CardTitle>
+                    <CardTitle className="flex items-center gap-2"><LineChart className="h-6 w-6 text-primary" /> العلاقة البيانية (V مقابل P)</CardTitle>
                     <CardDescription>يمثل المنحنى العلاقة العكسية بين الحجم والضغط. عند ثبات درجة الحرارة وعدد المولات</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center items-center p-4">
@@ -131,19 +131,37 @@ export default function LessonPartPage() {
                         <text x="140" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
                         
                         {/* Curve */}
-                        <path d="M 30 20 Q 40 80, 120 100" stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none" />
+                        <path d="M 30 20 C 40 80, 120 100" stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none" />
                     </svg>
                 </CardContent>
             </Card>
 
-            <FlippableCard
-                cardTitle="تفسير القانون"
-                cardIcon={<Cpu className="h-6 w-6" />}
-            >
-                <p className="text-sm">
-                 عند زيادة الضغط على الوعاء تقل المسافة بين جدران الوعاء وتتقارب جسيمات الغاز ويقل حجم الغاز ولأن متوسط الطاقة الحركية للجزيئات ثابت عند نفس درجة الحرارة يزداد عدد التصادمات مع جدران الوعاء فيزداد الضغط.
-                </p>
-            </FlippableCard>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2"><LineChart className="h-6 w-6 text-primary" /> العلاقة البيانية (V مقابل 1/P)</CardTitle>
+                    <CardDescription>تمثل العلاقة الطردية بين الحجم ومقلوب الضغط. عند ثبات درجة الحرارة وعدد المولات</CardDescription>
+                </CardHeader>
+                <CardContent className="flex justify-center items-center p-4">
+                    <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
+                        <defs>
+                            <marker id="arrowhead2" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
+                                <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
+                            </marker>
+                        </defs>
+                        
+                        {/* Y axis (Volume) */}
+                        <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
+                        <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
+
+                        {/* X axis (1/Pressure) */}
+                        <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
+                        <text x="135" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">1/P</text>
+                        
+                        {/* Straight Line */}
+                        <line x1="30" y1="100" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
+                    </svg>
+                </CardContent>
+            </Card>
         </div>
             
         <Card>
@@ -162,7 +180,7 @@ export default function LessonPartPage() {
             </CardHeader>
             <CardContent>
                 <p className="mb-4">
-                    عينة من غاز النيتروجين حجمها <InlineMath math="150 \text{ mL}" /> عند ضغط مقداره <InlineMath math="98.8 \text{ kPa}" />. ما الحجم الجديد للعينة إذا انخفض الضغط إلى <InlineMath math="96.1 \text{ kPa}" /> مع بقاء درجة الحرارة ثابتة؟
+                    عينة من غاز النيتروجين حجمها 150 mL عند ضغط مقداره 98.8 kPa. ما الحجم الجديد للعينة إذا انخفض الضغط إلى 96.1 kPa مع بقاء درجة الحرارة ثابتة؟
                 </p>
                 <div className="bg-muted/50 p-4 rounded-lg space-y-3">
                     <p><strong className="text-accent">المعطيات:</strong></p>
