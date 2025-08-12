@@ -98,9 +98,9 @@ export default function LessonPartPage() {
                     <p className="text-sm">التناسب العكسي:</p>
                     <div dir="ltr"><BlockMath math="V \propto \frac{1}{P}" /></div>
                     <p className="text-sm">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
-                    <div dir="ltr"><BlockMath math="P \cdot V = k" /></div>
+                    <div dir="ltr"><BlockMath math="P V = k" /></div>
                     <p className="text-sm">لمقارنة حالتين للغاز:</p>
-                    <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div>
+                    <div dir="ltr"><BlockMath math="P_2 V_2 = P_1 V_1" /></div>
                 </div>
             </FlippableCard>
 
@@ -109,10 +109,10 @@ export default function LessonPartPage() {
                 cardIcon={<Cpu className="h-6 w-6" />}
             >
                 <p className="text-sm">
-                عند زيادة الضغط على الوعاء (بتقليل حجمه)، تقل المسافة بين جدران الوعاء وتتقارب جسيمات الغاز. ولأن متوسط الطاقة الحركية للجسيمات ثابت عند نفس درجة الحرارة، يزداد عدد تصادمات الجسيمات مع جدران الوعاء في وحدة الزمن، وهو ما نلاحظه كزيادة في الضغط.
+                 عند زيادة الضغط على الوعاء تقل المسافة بين جدران الوعاء وتتقارب جسيمات الغاز ويقل حجم الغاز ولأن متوسط الطاقة الحركية للجزيئات ثابت عند نفس درجة الحرارة يزداد عدد التصادمات مع جدران الوعاء فيزداد الضغط.
                 </p>
             </FlippableCard>
-
+            
             <Card>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2"><Box className="h-6 w-6 text-primary" /> محاكاة التجربة</CardTitle>
@@ -195,7 +195,7 @@ export default function LessonPartPage() {
               <CardDescription>
                   بعد أن تعرفت على قانون بويل، اختبر فهمك له من خلال هذا الاختبار القصير.
               </CardDescription>
-          </Header>
+          </CardHeader>
           <CardContent>
               <Quiz lessonContent={lessonContent} />
           </CardContent>
