@@ -194,23 +194,31 @@ export default function LessonPartPage() {
                     عينة من غاز النيتروجين حجمها <span dir="ltr">150 mL</span> عند ضغط مقداره <span dir="ltr">98.8 kPa</span>. ما الحجم الجديد للعينة إذا انخفض الضغط إلى <span dir="ltr">96.1 kPa</span> مع بقاء درجة الحرارة ثابتة؟
                 </p>
                 <div className="bg-muted/50 p-4 rounded-lg space-y-3">
-                    <p><strong className="text-accent">المعطيات:</strong></p>
-                    <div className="space-y-1 text-left" dir="ltr">
-                        <BlockMath math="V_1 = 150 \text{ mL}" />
-                        <BlockMath math="P_1 = 98.8 \text{ kPa}" />
-                        <BlockMath math="P_2 = 96.1 \text{ kPa}" />
+                    <div>
+                        <p><strong className="text-accent">المعطيات:</strong></p>
+                        <div className="space-y-1 text-left" dir="ltr">
+                            <BlockMath math="V_1 = 150 \text{ mL}" />
+                            <BlockMath math="P_1 = 98.8 \text{ kPa}" />
+                            <BlockMath math="P_2 = 96.1 \text{ kPa}" />
+                        </div>
                     </div>
-                    <p><strong className="text-accent">المطلوب:</strong> الحجم الجديد <InlineMath math="V_2" /></p>
-                    <p><strong className="text-accent">الحل:</strong></p>
-                    <ol className="list-decimal mr-6 text-sm space-y-2">
-                        <li>نكتب قانون بويل: <BlockMath math="P_1 V_1 = P_2 V_2" /></li>
-                        <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: <BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" /></li>
-                        <li>نعوض القيم: <BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" /></li>
-                        <li>نحسب الناتج: <BlockMath math="V_2 \approx 154.2 \text{ mL}" /></li>
-                    </ol>
-                    <p className="text-sm font-semibold border-t pt-2">
-                       الجواب: الحجم الجديد للغاز هو <InlineMath math="154.2 \text{ mL}" />. وهذا منطقي، لأن الضغط انخفض، فمن المتوقع أن يزداد الحجم.
-                    </p>
+                    <div>
+                        <p><strong className="text-accent">المطلوب:</strong> الحجم الجديد <InlineMath math="V_2" /></p>
+                    </div>
+                    <div>
+                        <p><strong className="text-accent">الحل:</strong></p>
+                        <ol className="list-decimal mr-6 text-sm space-y-2">
+                            <li>نكتب قانون بويل: <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div></li>
+                            <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: <div dir="ltr"><BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" /></div></li>
+                            <li>نعوض القيم: <div dir="ltr"><BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" /></div></li>
+                            <li>نحسب الناتج: <div dir="ltr"><BlockMath math="V_2 \approx 154.2 \text{ mL}" /></div></li>
+                        </ol>
+                    </div>
+                    <div className="border-t pt-3">
+                        <p className="text-sm font-semibold">
+                        الجواب: الحجم الجديد للغاز هو <InlineMath math="154.2 \text{ mL}" />. وهذا منطقي، لأن الضغط انخفض، فمن المتوقع أن يزداد الحجم.
+                        </p>
+                    </div>
                 </div>
             </CardContent>
         </Card>
