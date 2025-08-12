@@ -108,66 +108,11 @@ export default function LessonPartPage() {
             </div>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-6 items-start">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><LineChart className="h-6 w-6 text-primary" /> العلاقة البيانية (V مقابل P)</CardTitle>
-                    <CardDescription>يمثل المنحنى العلاقة العكسية بين الحجم والضغط. عند ثبات درجة الحرارة وعدد المولات</CardDescription>
-                </CardHeader>
-                <CardContent className="flex justify-center items-center p-4">
-                    <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
-                        <defs>
-                            <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
-                                <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
-                            </marker>
-                        </defs>
-                        
-                        {/* Y axis (Volume) */}
-                        <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-                        <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
-
-                        {/* X axis (Pressure) */}
-                        <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-                        <text x="140" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
-                        
-                        {/* Curve */}
-                        <path d="M 30 20 C 40 80, 120 100" stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none" />
-                    </svg>
-                </CardContent>
-            </Card>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><LineChart className="h-6 w-6 text-primary" /> العلاقة البيانية (V مقابل 1/P)</CardTitle>
-                    <CardDescription>تمثل العلاقة الطردية بين الحجم ومقلوب الضغط. عند ثبات درجة الحرارة وعدد المولات</CardDescription>
-                </CardHeader>
-                <CardContent className="flex justify-center items-center p-4">
-                    <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
-                        <defs>
-                            <marker id="arrowhead2" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
-                                <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
-                            </marker>
-                        </defs>
-                        
-                        {/* Y axis (Volume) */}
-                        <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
-                        <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
-
-                        {/* X axis (1/Pressure) */}
-                        <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead2)" />
-                        <text x="135" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">1/P</text>
-                        
-                        {/* Straight Line */}
-                        <line x1="30" y1="100" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
-                    </svg>
-                </CardContent>
-            </Card>
-        </div>
             
         <Card>
             <CardHeader>
-                <CardTitle className="flex items-center gap-2"><Box className="h-6 w-6 text-primary" /> محاكاة التجربة</CardTitle>
-                <CardDescription>حرّك المنزلق لتغيير الضغط ولاحظ ما يحدث لحجم الغاز.</CardDescription>
+                <CardTitle className="flex items-center gap-2"><Box className="h-6 w-6 text-primary" /> محاكاة وتوضيح</CardTitle>
+                <CardDescription>حرّك المنزلق لتغيير الضغط ولاحظ ما يحدث لحجم الغاز، وتأمل الرسوم البيانية التي توضح قانون بويل.</CardDescription>
             </CardHeader>
             <CardContent>
                 <Diagram />
