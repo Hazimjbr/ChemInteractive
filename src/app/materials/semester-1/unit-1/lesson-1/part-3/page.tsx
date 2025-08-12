@@ -112,7 +112,7 @@ export default function LessonPartPage() {
             <Card>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2"><LineChart className="h-6 w-6 text-primary" /> العلاقة البيانية</CardTitle>
-                    <CardDescription>يمثل المنحنى العلاقة العكسية بين الحجم والضغط.</CardDescription>
+                    <CardDescription>يمثل المنحنى العلاقة العكسية بين الحجم والضغط. عند ثبات درجة الحرارة وعدد المولات</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center items-center p-4">
                     <svg width="250" height="200" viewBox="0 0 150 125" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
