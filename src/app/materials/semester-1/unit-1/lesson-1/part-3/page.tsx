@@ -5,7 +5,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, ArrowLeft, X, BookCopy, GitCompare, Thermometer, Box, Lightbulb, HelpCircle, ArrowRight, Cpu } from 'lucide-react';
+import { Check, ArrowLeft, X, BookCopy, GitCompare, Thermometer, Box, Lightbulb, HelpCircle, ArrowRight, Cpu, LineChart } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import Quiz from './quiz';
 import FlippableCard from '@/app/materials/semester-1/unit-1/lesson-1/part-1/flippable-card';
@@ -100,11 +100,29 @@ export default function LessonPartPage() {
                     <p className="text-sm">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
                     <div dir="ltr"><BlockMath math="P V = k" /></div>
                     <p className="text-sm">لمقارنة حالتين للغاز:</p>
-                    <div dir="ltr"><BlockMath math="P_2 V_2 = P_1 V_1" /></div>
+                    <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div>
                 </div>
             </FlippableCard>
 
-             <FlippableCard
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2"><LineChart className="h-6 w-6 text-primary" /> العلاقة البيانية</CardTitle>
+                    <CardDescription>يمثل المنحنى العلاقة العكسية بين الحجم والضغط.</CardDescription>
+                </CardHeader>
+                <CardContent className="flex justify-center items-center p-4">
+                    <svg width="300" height="200" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-sm h-auto">
+                        
+                        <path d="M 10 90 L 10 10 L 140 90" fill="none" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                        
+                        <text x="5" y="8" dominantBaseline="middle" textAnchor="middle" fontSize="8" fill="hsl(var(--foreground))">V</text>
+                        <text x="145" y="95" dominantBaseline="middle" textAnchor="middle" fontSize="8" fill="hsl(var(--foreground))">P</text>
+                        
+                        <path d="M 20 15 Q 40 20, 90 80" stroke="hsl(var(--primary))" strokeWidth="2" fill="none" />
+                    </svg>
+                </CardContent>
+            </Card>
+
+            <FlippableCard
                 cardTitle="تفسير القانون"
                 cardIcon={<Cpu className="h-6 w-6" />}
             >
@@ -221,3 +239,5 @@ export default function LessonPartPage() {
     </div>
   );
 }
+
+    
