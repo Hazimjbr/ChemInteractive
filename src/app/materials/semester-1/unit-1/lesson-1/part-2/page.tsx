@@ -194,10 +194,10 @@ export default function LessonPartPage() {
                   <line x1="60" y1="50" x2="60" y2="95" className="stroke-foreground" strokeWidth="1" />
                   <text x="60" y="32" textAnchor="middle" className="font-bold text-lg fill-foreground">n</text>
                   <text x="60" y="45" textAnchor="middle" className="text-xs fill-muted-foreground">(mole)</text>
-                  <text x="32" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">C</text>
-                  <text x="32" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(mole/L)</text>
-                  <text x="88" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">V</text>
-                  <text x="88" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(L)</text>
+                  <text x="35" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">C</text>
+                  <text x="35" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(mole/L)</text>
+                  <text x="85" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">V</text>
+                  <text x="85" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(L)</text>
                 </svg>
                 <p className="mt-2 text-sm font-semibold"><InlineMath math="n = C \times V" /></p>
               </div>
@@ -210,10 +210,10 @@ export default function LessonPartPage() {
                   <line x1="60" y1="50" x2="60" y2="95" className="stroke-foreground" strokeWidth="1" />
                   <text x="60" y="32" textAnchor="middle" className="font-bold text-lg fill-foreground">m</text>
                   <text x="60" y="45" textAnchor="middle" className="text-xs fill-muted-foreground">(g)</text>
-                  <text x="32" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">Mr</text>
-                  <text x="32" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(g/mole)</text>
-                  <text x="88" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">n</text>
-                  <text x="88" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(mole)</text>
+                  <text x="35" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">Mr</text>
+                  <text x="35" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(g/mole)</text>
+                  <text x="85" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">n</text>
+                  <text x="85" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(mole)</text>
                 </svg>
                 <p className="mt-2 text-sm font-semibold"><InlineMath math="n = \frac{m}{Mr}" /></p>
               </div>
@@ -226,10 +226,10 @@ export default function LessonPartPage() {
                   <line x1="60" y1="50" x2="60" y2="95" className="stroke-foreground" strokeWidth="1" />
                   <text x="60" y="32" textAnchor="middle" className="font-bold text-lg fill-foreground">m</text>
                   <text x="60" y="45" textAnchor="middle" className="text-xs fill-muted-foreground">(g)</text>
-                  <text x="32" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">d</text>
-                  <text x="32" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(g/L)</text>
-                  <text x="88" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">V</text>
-                  <text x="88" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(L)</text>
+                  <text x="35" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">d</text>
+                  <text x="35" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(g/L)</text>
+                  <text x="85" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">V</text>
+                  <text x="85" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(L)</text>
                 </svg>
                 <p className="mt-2 text-sm font-semibold"><InlineMath math="d = \frac{m}{V}" /></p>
               </div>
