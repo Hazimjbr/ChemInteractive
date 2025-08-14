@@ -78,6 +78,18 @@ export default function LessonPartPage() {
         />
 
         <div className="space-y-8">
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2"><BookCopy className="h-6 w-6 text-primary" /> الخلفية العلمية</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p>
+                    يُعَدُّ العالم بويل من أوائل العلماء الذين بحثوا في خصائص الغازات؛ إذ درس العلاقة بين حجم كمية محددة من الغاز المحصور والضغط المؤثر فيه عند ثبات درجة حرارته. توصَّل من ذلك إلى العلاقة التي سُمِّيت قانون بويل.
+                    </p>
+                </CardContent>
+            </Card>
+
+
             <FlippableCard
                 cardTitle="نص قانون بويل"
                 cardIcon={<GitCompare className="h-6 w-6" />}
@@ -95,11 +107,11 @@ export default function LessonPartPage() {
               cardIcon={<Cpu className="h-6 w-6" />}
             >
               <div className="text-center space-y-2">
-                  <p className="text-sm text-foreground">التناسب العكسي:</p>
+                  <p className="text-sm text-foreground">التناسب العكسي</p>
                   <div dir="ltr"><BlockMath math="V \propto \frac{1}{P}" /></div>
-                  <p className="text-sm text-foreground">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
+                  <p className="text-sm text-foreground">لذلك، حاصل ضربهما يساوي ثابتًا (k)</p>
                   <div dir="ltr"><BlockMath math="P \cdot V = k" /></div>
-                  <p className="text-sm text-foreground">لمقارنة حالتين للغاز:</p>
+                  <p className="text-sm text-foreground">لمقارنة حالتين للغاز</p>
                   <div dir="ltr"><BlockMath math="P_1V_1 = P_2V_2" /></div>
               </div>
             </FlippableCard>
@@ -195,16 +207,16 @@ export default function LessonPartPage() {
                         عينة من غاز النيتروجين حجمها <InlineMath math="150\text{mL}" /> عند ضغط مقداره <InlineMath math="98.8\text{kPa}" />. ما الحجم الجديد للعينة إذا انخفض الضغط إلى <InlineMath math="96.1\text{kPa}" /> مع بقاء درجة الحرارة ثابتة؟
                     </p>
                     <div className="bg-muted/50 p-4 rounded-lg space-y-3">
-                        <p className="font-bold text-accent">المعطيات:</p>
+                        <p className="font-bold text-accent">المعطيات</p>
                         <div className="space-y-1" dir="ltr">
                             <p className="text-left"><InlineMath math="V_1 = 150\text{mL}" /></p>
                             <p className="text-left"><InlineMath math="P_1 = 98.8\text{kPa}" /></p>
                             <p className="text-left"><InlineMath math="P_2 = 96.1\text{kPa}" /></p>
                         </div>
-                        <p><span className="font-bold text-accent">المطلوب:</span> الحجم الجديد <InlineMath math="V_2" /></p>
+                        <p><span className="font-bold text-accent">المطلوب</span> الحجم الجديد <InlineMath math="V_2" /></p>
                         
                         <div>
-                            <p><strong className="text-accent">الحل:</strong></p>
+                            <p><strong className="text-accent">الحل</strong></p>
                             <ol className="list-decimal mr-6 text-sm space-y-2">
                                 <li>نكتب قانون بويل
                                     <div className="text-left" dir="ltr"><BlockMath math="P_1V_1 = P_2V_2" /></div>
