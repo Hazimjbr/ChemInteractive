@@ -190,7 +190,7 @@ export default function LessonPartPage() {
               <div className="flex flex-col items-center">
                 <svg viewBox="0 0 120 100" className="w-48 h-auto">
                   <polygon points="60,5 115,95 5,95" className="fill-muted stroke-foreground" strokeWidth="1" />
-                  <line x1="5" y1="50" x2="115" y2="50" className="stroke-foreground" strokeWidth="1" />
+                  <line x1="32.5" y1="50" x2="87.5" y2="50" className="stroke-foreground" strokeWidth="1" />
                   <line x1="60" y1="50" x2="60" y2="95" className="stroke-foreground" strokeWidth="1" />
                   <text x="60" y="32" textAnchor="middle" className="font-bold text-lg fill-foreground">n</text>
                   <text x="60" y="45" textAnchor="middle" className="text-xs fill-muted-foreground">(mole)</text>
@@ -206,7 +206,7 @@ export default function LessonPartPage() {
               <div className="flex flex-col items-center">
                 <svg viewBox="0 0 120 100" className="w-48 h-auto">
                   <polygon points="60,5 115,95 5,95" className="fill-muted stroke-foreground" strokeWidth="1" />
-                  <line x1="5" y1="50" x2="115" y2="50" className="stroke-foreground" strokeWidth="1" />
+                  <line x1="32.5" y1="50" x2="87.5" y2="50" className="stroke-foreground" strokeWidth="1" />
                   <line x1="60" y1="50" x2="60" y2="95" className="stroke-foreground" strokeWidth="1" />
                   <text x="60" y="32" textAnchor="middle" className="font-bold text-lg fill-foreground">m</text>
                   <text x="60" y="45" textAnchor="middle" className="text-xs fill-muted-foreground">(g)</text>
@@ -222,7 +222,7 @@ export default function LessonPartPage() {
               <div className="flex flex-col items-center">
                  <svg viewBox="0 0 120 100" className="w-48 h-auto">
                   <polygon points="60,5 115,95 5,95" className="fill-muted stroke-foreground" strokeWidth="1" />
-                  <line x1="5" y1="50" x2="115" y2="50" className="stroke-foreground" strokeWidth="1" />
+                  <line x1="32.5" y1="50" x2="87.5" y2="50" className="stroke-foreground" strokeWidth="1" />
                   <line x1="60" y1="50" x2="60" y2="95" className="stroke-foreground" strokeWidth="1" />
                   <text x="60" y="32" textAnchor="middle" className="font-bold text-lg fill-foreground">m</text>
                   <text x="60" y="45" textAnchor="middle" className="text-xs fill-muted-foreground">(g)</text>
