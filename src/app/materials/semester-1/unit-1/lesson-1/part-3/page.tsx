@@ -196,10 +196,10 @@ export default function LessonPartPage() {
                     </p>
                     <div className="bg-muted/50 p-4 rounded-lg space-y-3">
                         <p className="font-bold text-accent">المعطيات:</p>
-                        <div className="space-y-1 text-right">
-                            <p><InlineMath math="V_1 = 150 \text{ mL}" /></p>
-                            <p><InlineMath math="P_1 = 98.8 \text{ kPa}" /></p>
-                            <p><InlineMath math="P_2 = 96.1 \text{ kPa}" /></p>
+                        <div className="space-y-1">
+                            <p className="text-right"><InlineMath math="V_1 = 150 \text{ mL}" /></p>
+                            <p className="text-right"><InlineMath math="P_1 = 98.8 \text{ kPa}" /></p>
+                            <p className="text-right"><InlineMath math="P_2 = 96.1 \text{ kPa}" /></p>
                         </div>
                         <p><span className="font-bold text-accent">المطلوب:</span> الحجم الجديد <InlineMath math="V_2" /></p>
                         
@@ -297,3 +297,5 @@ export default function LessonPartPage() {
     </div>
   );
 }
+
+    
