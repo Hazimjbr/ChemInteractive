@@ -9,10 +9,13 @@ export default function Home() {
         <h1 className="text-5xl font-bold mb-4">
           أهلاً بك في ChemInteractive
         </h1>
-        <p className="text-xl text-muted-foreground mb-8">
+        <p className="text-xl text-muted-foreground mb-2">
           منصتك التفاعلية لإتقان كيمياء التوجيهي الأردني بأحدث الطرق التعليمية.
         </p>
-        <div className="flex justify-center gap-4">
+        <p className="text-2xl font-semibold text-accent mt-4" dir="ltr">
+            مع المعلم حازم جبر 0799747775
+        </p>
+        <div className="flex justify-center gap-4 mt-8">
           <Button size="lg" variant="default">
             <BookOpen className="ml-2" />
             ابدأ التعلم
