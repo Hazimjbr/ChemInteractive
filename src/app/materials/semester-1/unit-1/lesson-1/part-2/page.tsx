@@ -4,10 +4,11 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, ArrowLeft, X, BookOpen, Thermometer, Box, Beaker, GitCompare, Pipette, Scale, Lightbulb, HelpCircle, ArrowRight } from 'lucide-react';
+import { Check, ArrowLeft, X, BookOpen, Thermometer, Box, Beaker, GitCompare, Pipette, Scale, Lightbulb, HelpCircle, ArrowRight, Triangle } from 'lucide-react';
 import Quiz from './quiz';
 import FlippableCard from '@/app/materials/semester-1/unit-1/lesson-1/part-1/flippable-card'; // Re-using the same component
 import InteractiveQuestionCard from '@/app/materials/semester-1/unit-1/lesson-1/part-1/interactive-question-card';
+import { InlineMath } from 'react-katex';
 
 
 const lessonContent = `<p>لفهم سلوك الغازات بشكل دقيق، نحتاج إلى دراسة العوامل التي تؤثر فيها. هذه العوامل هي متغيرات يمكن قياسها وتغييرها، وهي تحدد حالة الغاز. في هذا الجزء، سنتعرف على هذه المتغيرات الأربعة الأساسية التي ستكون حجر الزاوية في جميع قوانين الغازات التي سندرسها لاحقًا.</p>`;
@@ -75,7 +76,7 @@ export default function LessonPartPage() {
                     <p className="font-semibold text-sm">هو القوة المؤثرة عموديًا على وحدة المساحة.</p>
                     <p className="text-xs text-muted-foreground">ينشأ ضغط الغاز عن تصادم جسيماته بجدار الوعاء الذي يحتويه. كلما زادت التصادمات، زاد الضغط.</p>
                     <div>
-                        <h4 className="font-semibold text-accent text-xs mb-1">وحدات القياس:</h4>
+                        <h4 className="font-semibold text-accent text-xs mb-1">وحدات القياس</h4>
                         <ul className="list-disc mr-4 text-xs space-y-1">
                             <li>باسكال (Pa) وهي الوحدة الدولية (SI).</li>
                             <li>كيلوباسكال (kPa).</li>
@@ -97,7 +98,7 @@ export default function LessonPartPage() {
                     <p className="font-semibold text-sm">هو مقدار الحيز الذي تشغله جسيمات الغاز.</p>
                     <p className="text-xs text-muted-foreground">حجم الغاز يساوي حجم الوعاء الذي يوجد فيه.</p>
                     <div>
-                        <h4 className="font-semibold text-accent text-xs mb-1">وحدات القياس:</h4>
+                        <h4 className="font-semibold text-accent text-xs mb-1">وحدات القياس</h4>
                         <ul className="list-disc mr-4 text-xs space-y-1">
                             <li>متر مكعب (m³).</li>
                             <li>لتر (L).</li>
@@ -118,7 +119,7 @@ export default function LessonPartPage() {
                     <p className="font-semibold text-sm">هي مقياس لمتوسط الطاقة الحركية لجسيمات الغاز.</p>
                     <p className="text-xs text-muted-foreground">يجب استخدام درجة الحرارة المطلقة (بالكلفن) في جميع قوانين الغازات.</p>
                     <div>
-                        <h4 className="font-semibold text-accent text-xs mb-1">وحدات القياس:</h4>
+                        <h4 className="font-semibold text-accent text-xs mb-1">وحدات القياس</h4>
                         <ul className="list-disc mr-4 text-xs space-y-1">
                             <li>كلفن (K) وهي الوحدة المعتمدة.</li>
                             <li>درجة مئوية (سيليزية) (°C).</li>
@@ -138,13 +139,13 @@ export default function LessonPartPage() {
                     <p className="font-semibold text-sm">هي عدد جسيمات الغاز الموجودة في حجم معين.</p>
                      <p className="text-xs text-muted-foreground">غالبًا ما يتم التعبير عن كمية الغاز بعدد المولات.</p>
                     <div>
-                        <h4 className="font-semibold text-accent text-xs mb-1">وحدات القياس:</h4>
+                        <h4 className="font-semibold text-accent text-xs mb-1">وحدات القياس</h4>
                         <ul className="list-disc mr-4 text-xs space-y-1">
                             <li>مول (mol) ويرمز له بالرمز n.</li>
                         </ul>
                     </div>
                      <div className='text-xs mt-2 text-muted-foreground italic border-t pt-2'>
-                        <p>المول الواحد يحتوي على عدد أفوجادرو من الجسيمات:</p>
+                        <p>المول الواحد يحتوي على عدد أفوجادرو من الجسيمات</p>
                         <p dir="ltr" className="text-center font-mono mt-1">6.022 × 10²³</p>
                     </div>
                  </div>
@@ -160,19 +161,80 @@ export default function LessonPartPage() {
                   <li className="flex items-start gap-3">
                       <span className="font-bold text-primary text-lg mt-[-2px]">1.</span>
                       <div>
-                          <p className='font-semibold'>الضغط المعياري (Standard Pressure):</p>
+                          <p className='font-semibold'>الضغط المعياري (Standard Pressure)</p>
                           <p className='text-muted-foreground mt-1' dir="ltr">P = 1 atm = 760 mmHg = 101.3 kPa</p>
                       </div>
                   </li>
                   <li className="flex items-start gap-3">
                       <span className="font-bold text-primary text-lg mt-[-2px]">2.</span>
                        <div>
-                          <p className='font-semibold'>درجة الحرارة المعيارية (Standard Temperature):</p>
+                          <p className='font-semibold'>درجة الحرارة المعيارية (Standard Temperature)</p>
                           <p className='text-muted-foreground mt-1' dir="ltr">T = 0 °C = 273 K</p>
                       </div>
                   </li>
               </ul>
           </FlippableCard>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Triangle className="h-6 w-6 text-primary" />
+                علاقات رياضية مساعدة
+              </CardTitle>
+              <CardDescription>
+                هذه المثلثات تساعدك على تذكر وحساب الكميات الأساسية بسهولة.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center" dir="ltr">
+              {/* Triangle 1: Moles, Concentration, Volume */}
+              <div className="flex flex-col items-center">
+                <svg viewBox="0 0 120 100" className="w-48 h-auto">
+                  <polygon points="60,5 115,95 5,95" className="fill-muted stroke-foreground" strokeWidth="1" />
+                  <line x1="5" y1="50" x2="115" y2="50" className="stroke-foreground" strokeWidth="1" />
+                  <line x1="60" y1="50" x2="60" y2="95" className="stroke-foreground" strokeWidth="1" />
+                  <text x="60" y="32" textAnchor="middle" className="font-bold text-lg fill-foreground">n</text>
+                  <text x="60" y="45" textAnchor="middle" className="text-xs fill-muted-foreground">(mole)</text>
+                  <text x="32" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">C</text>
+                  <text x="32" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(mole/L)</text>
+                  <text x="88" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">V</text>
+                  <text x="88" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(L)</text>
+                </svg>
+                <p className="mt-2 text-sm font-semibold"><InlineMath math="n = C \times V" /></p>
+              </div>
+
+              {/* Triangle 2: Mass, Molar Mass, Moles */}
+              <div className="flex flex-col items-center">
+                <svg viewBox="0 0 120 100" className="w-48 h-auto">
+                  <polygon points="60,5 115,95 5,95" className="fill-muted stroke-foreground" strokeWidth="1" />
+                  <line x1="5" y1="50" x2="115" y2="50" className="stroke-foreground" strokeWidth="1" />
+                  <line x1="60" y1="50" x2="60" y2="95" className="stroke-foreground" strokeWidth="1" />
+                  <text x="60" y="32" textAnchor="middle" className="font-bold text-lg fill-foreground">m</text>
+                  <text x="60" y="45" textAnchor="middle" className="text-xs fill-muted-foreground">(g)</text>
+                  <text x="32" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">Mr</text>
+                  <text x="32" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(g/mole)</text>
+                  <text x="88" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">n</text>
+                  <text x="88" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(mole)</text>
+                </svg>
+                <p className="mt-2 text-sm font-semibold"><InlineMath math="n = \frac{m}{Mr}" /></p>
+              </div>
+
+              {/* Triangle 3: Mass, Density, Volume */}
+              <div className="flex flex-col items-center">
+                 <svg viewBox="0 0 120 100" className="w-48 h-auto">
+                  <polygon points="60,5 115,95 5,95" className="fill-muted stroke-foreground" strokeWidth="1" />
+                  <line x1="5" y1="50" x2="115" y2="50" className="stroke-foreground" strokeWidth="1" />
+                  <line x1="60" y1="50" x2="60" y2="95" className="stroke-foreground" strokeWidth="1" />
+                  <text x="60" y="32" textAnchor="middle" className="font-bold text-lg fill-foreground">m</text>
+                  <text x="60" y="45" textAnchor="middle" className="text-xs fill-muted-foreground">(g)</text>
+                  <text x="32" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">d</text>
+                  <text x="32" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(g/L)</text>
+                  <text x="88" y="70" textAnchor="middle" className="font-bold text-lg fill-foreground">V</text>
+                  <text x="88" y="85" textAnchor="middle" className="text-xs fill-muted-foreground">(L)</text>
+                </svg>
+                <p className="mt-2 text-sm font-semibold"><InlineMath math="d = \frac{m}{V}" /></p>
+              </div>
+            </CardContent>
+          </Card>
 
           <div className="space-y-4">
             <div className="flex items-center gap-3">
@@ -184,7 +246,7 @@ export default function LessonPartPage() {
             </div>
             <div className="grid md:grid-cols-2 gap-6">
                 <InteractiveQuestionCard 
-                    question="بالون يحتوي على غاز الهيليوم ضغطه 900 mmHg فإن قيمة ضغطه بوحدة atm تساوي:"
+                    question="بالون يحتوي على غاز الهيليوم ضغطه 900mmHg فإن قيمة ضغطه بوحدة atm تساوي"
                     options={[
                         "1.18",
                         "0.84",
@@ -195,7 +257,7 @@ export default function LessonPartPage() {
                     explanation="للتحويل من mmHg إلى atm، نقوم بالقسمة على 760. المعادلة هي: 900 mmHg / 760 ≈ 1.18 atm."
                 />
                  <InteractiveQuestionCard 
-                    question="بالون درجة حرارته 20 °C فإن حرارته المطلقة تساوي:"
+                    question="بالون درجة حرارته 20°C فإن حرارته المطلقة تساوي"
                     options={[
                         "13.75",
                         "253",
