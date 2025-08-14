@@ -128,11 +128,11 @@ export default function LessonPartPage() {
                 <CardTitle>العلاقة الرياضية</CardTitle>
             </CardHeader>
             <CardContent className="text-center space-y-4">
-                <p>يمكن التعبير عن العلاقة الطردية بين الحجم (V) ودرجة الحرارة المطلقة (T) رياضيًا كالتالي:</p>
+                <p>يمكن التعبير عن العلاقة الطردية بين الحجم (V) ودرجة الحرارة المطلقة (T) رياضيًا كالتالي</p>
                 <BlockMath math="V \propto T" />
-                <p>لتحويل التناسب إلى مساواة، نستخدم ثابتًا (k)، لتصبح المعادلة:</p>
+                <p>لتحويل التناسب إلى مساواة، نستخدم ثابتًا (k)، لتصبح المعادلة</p>
                 <BlockMath math="\frac{V}{T} = k" />
-                <p>وهذا يعني أن حاصل قسمة الحجم على درجة الحرارة المطلقة لكمية معينة من الغاز عند ضغط ثابت هو قيمة ثابتة. ويمكن استخدام هذه العلاقة لمقارنة حالتين مختلفتين للغاز:</p>
+                <p>وهذا يعني أن حاصل قسمة الحجم على درجة الحرارة المطلقة لكمية معينة من الغاز عند ضغط ثابت هو قيمة ثابتة. ويمكن استخدام هذه العلاقة لمقارنة حالتين مختلفتين للغاز</p>
                  <BlockMath math="\frac{V_1}{T_1} = \frac{V_2}{T_2}" />
                  <p className="text-sm text-muted-foreground" dir="rtl">
                     حيث <InlineMath math="V_1, T_1" /> هما الحجم والحرارة الابتدائيان، و <InlineMath math="V_2, T_2" /> هما الحجم والحرارة النهائيان. **يجب دائمًا استخدام درجة حرارة الكلفن (K)**.
@@ -159,7 +159,7 @@ export default function LessonPartPage() {
                         <p><strong className="text-accent">المطلوب</strong> الحجم الجديد <InlineMath math="V_2" /></p>
                         <p><strong className="text-accent">الحل</strong></p>
                         <ol className="list-decimal mr-6 text-sm space-y-2">
-                            <li>**الخطوة الأولى والأهم:** نحول درجات الحرارة إلى كلفن.
+                            <li>**الخطوة الأولى والأهم** نحول درجات الحرارة إلى كلفن.
                                 <div dir="ltr" className="text-left"><BlockMath math="T_1(K) = 25 + 273 = 298\text{K}" /></div>
                                 <div dir="ltr" className="text-left"><BlockMath math="T_2(K) = 55 + 273 = 328\text{K}" /></div>
                             </li>
@@ -181,9 +181,9 @@ export default function LessonPartPage() {
                 </CardHeader>
                 <CardContent>
                 <p className="text-xs text-muted-foreground text-center mb-2">
-                    يمثل الخط المستقيم العلاقة الطردية بين الحجم ودرجة الحرارة المطلقة، عند ثبات الضغط وعدد المولات.
+                    يمثل الخط المستقيم العلاقة الطردية بين الحجم ودرجة الحرارة المطلقة.
                 </p>
-                <div className="flex justify-center items-center p-4" style={{ transform: 'translateY(-4px)' }}>
+                <div className="flex justify-center items-center p-4" style={{ transform: 'translateY(-8px)' }}>
                     <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
                          <defs>
                             <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
@@ -225,7 +225,7 @@ export default function LessonPartPage() {
                   explanation="أولاً، نحول الحرارة إلى كلفن: T₁=200+273=473K, T₂=250+273=523K. الضغط ثابت، لذا نستخدم قانون شارل: V₂ = V₁T₂/T₁ = (4L * 523K) / 473K ≈ 4.4L."
               />
                <InteractiveQuestionCard 
-                  question="عينة من غاز محصور حجمها 4L درجة حرارتها 400K. عند مضاعفة حرارتها وثبات ضغطها فإن حجمها"
+                  question="عينة من غاز محصور حجمها 4L درجة حرارتها 400K عند مضاعفة حرارتها وثبات ضغطها فإن حجمها"
                   options={[
                       "يصبح 5L",
                       "يزداد إلى الضعف",
