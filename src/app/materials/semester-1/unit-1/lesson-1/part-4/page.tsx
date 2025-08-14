@@ -147,29 +147,29 @@ export default function LessonPartPage() {
                 </CardHeader>
                 <CardContent>
                     <p className="mb-4">
-                       إذا كان حجم بالون <InlineMath math="2.5 \text{ L}" /> عند درجة حرارة <InlineMath math="25^\circ\text{C}" />, فما هو حجمه الجديد إذا سخن إلى <InlineMath math="55^\circ\text{C}" /> مع بقاء الضغط ثابتًا؟
+                       إذا كان حجم بالون <InlineMath math="2.5\text{L}" /> عند درجة حرارة <InlineMath math="25^\circ\text{C}" />، فما هو حجمه الجديد إذا سخن إلى <InlineMath math="55^\circ\text{C}" /> مع بقاء الضغط ثابتًا؟
                     </p>
                     <div className="bg-muted/50 p-4 rounded-lg space-y-3">
-                        <p><strong className="text-accent">المعطيات:</strong></p>
-                        <ul className="list-disc mr-6 text-sm space-y-1">
-                            <li className="flex justify-between"><span>الحجم الابتدائي:</span><span dir="ltr"><InlineMath math="V_1 = 2.5 \text{ L}" /></span></li>
-                            <li className="flex justify-between"><span>الحرارة الابتدائية:</span><span dir="ltr"><InlineMath math="T_1 = 25^\circ\text{C}" /></span></li>
-                            <li className="flex justify-between"><span>الحرارة النهائية:</span><span dir="ltr"><InlineMath math="T_2 = 55^\circ\text{C}" /></span></li>
-                        </ul>
-                        <p><strong className="text-accent">المطلوب:</strong> الحجم الجديد <InlineMath math="V_2" /></p>
-                        <p><strong className="text-accent">الحل:</strong></p>
+                        <p><strong className="text-accent">المعطيات</strong></p>
+                        <div className="space-y-1" dir="ltr">
+                            <p className="text-left"><InlineMath math="V_1 = 2.5\text{L}" /></p>
+                            <p className="text-left"><InlineMath math="T_1 = 25^\circ\text{C}" /></p>
+                            <p className="text-left"><InlineMath math="T_2 = 55^\circ\text{C}" /></p>
+                        </div>
+                        <p><strong className="text-accent">المطلوب</strong> الحجم الجديد <InlineMath math="V_2" /></p>
+                        <p><strong className="text-accent">الحل</strong></p>
                         <ol className="list-decimal mr-6 text-sm space-y-2">
                             <li>**الخطوة الأولى والأهم:** نحول درجات الحرارة إلى كلفن.
-                                <BlockMath math="T_1(K) = 25 + 273 = 298 \text{ K}" />
-                                <BlockMath math="T_2(K) = 55 + 273 = 328 \text{ K}" />
+                                <div dir="ltr" className="text-left"><BlockMath math="T_1(K) = 25 + 273 = 298\text{K}" /></div>
+                                <div dir="ltr" className="text-left"><BlockMath math="T_2(K) = 55 + 273 = 328\text{K}" /></div>
                             </li>
-                            <li>نكتب قانون شارل: <BlockMath math="\frac{V_1}{T_1} = \frac{V_2}{T_2}" /></li>
-                            <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: <BlockMath math="V_2 = \frac{V_1 T_2}{T_1}" /></li>
-                            <li>نعوض القيم: <BlockMath math="V_2 = \frac{(2.5 \text{ L}) \cdot (328 \text{ K})}{298 \text{ K}}" /></li>
-                            <li>نحسب الناتج: <BlockMath math="V_2 \approx 2.75 \text{ L}" /></li>
+                            <li>نكتب قانون شارل <div dir="ltr" className="text-left"><BlockMath math="\frac{V_1}{T_1} = \frac{V_2}{T_2}" /></div></li>
+                            <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" /> <div dir="ltr" className="text-left"><BlockMath math="V_2 = \frac{V_1 T_2}{T_1}" /></div></li>
+                            <li>نعوض القيم <div dir="ltr" className="text-left"><BlockMath math="V_2 = \frac{(2.5\text{L}) \cdot (328\text{K})}{298\text{K}}" /></div></li>
+                            <li>نحسب الناتج <div dir="ltr" className="text-left"><BlockMath math="V_2 \approx 2.75\text{L}" /></div></li>
                         </ol>
                         <p className="text-sm font-semibold border-t pt-2">
-                           الجواب: الحجم الجديد للبالون هو <InlineMath math="2.75 \text{ L}" />. وهذا منطقي، لأن درجة الحرارة زادت، فمن المتوقع أن يزداد الحجم.
+                           الجواب: الحجم الجديد للبالون هو <InlineMath math="2.75\text{L}" />. وهذا منطقي، لأن درجة الحرارة زادت، فمن المتوقع أن يزداد الحجم.
                         </p>
                     </div>
                 </CardContent>
@@ -177,13 +177,13 @@ export default function LessonPartPage() {
 
              <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> العلاقة البيانية</CardTitle>
+                    <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> العلاقة البيانية (V مقابل T)</CardTitle>
                 </CardHeader>
                 <CardContent>
                 <p className="text-xs text-muted-foreground text-center mb-2">
                     يمثل الخط المستقيم العلاقة الطردية بين الحجم ودرجة الحرارة المطلقة، عند ثبات الضغط وعدد المولات.
                 </p>
-                <div className="flex justify-center items-center p-4">
+                <div className="flex justify-center items-center p-4" style={{ transform: 'translateY(-4px)' }}>
                     <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
                          <defs>
                             <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
@@ -198,9 +198,6 @@ export default function LessonPartPage() {
                         <text x="140" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">T</text>
                         
                         <line x1="25" y1="105" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
-
-                        <text x="80" y="40" textAnchor="middle" fontSize="10" fill="hsl(var(--foreground))">ثبات الضغط</text>
-                        <text x="80" y="55" textAnchor="middle" fontSize="10" fill="hsl(var(--foreground))">وعدد المولات</text>
                     </svg>
                 </div>
                 </CardContent>
@@ -217,7 +214,7 @@ export default function LessonPartPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-6">
               <InteractiveQuestionCard 
-                  question="عينة من غاز محصور حجمها 4L وضغطها 2atm عند درجة حرارة 200°C فإن حجمها عندما تصبح درجة حرارتها 250°C وضغطها 2atm يساوي:"
+                  question="عينة من غاز محصور حجمها 4L وضغطها 2atm عند درجة حرارة 200°C فإن حجمها عندما تصبح درجة حرارتها 250°C وضغطها 2atm يساوي"
                   options={[
                       "5L",
                       "3.6L",
@@ -228,7 +225,7 @@ export default function LessonPartPage() {
                   explanation="أولاً، نحول الحرارة إلى كلفن: T₁=200+273=473K, T₂=250+273=523K. الضغط ثابت، لذا نستخدم قانون شارل: V₂ = V₁T₂/T₁ = (4L * 523K) / 473K ≈ 4.4L."
               />
                <InteractiveQuestionCard 
-                  question="عينة من غاز محصور حجمها 4L درجة حرارتها 400K. عند مضاعفة حرارتها وثبات ضغطها فإن حجمها:"
+                  question="عينة من غاز محصور حجمها 4L درجة حرارتها 400K. عند مضاعفة حرارتها وثبات ضغطها فإن حجمها"
                   options={[
                       "يصبح 5L",
                       "يزداد إلى الضعف",
@@ -274,5 +271,3 @@ export default function LessonPartPage() {
     </div>
   );
 }
-
-    
