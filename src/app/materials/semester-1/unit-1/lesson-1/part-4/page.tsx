@@ -38,6 +38,44 @@ export default function LessonPartPage() {
       </header>
 
       <main className="space-y-8">
+        <Card>
+            <CardHeader>
+                <CardTitle>الفكرة الرئيسة</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-lg">
+                عند ثبات الضغط وكمية الغاز، يتناسب حجم الغاز تناسبًا طرديًا مع درجة حرارته المطلقة.
+                </p>
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardHeader>
+                <CardTitle>نتاجات التعلم</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <ul className="space-y-3">
+                <li className="flex items-start">
+                    <Check className="h-6 w-6 text-green-500 ml-2 flex-shrink-0" />
+                    <span>
+                    أصف العلاقة بين الحجم ودرجة الحرارة لغاز محصور عند ثبات ضغطه.
+                    </span>
+                </li>
+                <li className="flex items-start">
+                    <Check className="h-6 w-6 text-green-500 ml-2 flex-shrink-0" />
+                    <span>
+                    أحل مسائل حسابية على قانون شارل.
+                    </span>
+                </li>
+                </ul>
+            </CardContent>
+        </Card>
+
+        <article 
+          className="prose prose-lg max-w-none text-foreground"
+          dangerouslySetInnerHTML={{ __html: lessonContent }}
+        />
+
         <div className="grid md:grid-cols-2 gap-8 items-start">
             <div className="space-y-8">
                 <Card>
@@ -69,7 +107,7 @@ export default function LessonPartPage() {
                     </CardHeader>
                     <CardContent>
                         <p>
-                        عند رفع درجة حرارة الغاز (مع ثبات الضغط)، يزداد متوسط الطاقة الحركية لجسيماته، فتتحرك بسرعة أكبر وتتصادم بقوة أكبر مع جدار الوعاء. للحفاظ على الضغط ثابتًا، يجب أن يزداد حجم الوعاء لتقليل عدد التصادمات في وحدة الزمن.
+                        عند زيادة درجة حرارة الغاز يزداد متوسط الطاقة الحركية للجزيئات وتزداد سرعتها وعدد تصادماتها مع جدار الوعاء وبالتالي يزداد حجم الغاز.
                         </p>
                     </CardContent>
                 </Card>
