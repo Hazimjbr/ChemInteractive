@@ -93,7 +93,7 @@ export default function LessonPartPage() {
 
                     <Card>
                         <CardHeader>
-                            <CardTitle className="flex items-center gap-2"><Cpu className="h-6 w-6 text-primary" /> تفسير القانون</CardTitle>
+                            <CardTitle className="flex items-center gap-2"><Cpu className="h-6 w-6 text-primary" /> التفسير العلمي</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <p>
@@ -150,7 +150,7 @@ export default function LessonPartPage() {
                     </CardHeader>
                     <CardContent>
                         <p className="mb-4">
-                        إذا كان حجم بالون <InlineMath math="2.5\text{L}" /> عند درجة حرارة <InlineMath math="25^\circ\text{C}" />، فما هو حجمه الجديد إذا سخن إلى <InlineMath math="55^\circ\text{C}" /> مع بقاء الضغط ثابتًا؟
+                        إذا كان حجم بالون <InlineMath math="2.5L" /> عند درجة حرارة <InlineMath math="25^\circ\text{C}" />، فما هو حجمه الجديد إذا سخن إلى <InlineMath math="55^\circ\text{C}" /> مع بقاء الضغط ثابتًا؟
                         </p>
                         <div className="bg-muted/50 p-4 rounded-lg space-y-3">
                             <p><strong className="text-accent">المعطيات</strong></p>
