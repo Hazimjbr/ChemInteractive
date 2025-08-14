@@ -106,13 +106,16 @@ export default function LessonPartPage() {
               cardTitle="العلاقة الرياضية"
               cardIcon={<Cpu className="h-6 w-6" />}
             >
-              <div className="text-center space-y-2">
-                  <p className="text-sm text-foreground">التناسب العكسي</p>
-                  <div dir="ltr"><BlockMath math="V \propto \frac{1}{P}" /></div>
-                  <p className="text-sm text-foreground">لذلك، حاصل ضربهما يساوي ثابتًا (k)</p>
-                  <div dir="ltr"><BlockMath math="P \cdot V = k" /></div>
-                  <p className="text-sm text-foreground">لمقارنة حالتين للغاز</p>
-                  <div dir="ltr"><BlockMath math="P_1V_1 = P_2V_2" /></div>
+              <div className="space-y-4">
+                  <p>يمكن التعبير عن العلاقة العكسية بين الحجم (V) والضغط (P) رياضيًا كالتالي:</p>
+                  <div dir="ltr" className="text-center"><BlockMath math="V \propto \frac{1}{P}" /></div>
+                  <p>لتحويل التناسب إلى مساواة، نستخدم ثابتًا (k)، لتصبح المعادلة:</p>
+                  <div dir="ltr" className="text-center"><BlockMath math="P \cdot V = k" /></div>
+                  <p>وهذا يعني أن حاصل ضرب الضغط في الحجم لكمية معينة من الغاز عند درجة حرارة ثابتة هو قيمة ثابتة. ويمكن استخدام هذه العلاقة لمقارنة حالتين مختلفتين للغاز:</p>
+                  <div dir="ltr" className="text-center"><BlockMath math="P_1V_1 = P_2V_2" /></div>
+                   <p className="text-sm text-muted-foreground" dir="rtl">
+                      حيث <InlineMath math="P_1, V_1" /> هما الضغط والحجم الابتدائيان، و <InlineMath math="P_2, V_2" /> هما الضغط والحجم النهائيان.
+                  </p>
               </div>
             </FlippableCard>
 
