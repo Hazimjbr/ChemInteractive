@@ -131,7 +131,7 @@ export default function LessonPartPage() {
             </Card>
 
              <div className="grid md:grid-cols-2 gap-6 items-start">
-                <div className="space-y-6">
+                 <div className="space-y-6">
                     <Card>
                       <CardHeader>
                         <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> V مقابل P</CardTitle>
