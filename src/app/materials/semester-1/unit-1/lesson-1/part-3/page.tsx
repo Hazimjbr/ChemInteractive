@@ -90,21 +90,19 @@ export default function LessonPartPage() {
                 </div>
             </FlippableCard>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><Cpu className="h-6 w-6 text-primary" /> العلاقة الرياضية</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <div dir="ltr" className="text-left space-y-2">
-                        <p className="text-right text-sm text-foreground">التناسب العكسي:</p>
-                        <BlockMath math="V \propto \frac{1}{P}" />
-                        <p className="text-right text-sm text-foreground">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
-                        <BlockMath math="P \cdot V = k" />
-                        <p className="text-right text-sm text-foreground">لمقارنة حالتين للغاز:</p>
-                        <BlockMath math="P_1 V_1 = P_2 V_2" />
-                    </div>
-                </CardContent>
-            </Card>
+            <FlippableCard
+              cardTitle="العلاقة الرياضية"
+              cardIcon={<Cpu className="h-6 w-6" />}
+            >
+              <div className="text-right space-y-2">
+                  <p className="text-sm text-foreground">التناسب العكسي:</p>
+                  <div dir="ltr"><BlockMath math="V \propto \frac{1}{P}" /></div>
+                  <p className="text-sm text-foreground">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
+                  <div dir="ltr"><BlockMath math="P \cdot V = k" /></div>
+                  <p className="text-sm text-foreground">لمقارنة حالتين للغاز:</p>
+                  <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div>
+              </div>
+            </FlippableCard>
 
 
             <Card>
@@ -198,12 +196,12 @@ export default function LessonPartPage() {
                     </p>
                     <div className="bg-muted/50 p-4 rounded-lg space-y-3">
                         <p className="font-bold text-accent">المعطيات:</p>
-                        <div className="text-left" dir="ltr">
+                        <div className="space-y-1 text-right">
                             <p><InlineMath math="V_1 = 150 \text{ mL}" /></p>
                             <p><InlineMath math="P_1 = 98.8 \text{ kPa}" /></p>
                             <p><InlineMath math="P_2 = 96.1 \text{ kPa}" /></p>
                         </div>
-                        <p>المطلوب: الحجم الجديد <InlineMath math="V_2" /></p>
+                        <p><span className="font-bold text-accent">المطلوب:</span> الحجم الجديد <InlineMath math="V_2" /></p>
                         
                         <div>
                             <p><strong className="text-accent">الحل:</strong></p>
