@@ -12,7 +12,7 @@ export default function Home() {
         <p className="text-xl text-muted-foreground mb-2">
           منصتك التفاعلية لإتقان كيمياء التوجيهي الأردني بأحدث الطرق التعليمية.
         </p>
-        <p className="text-2xl font-semibold text-accent mt-4" dir="ltr">
+        <p className="text-xl text-muted-foreground mb-8">
             مع المعلم حازم جبر 0799747775
         </p>
         <div className="flex justify-center gap-4 mt-8">
