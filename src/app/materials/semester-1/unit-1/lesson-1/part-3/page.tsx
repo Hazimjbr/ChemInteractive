@@ -154,7 +154,7 @@ export default function LessonPartPage() {
                     </CardHeader>
                     <CardContent>
                         <p className="text-xs text-muted-foreground text-center mb-2">
-                            يمثل المنحنى العلاقة الطردية بين الحجم ومقلوب الضغط، عند ثبات درجة الحرارة وعدد المولات.
+                            يمثل المنحنى العلاقة الطردية بين الحجم ومقلوب الضغط.
                         </p>
                         <div className="flex justify-center items-center p-4">
                             <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
@@ -177,7 +177,7 @@ export default function LessonPartPage() {
                                             <text x="0" y="12" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">P</text>
                                         </g>
                                         
-                                        <line x1="25" y1="105" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
+                                        <line x1="20" y1="110" x2="120" y2="10" stroke="hsl(var(--primary))" strokeWidth="2.5" />
                                     </g>
                                 </g>
                             </svg>
