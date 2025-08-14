@@ -94,13 +94,13 @@ export default function LessonPartPage() {
               cardTitle="العلاقة الرياضية"
               cardIcon={<Cpu className="h-6 w-6" />}
             >
-              <div className="text-right space-y-2">
+              <div className="text-center space-y-2">
                   <p className="text-sm text-foreground">التناسب العكسي:</p>
                   <div dir="ltr"><BlockMath math="V \propto \frac{1}{P}" /></div>
                   <p className="text-sm text-foreground">لذلك، حاصل ضربهما يساوي ثابتًا (k):</p>
                   <div dir="ltr"><BlockMath math="P \cdot V = k" /></div>
                   <p className="text-sm text-foreground">لمقارنة حالتين للغاز:</p>
-                  <div dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div>
+                  <div dir="ltr"><BlockMath math="P_1V_1 = P_2V_2" /></div>
               </div>
             </FlippableCard>
 
@@ -196,10 +196,10 @@ export default function LessonPartPage() {
                     </p>
                     <div className="bg-muted/50 p-4 rounded-lg space-y-3">
                         <p className="font-bold text-accent">المعطيات:</p>
-                        <div className="space-y-1">
-                            <p className="text-right"><InlineMath math="V_1 = 150\text{mL}" /></p>
-                            <p className="text-right"><InlineMath math="P_1 = 98.8\text{kPa}" /></p>
-                            <p className="text-right"><InlineMath math="P_2 = 96.1\text{kPa}" /></p>
+                        <div className="space-y-1" dir="ltr">
+                            <p className="text-left"><InlineMath math="V_1 = 150\text{mL}" /></p>
+                            <p className="text-left"><InlineMath math="P_1 = 98.8\text{kPa}" /></p>
+                            <p className="text-left"><InlineMath math="P_2 = 96.1\text{kPa}" /></p>
                         </div>
                         <p><span className="font-bold text-accent">المطلوب:</span> الحجم الجديد <InlineMath math="V_2" /></p>
                         
@@ -207,10 +207,10 @@ export default function LessonPartPage() {
                             <p><strong className="text-accent">الحل:</strong></p>
                             <ol className="list-decimal mr-6 text-sm space-y-2">
                                 <li>نكتب قانون بويل
-                                    <div className="text-left" dir="ltr"><BlockMath math="P_1 V_1 = P_2 V_2" /></div>
+                                    <div className="text-left" dir="ltr"><BlockMath math="P_1V_1 = P_2V_2" /></div>
                                 </li>
                                 <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />
-                                    <div className="text-left" dir="ltr"><BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" /></div>
+                                    <div className="text-left" dir="ltr"><BlockMath math="V_2 = \frac{P_1V_1}{P_2}" /></div>
                                 </li>
                                 <li>نعوض القيم
                                     <div className="text-left" dir="ltr"><BlockMath math="V_2 = \frac{(98.8\text{kPa}) \cdot (150\text{mL})}{96.1\text{kPa}}" /></div>
