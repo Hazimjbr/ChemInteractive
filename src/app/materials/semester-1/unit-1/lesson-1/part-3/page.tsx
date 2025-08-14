@@ -192,14 +192,14 @@ export default function LessonPartPage() {
                 </CardHeader>
                 <CardContent>
                     <p className="mb-4">
-                        عينة من غاز النيتروجين حجمها <InlineMath math="150 \text{ mL}" /> عند ضغط مقداره <InlineMath math="98.8 \text{ kPa}" />. ما الحجم الجديد للعينة إذا انخفض الضغط إلى <InlineMath math="96.1 \text{ kPa}" /> مع بقاء درجة الحرارة ثابتة؟
+                        عينة من غاز النيتروجين حجمها <InlineMath math="150\text{mL}" /> عند ضغط مقداره <InlineMath math="98.8\text{kPa}" />. ما الحجم الجديد للعينة إذا انخفض الضغط إلى <InlineMath math="96.1\text{kPa}" /> مع بقاء درجة الحرارة ثابتة؟
                     </p>
                     <div className="bg-muted/50 p-4 rounded-lg space-y-3">
                         <p className="font-bold text-accent">المعطيات:</p>
                         <div className="space-y-1">
-                            <p className="text-right"><InlineMath math="V_1 = 150 \text{ mL}" /></p>
-                            <p className="text-right"><InlineMath math="P_1 = 98.8 \text{ kPa}" /></p>
-                            <p className="text-right"><InlineMath math="P_2 = 96.1 \text{ kPa}" /></p>
+                            <p className="text-right"><InlineMath math="V_1 = 150\text{mL}" /></p>
+                            <p className="text-right"><InlineMath math="P_1 = 98.8\text{kPa}" /></p>
+                            <p className="text-right"><InlineMath math="P_2 = 96.1\text{kPa}" /></p>
                         </div>
                         <p><span className="font-bold text-accent">المطلوب:</span> الحجم الجديد <InlineMath math="V_2" /></p>
                         
@@ -213,16 +213,16 @@ export default function LessonPartPage() {
                                     <div className="text-left" dir="ltr"><BlockMath math="V_2 = \frac{P_1 V_1}{P_2}" /></div>
                                 </li>
                                 <li>نعوض القيم
-                                    <div className="text-left" dir="ltr"><BlockMath math="V_2 = \frac{(98.8 \text{ kPa}) \cdot (150 \text{ mL})}{96.1 \text{ kPa}}" /></div>
+                                    <div className="text-left" dir="ltr"><BlockMath math="V_2 = \frac{(98.8\text{kPa}) \cdot (150\text{mL})}{96.1\text{kPa}}" /></div>
                                 </li>
                                 <li>نحسب الناتج
-                                    <div className="text-left" dir="ltr"><BlockMath math="V_2 \approx 154.2 \text{ mL}" /></div>
+                                    <div className="text-left" dir="ltr"><BlockMath math="V_2 \approx 154.2\text{mL}" /></div>
                                 </li>
                             </ol>
                         </div>
                         <div className="border-t pt-3">
                             <p className="text-sm font-semibold">
-                            الجواب: الحجم الجديد للغاز هو <InlineMath math="154.2 \text{ mL}" />. وهذا منطقي، لأن الضغط انخفض، فمن المتوقع أن يزداد الحجم.
+                            الجواب: الحجم الجديد للغاز هو <InlineMath math="154.2\text{mL}" />. وهذا منطقي، لأن الضغط انخفض، فمن المتوقع أن يزداد الحجم.
                             </p>
                         </div>
                     </div>
@@ -297,5 +297,3 @@ export default function LessonPartPage() {
     </div>
   );
 }
-
-    
