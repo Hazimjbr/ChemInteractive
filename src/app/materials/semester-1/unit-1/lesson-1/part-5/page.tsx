@@ -107,12 +107,15 @@ export default function LessonPartPage() {
                         cardIcon={<Cpu className="h-6 w-6" />}
                     >
                         <div className="text-center space-y-4">
-                             <p>العلاقة الطردية بين الضغط (P) ودرجة الحرارة (T):</p>
+                            <p>يمكن التعبير عن العلاقة الطردية بين الضغط (P) ودرجة الحرارة المطلقة (T) رياضيًا كالتالي:</p>
                             <BlockMath math="P \propto T" />
-                            <p>لذلك، حاصل قسمتهما يساوي ثابتًا (k):</p>
+                            <p>لتحويل التناسب إلى مساواة، نستخدم ثابتًا (k)، لتصبح المعادلة:</p>
                             <BlockMath math="\frac{P}{T} = k" />
-                             <p>لمقارنة حالتين للغاز:</p>
+                            <p>وهذا يعني أن حاصل قسمة الضغط على درجة الحرارة المطلقة لكمية معينة من الغاز عند حجم ثابت هو قيمة ثابتة. ويمكن استخدام هذه العلاقة لمقارنة حالتين مختلفتين للغاز:</p>
                             <BlockMath math="\frac{P_1}{T_1} = \frac{P_2}{T_2}" />
+                            <p className="text-sm text-muted-foreground" dir="rtl">
+                                حيث <InlineMath math="P_1, T_1" /> هما الضغط والحرارة الابتدائيان، و <InlineMath math="P_2, T_2" /> هما الضغط والحرارة النهائيان. **يجب دائمًا استخدام درجة حرارة الكلفن (K)**.
+                            </p>
                         </div>
                     </FlippableCard>
                 </div>
@@ -202,7 +205,7 @@ export default function LessonPartPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-6">
               <InteractiveQuestionCard 
-                  question="عينة من غاز محصور في وعاء حجمه ثابت 4L وضغطها 2atm عند درجة حرارة 200°C فإذا ارتفعت درجة حرارتها بمقدار 100 درجة فإن ضغطها بوحدة atm يساوي"
+                  question="عينة من غاز محصور في وعاء حجمه ثابت 4 L وضغطها 2 atm عند درجة حرارة 200 °C فإذا ارتفعت درجة حرارتها بمقدار 100 درجة فإن ضغطها بوحدة atm يساوي"
                   options={[
                       "1.3",
                       "1.6",
@@ -213,7 +216,7 @@ export default function LessonPartPage() {
                   explanation="T₁=200+273=473K. T₂= (200+100)+273=573K. P₁=2atm. باستخدام قانون جاي-لوساك، P₂ = P₁T₂/T₁ = (2*573)/473 ≈ 2.4atm."
               />
                <InteractiveQuestionCard 
-                  question="عينة من غاز محصور ضغطها 900mmHg عند درجة حرارة 273K فإذا أصبح ضغطها 200kPa فإن درجة حرارتها بوحدة °C تساوي"
+                  question="عينة من غاز محصور ضغطها 900 mmHg عند درجة حرارة 273 K فإذا أصبح ضغطها 200 kPa فإن درجة حرارتها بوحدة °C تساوي"
                   options={[
                       "60.6",
                       "182",
