@@ -69,7 +69,7 @@ export default function LessonPartPage() {
                     </CardHeader>
                     <CardContent>
                         <p>
-                        عند رفع درجة حرارة الغاز (مع ثبات الضغط)، تزداد الطاقة الحركية لجسيماته، فتتحرك بسرعة أكبر وتتصادم بقوة أكبر مع جدار الوعاء. للحفاظ على الضغط ثابتًا، يجب أن يزداد حجم الوعاء لتقليل عدد التصادمات في وحدة الزمن.
+                        عند رفع درجة حرارة الغاز (مع ثبات الضغط)، يزداد متوسط الطاقة الحركية لجسيماته، فتتحرك بسرعة أكبر وتتصادم بقوة أكبر مع جدار الوعاء. للحفاظ على الضغط ثابتًا، يجب أن يزداد حجم الوعاء لتقليل عدد التصادمات في وحدة الزمن.
                         </p>
                     </CardContent>
                 </Card>
@@ -102,39 +102,72 @@ export default function LessonPartPage() {
             </CardContent>
         </Card>
 
-        <Card>
-            <CardHeader>
-                <CardTitle>مثال محلول</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="mb-4">
-                   إذا كان حجم بالون <InlineMath math="2.5 \text{ L}" /> عند درجة حرارة <InlineMath math="25^\circ\text{C}" />, فما هو حجمه الجديد إذا سخن إلى <InlineMath math="55^\circ\text{C}" /> مع بقاء الضغط ثابتًا؟
-                </p>
-                <div className="bg-muted/50 p-4 rounded-lg space-y-3">
-                    <p><strong className="text-accent">المعطيات:</strong></p>
-                    <ul className="list-disc mr-6 text-sm" dir="ltr">
-                        <li><InlineMath math="V_1 = 2.5 \text{ L}" /></li>
-                        <li><InlineMath math="T_1 = 25^\circ\text{C}" /></li>
-                        <li><InlineMath math="T_2 = 55^\circ\text{C}" /></li>
-                    </ul>
-                    <p><strong className="text-accent">المطلوب:</strong> الحجم الجديد <InlineMath math="V_2" /></p>
-                    <p><strong className="text-accent">الحل:</strong></p>
-                    <ol className="list-decimal mr-6 text-sm space-y-2">
-                        <li>**الخطوة الأولى والأهم:** نحول درجات الحرارة إلى كلفن.
-                            <BlockMath math="T_1(K) = 25 + 273 = 298 \text{ K}" />
-                            <BlockMath math="T_2(K) = 55 + 273 = 328 \text{ K}" />
-                        </li>
-                        <li>نكتب قانون شارل: <BlockMath math="\frac{V_1}{T_1} = \frac{V_2}{T_2}" /></li>
-                        <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: <BlockMath math="V_2 = \frac{V_1 T_2}{T_1}" /></li>
-                        <li>نعوض القيم: <BlockMath math="V_2 = \frac{(2.5 \text{ L}) \cdot (328 \text{ K})}{298 \text{ K}}" /></li>
-                        <li>نحسب الناتج: <BlockMath math="V_2 \approx 2.75 \text{ L}" /></li>
-                    </ol>
-                    <p className="text-sm font-semibold border-t pt-2">
-                       الجواب: الحجم الجديد للبالون هو <InlineMath math="2.75 \text{ L}" />. وهذا منطقي، لأن درجة الحرارة زادت، فمن المتوقع أن يزداد الحجم.
+        <div className="grid md:grid-cols-2 gap-6 items-start">
+            <Card>
+                <CardHeader>
+                    <CardTitle>مثال محلول</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p className="mb-4">
+                       إذا كان حجم بالون <InlineMath math="2.5 \text{ L}" /> عند درجة حرارة <InlineMath math="25^\circ\text{C}" />, فما هو حجمه الجديد إذا سخن إلى <InlineMath math="55^\circ\text{C}" /> مع بقاء الضغط ثابتًا؟
                     </p>
+                    <div className="bg-muted/50 p-4 rounded-lg space-y-3">
+                        <p><strong className="text-accent">المعطيات:</strong></p>
+                        <ul className="list-disc mr-6 text-sm space-y-1">
+                            <li className="flex justify-between"><span>الحجم الابتدائي:</span><span dir="ltr"><InlineMath math="V_1 = 2.5 \text{ L}" /></span></li>
+                            <li className="flex justify-between"><span>الحرارة الابتدائية:</span><span dir="ltr"><InlineMath math="T_1 = 25^\circ\text{C}" /></span></li>
+                            <li className="flex justify-between"><span>الحرارة النهائية:</span><span dir="ltr"><InlineMath math="T_2 = 55^\circ\text{C}" /></span></li>
+                        </ul>
+                        <p><strong className="text-accent">المطلوب:</strong> الحجم الجديد <InlineMath math="V_2" /></p>
+                        <p><strong className="text-accent">الحل:</strong></p>
+                        <ol className="list-decimal mr-6 text-sm space-y-2">
+                            <li>**الخطوة الأولى والأهم:** نحول درجات الحرارة إلى كلفن.
+                                <BlockMath math="T_1(K) = 25 + 273 = 298 \text{ K}" />
+                                <BlockMath math="T_2(K) = 55 + 273 = 328 \text{ K}" />
+                            </li>
+                            <li>نكتب قانون شارل: <BlockMath math="\frac{V_1}{T_1} = \frac{V_2}{T_2}" /></li>
+                            <li>نعيد ترتيب المعادلة لحل <InlineMath math="V_2" />: <BlockMath math="V_2 = \frac{V_1 T_2}{T_1}" /></li>
+                            <li>نعوض القيم: <BlockMath math="V_2 = \frac{(2.5 \text{ L}) \cdot (328 \text{ K})}{298 \text{ K}}" /></li>
+                            <li>نحسب الناتج: <BlockMath math="V_2 \approx 2.75 \text{ L}" /></li>
+                        </ol>
+                        <p className="text-sm font-semibold border-t pt-2">
+                           الجواب: الحجم الجديد للبالون هو <InlineMath math="2.75 \text{ L}" />. وهذا منطقي، لأن درجة الحرارة زادت، فمن المتوقع أن يزداد الحجم.
+                        </p>
+                    </div>
+                </CardContent>
+            </Card>
+
+             <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center justify-center gap-2 text-base font-semibold"><LineChart className="h-5 w-5 text-primary" /> العلاقة البيانية</CardTitle>
+                </CardHeader>
+                <CardContent>
+                <p className="text-xs text-muted-foreground text-center mb-2">
+                    يمثل الخط المستقيم العلاقة الطردية بين الحجم ودرجة الحرارة المطلقة، عند ثبات الضغط وعدد المولات.
+                </p>
+                <div className="flex justify-center items-center p-4">
+                    <svg width="250" height="200" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs h-auto">
+                         <defs>
+                            <marker id="arrowhead" markerWidth="5" markerHeight="3.5" refX="0" refY="1.75" orient="auto">
+                                <polygon points="0 0, 5 1.75, 0 3.5" fill="hsl(var(--muted-foreground))" />
+                            </marker>
+                        </defs>
+                        
+                        <line x1="20" y1="110" x2="20" y2="10" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+                        <text x="10" y="15" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">V</text>
+                        
+                        <line x1="20" y1="110" x2="140" y2="110" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+                        <text x="140" y="120" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontWeight="bold">T</text>
+                        
+                        <line x1="25" y1="105" x2="120" y2="20" stroke="hsl(var(--primary))" strokeWidth="2.5" />
+
+                        <text x="80" y="40" textAnchor="middle" fontSize="10" fill="hsl(var(--foreground))">ثبات الضغط</text>
+                        <text x="80" y="55" textAnchor="middle" fontSize="10" fill="hsl(var(--foreground))">وعدد المولات</text>
+                    </svg>
                 </div>
-            </CardContent>
-        </Card>
+                </CardContent>
+            </Card>
+        </div>
         
         <div className="space-y-4">
           <div className="flex items-center gap-3">
@@ -146,26 +179,26 @@ export default function LessonPartPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-6">
               <InteractiveQuestionCard 
-                  question="في قانون شارل، ما هي وحدة درجة الحرارة التي يجب استخدامها دائمًا؟"
+                  question="عينة من غاز محصور حجمها 4L وضغطها 2atm عند درجة حرارة 200°C فإن حجمها عندما تصبح درجة حرارتها 250°C وضغطها 2atm يساوي:"
                   options={[
-                      "سيليزيوس (°C)",
-                      "فهرنهايت (°F)",
-                      "كلفن (K)",
-                      "لا يهم، طالما الوحدات متسقة"
+                      "5L",
+                      "3.6L",
+                      "4.4L",
+                      "3.2L"
                   ]}
                   correctAnswerIndex={2}
-                  explanation="قانون شارل يعتمد على علاقة تناسب طردي مع درجة الحرارة المطلقة، والتي يتم قياسها بوحدة الكلفن (K). استخدام أي وحدة أخرى سيؤدي إلى نتائج خاطئة."
+                  explanation="أولاً، نحول الحرارة إلى كلفن: T₁=200+273=473K, T₂=250+273=523K. الضغط ثابت، لذا نستخدم قانون شارل: V₂ = V₁T₂/T₁ = (4L * 523K) / 473K ≈ 4.4L."
               />
                <InteractiveQuestionCard 
-                  question="عند تبريد غاز عند ضغط ثابت، ماذا يحدث لمتوسط الطاقة الحركية لجسيماته وحجمه؟"
+                  question="عينة من غاز محصور حجمها 4L درجة حرارتها 400K. عند مضاعفة حرارتها وثبات ضغطها فإن حجمها:"
                   options={[
-                      "تزداد الطاقة الحركية ويزداد الحجم",
-                      "تقل الطاقة الحركية ويقل الحجم",
-                      "تبقى الطاقة الحركية ثابتة ويقل الحجم",
-                      "تقل الطاقة الحركية ويزداد الحجم"
+                      "يصبح 5L",
+                      "يزداد إلى الضعف",
+                      "يقل إلى النصف",
+                      "لا يتغير"
                   ]}
                   correctAnswerIndex={1}
-                  explanation="تبريد الغاز يقلل من متوسط الطاقة الحركية لجسيماته. ووفقًا لقانون شارل، انخفاض درجة الحرارة يؤدي إلى انخفاض الحجم بشكل مباشر للحفاظ على الضغط ثابتًا."
+                  explanation="قانون شارل ينص على علاقة طردية بين الحجم ودرجة الحرارة المطلقة. عند مضاعفة درجة الحرارة (من 400K إلى 800K)، يجب أن يتضاعف الحجم أيضًا للحفاظ على النسبة ثابتة، فيصبح 8L."
               />
           </div>
         </div>
