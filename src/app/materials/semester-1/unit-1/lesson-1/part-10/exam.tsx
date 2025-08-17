@@ -73,7 +73,7 @@ export const staticQuizLvl2: QuizQuestion[] = [
             </>
         ),
         options: ["O₂", "H₂S", "CH₄", "SO₂"],
-        correctAnswerIndex: 3,
+        correctAnswerIndex": 3,
         explanation: "الأبطأ انتشارًا هو الغاز الذي له أعلى كتلة مولية. نحسب الكتل المولية: O₂=32, H₂S=34, CH₄=16, SO₂=64. غاز SO₂ هو الأثقل، وبالتالي هو الأبطأ انتشارًا."
     },
     {
@@ -117,7 +117,7 @@ export const staticQuizLvl3: QuizQuestion[] = [
             "لعدم وجود جسيمات أخرى تعيق حركته وتصطدم به.",
             "لأن قوى التجاذب في الفراغ أقل."
         ],
-        correctAnswerIndex": 2,
+        correctAnswerIndex: 2,
         explanation: "الانتشار في الهواء يتباطأ بسبب التصادمات المستمرة بين جسيمات الغاز المنتشر وجسيمات الهواء (النيتروجين والأكسجين). في الفراغ، لا توجد هذه التصادمات، فتتحرك الجسيمات بحرية حتى تصطدم بجدار الوعاء."
     },
      {
@@ -128,7 +128,7 @@ export const staticQuizLvl3: QuizQuestion[] = [
             "r(A) = 4 * r(B)",
             "r(B) = 4 * r(A)"
         ],
-        correctAnswerIndex": 1,
+        correctAnswerIndex: 1,
         explanation: "r(B)/r(A) = √(Mr(A)/Mr(B)) = √(4*Mr(B)/Mr(B)) = √4 = 2. إذن، r(B) = 2 * r(A)، أي أن الغاز الأخف B أسرع بمرتين من الغاز الأثقل A."
     },
     {
@@ -138,3 +138,5 @@ export const staticQuizLvl3: QuizQuestion[] = [
         explanation: "قانون جراهام يربط معدل الانتشار بالكتلة المولية عند ثبات الحرارة والضغط. لون الغاز هو خاصية فيزيائية لا علاقة لها بسرعة حركة جسيماته."
     }
 ];
+
+    
