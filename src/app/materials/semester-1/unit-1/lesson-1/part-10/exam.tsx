@@ -73,7 +73,7 @@ export const staticQuizLvl2: QuizQuestion[] = [
             </>
         ),
         options: ["O₂", "H₂S", "CH₄", "SO₂"],
-        correctAnswerIndex": 3,
+        correctAnswerIndex: 3,
         explanation: "الأبطأ انتشارًا هو الغاز الذي له أعلى كتلة مولية. نحسب الكتل المولية: O₂=32, H₂S=34, CH₄=16, SO₂=64. غاز SO₂ هو الأثقل، وبالتالي هو الأبطأ انتشارًا."
     },
     {
@@ -134,7 +134,7 @@ export const staticQuizLvl3: QuizQuestion[] = [
     {
         question: "أي من الخصائص التالية لا تؤثر بشكل مباشر على معدل انتشار غاز معين وفقًا لقانون جراهام؟",
         options: ["الكتلة المولية للغاز", "درجة الحرارة", "الضغط", "لون الغاز"],
-        correctAnswerIndex": 3,
+        correctAnswerIndex: 3,
         explanation: "قانون جراهام يربط معدل الانتشار بالكتلة المولية عند ثبات الحرارة والضغط. لون الغاز هو خاصية فيزيائية لا علاقة لها بسرعة حركة جسيماته."
     }
 ];
